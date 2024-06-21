@@ -1,0 +1,11 @@
+<template>
+    <lightning-layout-item size="12" small-device-size="12" large-device-size="3" medium-device-size="4" padding="around-small">
+        <lightning-input type="file" label="Upload Excel" name="fileUploader" accept={strAcceptedFormats} onchange={handleUploadFinished}></lightning-input>
+        <p>{strUploadFileName}</p>
+    </lightning-layout-item>
+    <!-- The indentation is missing -->
+    <!-- <lightning-layout-item size="12" small-device-size="12" large-device-size="3" medium-device-size="4" padding="around-small">
+        <lightning-input type="file" label="Upload XLSX" name="fileUploader" accept={strAcceptedFormats} onchange={handleUploadFinished}></lightning-input>
+        <p>{strUploadFileName}</p>
+    </lightning-layout-item> -->
+</template>

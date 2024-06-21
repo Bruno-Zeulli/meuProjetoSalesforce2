@@ -1,0 +1,667 @@
+<template>
+    <lightning-card class="customCardClassFollowUp"> 
+        <template if:true={dataLoaded}>
+
+            <template if:false={loadingEmissionPage}>
+                <template if:true={loadedQuoteTables}>
+                    <c-placement-follow-up-path opp-id={oppId} case-id={caseId} case-record={caseRecord}></c-placement-follow-up-path>
+                </template>
+            </template>
+            
+            <br>
+        
+            <div class = 'content'>
+                
+                <lightning-tabset class = 'tab'>
+                    <lightning-tab label="Dados da Oportunidade" value="Opportunity" onactive={handleActive}>
+
+                        <div class = marginSession>
+                            <h1> Dados da Oportunidade </h1>
+                        </div><br>
+
+                        <div class = InfoSectionOpp>
+
+                            <div class="fieldContainerOpp">
+                                <p class="fieldLabelOpp"><strong>IMPORTÂNCIA SEGURADA</strong></p>
+                                <p class="fieldValue">{insuredAmount}</p>
+                            </div>
+                            
+                            <div class="fieldContainerOpp">
+                                <p class="fieldLabelOpp"><strong>PRÊMIO ESTIMADO</strong></p>
+                                <p class="fieldValue">{estimatedPrize}</p>
+                            </div>
+                            
+                            <div class="fieldContainerOpp">
+                                <p class="fieldLabelOpp"><strong>COMISSÃO ESTIMADA</strong></p>
+                                <p class="fieldValue">{estimatedCommission}</p>
+                            </div>
+
+                            <div class="fieldContainerOpp">
+                                <p class="fieldLabel"><strong>DATA DE SOLICITAÇÃO</strong></p>
+                                <p class="fieldValue">{requestDate}</p>
+                            </div>
+
+                            <div class="fieldContainerOpp">
+                                <p class="fieldLabel"><strong>DATA DO FECHAMENTO</strong></p>
+                                <p class="fieldValue">{closingDate}</p>
+                            </div>
+
+                            <div class="fieldContainerOpp">
+                                <p class="fieldLabel"><strong>STATUS DA OPORTUNIDADE</strong></p>
+                                <p class="fieldValue">{opportunityStatus}</p>
+                            </div>
+
+                        </div>
+
+                        <div class = InfoSectionOpp>
+
+                            <div class="fieldContainerOpp">
+                                <p class="fieldLabel"><strong>NOME DO COMERCIAL</strong></p>
+                                <p class="fieldValue">{commercialName}</p>
+                            </div>
+
+                            <div class="fieldContainerOpp">
+                                <p class="fieldLabel"><strong>ESTA OPORTUNIDADE É UMA NOMEAÇÃO</strong></p>
+                                <p class="fieldValue">{thisOppIsAnAppointment}</p>
+                            </div>
+
+                        </div>
+
+                        <div class = InfoSectionOpp>
+
+                            <div class="fieldContainerOpp">
+                                <p class="fieldLabel"><strong>PROBABILIDADE DE FECHAR O NEGÓCIO</strong></p>
+                                <p class="fieldValue">{probabilityOfClosingDeal}</p>
+                            </div>
+
+                        </div>
+
+                        <div class = InfoSectionOpp>
+
+                            <div class="fieldContainerOpp">
+                                <p class="fieldLabel"><strong>DESCRIÇÃO DA OPORTUNIDADE</strong></p>
+                                <p class="fieldValue">{opportunityDescription}</p>
+                            </div>
+
+                        </div>
+
+                        <template if:false={loadingFilesOpp}>
+                            <c-placement-upload-files-component show-drop-zone={showDropZone} object-to-save = 'OpportunityOutros' add-files={oppDocuments} opp-session={oppSession} drop-zone-class = 'drop-zone-opp' files-title-class = 'filesTitleH1Opp' drop-zone-title-class = 'dropZoneH1' onselectedfiles={handleSelectedFiles} drop-zone-title ="Anexar novo documento" files-title="Documentos Anexados"></c-placement-upload-files-component>
+                        </template>
+                        <template if:true={loadingFilesOpp}>
+                            <div class = 'custom-spinner'>
+                                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                            </div>
+                        </template>
+                    </lightning-tab>
+
+
+                    <lightning-tab label="Contatos" value="Contact" onactive={handleActive}>
+
+                        <div class = contactSession>
+                            
+                            <lightning-accordion allow-multiple-sections-open
+                                                onsectiontoggle={handleSectionToggle}
+                                                active-section-name={activeContactSections}>
+
+                                <template for:each={listContacts} for:item = "contact" for:index="index">
+                                    <lightning-accordion-section key={contact.Id} name='C1' label={contact.Label}>
+
+                                        <div class = InfoSectionCtt>
+                
+                                            <div class="fieldContainerCtt">
+
+                                                <p class="fieldLabel"><strong>NOME DO CONTATO</strong></p>
+
+                                                <template if:true = {contact.Name}>
+                                                    <p class="fieldValue">{contact.Name}</p>
+                                                </template>
+
+                                                <template if:false = {contact.Name}>
+                                                    <p class="fieldValue">Não informado</p>
+                                                </template>
+
+                                            </div>
+                
+                
+                                            <div class="fieldContainerCtt">
+
+                                                <p class="fieldLabel"><strong>TELEFONE DE CONTATO</strong></p>
+
+                                                <template if:true = {contact.Phone}>
+                                                    <p class="fieldValue">{contact.Phone}</p>
+                                                </template>
+
+                                                <template if:false = {contact.Phone}>
+                                                    <p class="fieldValue">Não informado</p>
+                                                </template>
+
+                                            </div>
+                
+                
+                                            <div class="fieldContainerCtt">
+
+                                                <p class="fieldLabel"><strong>CELULAR</strong></p>
+
+                                                <template if:true = {contact.MobilePhone}>
+                                                    <p class="fieldValue">{contact.MobilePhone}</p>
+                                                </template>
+
+                                                <template if:false = {contact.MobilePhone}>
+                                                    <p class="fieldValue">Não informado</p>
+                                                </template>
+
+                                            </div>
+                
+                                            
+                                            <div class="fieldContainerCtt">
+
+                                                <p class="fieldLabel"><strong>EMAIL</strong></p>
+
+                                                <template if:true = {contact.Email}>
+                                                    <p class="fieldValue">{contact.Email}</p>
+                                                </template>
+
+                                                <template if:false = {contact.Email}>
+                                                    <p class="fieldValue">Não informado</p>
+                                                </template>
+
+                                            </div>
+                                            
+                
+                                            <div class="fieldContainerCtt">
+
+                                                <p class="fieldLabel"><strong>CARGO</strong></p>
+
+                                                <template if:true = {contact.Department}>
+                                                    <p class="fieldValue">{contact.Department}</p>
+                                                </template>
+
+                                                <template if:false = {contact.Department}>
+                                                    <p class="fieldValue">Não informado</p>
+                                                </template>
+                                                
+                                            </div>
+                
+                
+                                            <div class="fieldContainerCtt">
+                                                
+                                                <p class="fieldLabel"><strong>DATA DE NASCIMENTO</strong></p>
+
+                                                <template if:true = {contact.Birthdate}>
+                                                    <p class="fieldValue">{contact.Birthdate}</p>
+                                                </template>
+
+                                                <template if:false = {contact.Birthdate}>
+                                                    <p class="fieldValue">Não informado</p>
+                                                </template>
+
+                                            </div>
+                
+                                            
+                                        </div>
+                
+                                        <div class = InfoSectionCtt>
+                
+                                            <div class="fieldContainerCtt">
+                                                
+                                                <p class="fieldLabel"><strong>TIME DO CORAÇÃO</strong></p>
+
+                                                <template if:true = {contact.TeamYouCheerFor__c}>
+                                                    <p class="fieldValue">{contact.TeamYouCheerFor__c}</p>
+                                                </template>
+
+                                                <template if:false = {contact.TeamYouCheerFor__c}>
+                                                    <p class="fieldValue">Não informado</p>
+                                                </template>
+                                
+                                            </div>
+                
+                                        </div>
+                
+                                    </lightning-accordion-section>
+
+                                </template>
+                        
+                            </lightning-accordion>
+
+                        </div>
+
+                    </lightning-tab>
+
+
+                    <lightning-tab label="Questionário" value="Questionary" onactive={handleActive}>
+
+                        <div class = marginSession>
+                            <h1> Questionários </h1>
+
+                        </div><br> 
+
+                        <div class = questionarySession>
+
+                            <lightning-accordion allow-multiple-sections-open
+                                                onsectiontoggle={handleSectionToggle}
+                                                active-section-name={questionaryActiveSections}>
+
+                                <template for:each={questionaryRecords} for:item = "questionary" for:index="index">
+                                    
+                                    <lightning-accordion-section key={questionary.Id} name='C1' label={questionary.Name}>
+
+                                        <div class = InfoSectionQst>
+
+                                            <template if:true={questionaryLoaded}>
+                                                
+                                                <c-questionnaire-test record-id={questionnaryId}></c-questionnaire-test>
+
+                                            </template>
+                                            <template if:false={questionaryLoaded}>
+                                                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                                            </template>
+
+                                        </div>
+
+                                    </lightning-accordion-section>
+
+                                </template>
+                    
+                            </lightning-accordion>
+
+                        </div>
+
+                    </lightning-tab>
+
+
+                    <lightning-tab label="Cotações" value="Quote" onactive={handleActive}>
+
+                        <div class = quoteSession>
+
+                            <div class="slds-float_right slds-p-right_small">
+                                <lightning-button class="buttonQuoteCreate" icon-name="utility:record_create" label="Nova Cotação"
+                                    icon-position="left" onclick={openModal}></lightning-button>
+                            </div> 
+                            <h1> Cotações </h1> <br>
+                        </div>
+
+                        <template if:true={loadedQuoteTables}>
+
+                            <div class = 'cotacoes'>
+                                <c-composite-data-table 
+                                show-row-number-column="false"
+                                columns={columnsQuote}
+                                received-data={quoteList}
+                                oneditmodal={handleEditModal}
+                                ondeletemodal={handleDeleteModal}
+                                onsavedraftvalues={handleSaveInLineEdit}
+                                onsort={handleSort}
+                                >
+                                </c-composite-data-table>
+                            </div>
+                            <br><br>
+
+                            <div class = 'proposalSession'>
+                                <div class="slds-float_right slds-p-right_small">
+                                    <lightning-button class="addNewProposal" label="Nova Proposta" icon-name="utility:add" icon-position="left" onclick={openProposalModal}></lightning-button>
+                                </div>
+                                <h1>Propostas Cosseguro</h1><br>
+                            </div>
+
+                                <div class = 'cosseguro'>
+                                    <c-composite-data-table 
+                                    show-row-number-column="false"
+                                    columns={columnsCoinsuranceProposal}
+                                    received-data={coinsuranceProposalsList}
+                                    oneditmodal={handleEditProposalModal}
+                                    ondeletemodal={handleDeleteProposalModal}
+                                    onsort={handleSort}
+                                    >
+                                    </c-composite-data-table>
+                                </div>
+                                <br><br>
+
+                                <template if:false={loadingFilesOpp}>
+                                    <c-placement-upload-files-component show-drop-zone={showDropZone} object-to-save = 'OpportunityEstudoDeMercado' drop-zone-class = 'drop-zone' files-title-class = 'filesTitleH1' drop-zone-title-class = 'dropZoneH1' onselectedfiles={handleSelectedFiles} show-footer-buttons={estudoDeMercadoFooterButtons} drop-zone-title ="Anexar novo estudo de mercado" files-title="Estudo de mercado"></c-placement-upload-files-component>
+                                </template>
+                                <template if:true={loadingFilesOpp}>
+                                    <div class = 'custom-spinner'>
+                                        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                                    </div>
+                                </template>
+                        </template>
+                        <template if:false={loadedQuoteTables}>
+                            <div class = 'custom-spinner'>
+                                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                            </div>
+                        </template>
+
+                        <template if:true={showNewProposalModal}>
+                            <template if:true={loadedProposalModal}>
+                                <div class="slds-modal slds-fade-in-open">
+                                
+                                    <div class="slds-modal__container">
+                                        <div class="slds-modal__header">
+                                            <h2 class="slds-text-heading_medium">Proposta Cosseguro {quoteNumber}</h2>
+                                            <button class="close-button" onclick={closeProposalModal}>
+                                                <lightning-icon icon-name="utility:close" size="x-small"></lightning-icon>
+                                            </button>
+                                        </div>
+                                        <div class="slds-modal__content slds-p-around_large">
+                                            <h3 class="slds-text-heading_x-small">Cotação da seguradora líder</h3><br>
+                    
+                                            <div class = 'lider'>
+                                                <lightning-datatable
+                                                        data-table-id='lider'
+                                                        key-field="id"
+                                                        data={cosseguroList}
+                                                        max-row-selection = 1
+                                                        onrowselection={handleRowSelectionLider}
+                                                        selected-rows={preSelectedRowsLider}
+                                                        onsort={handleSort}
+                                                        columns={columnsCosseguro}>
+                                                </lightning-datatable>
+                                            </div> <br>
+                                            
+                                            <br>
+                                            <h3 class="slds-text-heading_x-small">Cotação das seguradoras coparticipantes</h3><br>
+                    
+                                            
+                                            <div class = 'coparticipantes'>
+                                                <lightning-datatable
+                                                        data-table-id='coparticipantes'
+                                                        key-field="id" 
+                                                        data={cosseguroList}
+                                                        onrowselection={handleRowSelectionCoparticipantes}
+                                                        selected-rows={preSelectedRowsCopart}
+                                                        onsort={handleSort}
+                                                        columns={columnsCosseguro}>
+                                                </lightning-datatable>
+                                            </div> <br><br>
+                    
+                                            
+                                            <h3 class="slds-text-heading_x-small">Composição da proposta</h3><br>
+                    
+                                            <div class = 'propostas'>
+                                                <lightning-datatable
+                                                        data-table-id="propostas"
+                                                        key-field="id"
+                                                        data={proposalList}
+                                                        show-row-number-column
+                                                        hide-checkbox-column
+                                                        onsort={handleSort}
+                                                        row-number-offset={rowOffset}
+                                                        suppress-bottom-bar
+                                                        columns={columnsProposta}>
+                                                </lightning-datatable>
+                                            </div>
+                                            <br><br>
+
+                                            <template if:true={quoteEdit}>
+                                                <h3 class="slds-text-heading_small">Anexos da proposta</h3>
+                                                <ul>
+                                                    <template for:each={quoteFiles} for:item="file">
+                                                        <li key={file.Name} class ='file-item'>
+                                                            <div class = 'file-title'>
+                                                                <lightning-icon icon-name="utility:attach" size="x-small" class ='attach-icon'></lightning-icon>
+                                                                {file.Name}
+                                                            </div>
+                                                            <div class="button-group">
+                                                                <lightning-button label="Visualizar" icon-name="utility:preview" icon-position="left" onclick={handlePreviewFile} class = 'button-file-view' data-fileid={file.Id}></lightning-button>
+                                                            </div>
+                                                        </li>
+                                                    </template>
+                                                </ul>
+                                                <br>
+
+                                                <h3 class="slds-text-heading_small">Anexos adicionais</h3>
+                                            </template>
+                                            <template if:false={quoteEdit}>
+                                                <h3 class="slds-text-heading_small">Anexos da proposta</h3>
+                                            </template>
+                            
+                                            <c-placement-upload-files-component show-drop-zone={showDropZone} object-to-save = 'Quote' drop-zone-class = 'drop-zone-modal' onselectedfiles={handleSelectedFiles}></c-placement-upload-files-component>
+                                        </div>
+                                        <div class="slds-modal__footer">
+                                            <lightning-button class="buttonQuoteDelete" label="Excluir" onclick={deleteCoinsuranceDataModal}></lightning-button>
+                                            <lightning-button class="buttonQuoteSave" label="Salvar" onclick={saveCoinsuranceDataModal}></lightning-button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-backdrop slds-backdrop_open"></div>
+                            </template>
+                            <template if:false={loadedProposalModal}>
+                                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                            </template>
+                        </template>
+
+
+                        <template if:true={showConfirmDelete}>
+                            <div class="slds-modal slds-fade-in-open">
+                                <div class = 'deleteConfirmation'>
+                                    <div class="slds-modal__container">
+                                        <div class="slds-modal__header">
+                                            <h2 class="slds-text-heading_medium">AVISO</h2>
+                                        </div>
+                                        <div class="slds-modal__content slds-p-around_large">
+                                            <h3>Tem certeza que deseja excluir esse registro?</h3>
+                                        </div>
+                                        <div class="slds-modal__footer">
+                                            <lightning-button class="buttonCancelDelete" label="Cancelar" onclick={cancelDeleteQuote}></lightning-button>
+                                            <lightning-button class="buttonConfirmDelete" label="Excluir" onclick={confirmDeleteQuote}></lightning-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-backdrop slds-backdrop_open"></div>
+                        </template>
+                    
+                        <template if:true={showQuoteModal}>
+                            <template if:true={loadedQuoteModal}>
+
+                                <div class="slds-modal slds-fade-in-open">
+                                    <div class="slds-modal__container">
+                                        <div class="slds-modal__header">
+                                            <h2 class="slds-text-heading_medium">Cotação {quoteNumber}</h2>
+                                            <button class="close-button" onclick={closeModal}>
+                                                <lightning-icon icon-name="utility:close" size="x-small"></lightning-icon>
+                                            </button>
+                                        </div>
+                                        <div class="slds-modal__content slds-p-around_large">
+                                            
+                                            <div class = 'slds-grid slds-glutters'>
+                                                <div class = 'slds-col'>
+                                                    <lightning-input type ="checkbox" class ='lightningInput' label="Integralização" checked={integralizationInput} onchange={handleIntegralizationChange}></lightning-input>
+                                                </div>
+                                                <div class = 'slds-col'>
+                                                    <lightning-input type ="checkbox" class ='lightningInput' label="Kit de cotações" checked={quoteKitInput} onchange={handleQuoteKitChange}></lightning-input>
+                                                </div>
+                                            </div>
+                                            <br>
+            
+                                            <h3 class="slds-text-heading_small">Seguradora</h3>
+                                            <lightning-combobox
+                                            class = 'comboboxInput'
+                                            name="selectInsurer"
+                                            label="Selecione uma seguradora"
+                                            placeholder="Selecione"
+                                            value={selectedInsurerInput}
+                                            options={insurerValues}
+                                            onchange={handleInsurerChange}
+                                            required
+                                            message-when-value-missing=" ">
+                                            </lightning-combobox>
+                                            <template if:true={requiredFieldErrorInsurer}>
+                                                <p style="color: red;">Selecione uma opção.</p>
+                                            </template>
+                                            <br>
+            
+            
+                                            <h3 class="slds-text-heading_small">Data</h3>
+                                            <div class = 'slds-grid slds-glutters'>
+                                                <div class = 'slds-col'>
+                                                    <lightning-input placeholder = 'dd/mm/yyyy' class ='lightningInput' type ="date" label="Data de envio para a seguradora" value={sendDateInput} onchange={handleSendDateChange} required message-when-value-missing=" "></lightning-input>
+                                                    <template if:true={requiredFieldErrorSendDate}>
+                                                        <p style="color: red;">Complete este campo.</p>
+                                                    </template>
+                                                </div>
+                                                <div class = 'slds-col slds-m-left_large'>
+                                                    <lightning-input placeholder = 'dd/mm/yyyy' class ='lightningInput' type ="date" label="Data de recebimento da seguradora" value={receiptDateInput} onchange={handleReceiptDateChange}></lightning-input>
+                                                </div>
+                                            </div>
+                    
+                                            
+                                            <br>
+            
+                                            <h3 class="slds-text-heading_small">Valores</h3>
+                                            <div class = 'slds-grid slds-glutters'>
+                                                <div class = 'slds-col'>
+                                                    <lightning-input placeholder = 'Digite aqui...' class ='lightningInput' type ="number" step ="0.01" label="Prêmio" value={prizeAmountInput} onchange={handlePrizeAmountChange} required message-when-value-missing=" "></lightning-input>
+                                                    <template if:true={requiredFieldErrorPrizeAmount}>
+                                                        <p style="color: red;">Complete este campo.</p>
+                                                    </template>
+                                                </div>
+                                                <div class = 'slds-col slds-m-left_large'>
+                                                    <lightning-input placeholder = 'Digite aqui...' class ='lightningInput' type ="number" step ="0.01" label="Importância Segurada" value={insuredAmountInput} onchange={handleInsuredAmountChange} required message-when-value-missing=" "></lightning-input>
+                                                    <template if:true={requiredFieldErrorInsuredAmount}>
+                                                        <p style="color: red;">Complete este campo.</p>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <lightning-input type ="checkbox" label="Visualizar valor detalhado" class ='lightningInput' checked={viewValueDetailInput} onchange={handleViewValueDetailChange}></lightning-input>
+                                            <br>
+            
+                                            <template if:true={viewValueDetailInput}>
+                                                <div class = 'slds-grid slds-glutters'>
+                                                    <div class = 'slds-col'>
+                                                        <lightning-input placeholder = 'Digite aqui...' class ='lightningInput' type ="number" step ="0.01" label="Valor líquido do prêmio" value={netValueInput} onchange={handleNetValueChange}></lightning-input>
+                                                    </div>
+                                                    <div class = 'slds-col slds-m-left_large'>
+                                                        <lightning-input placeholder = 'Digite aqui...' class ='lightningInput' type ="number" step ="0.01" label="Valor do IOF do prêmio" value={iofValueInput} onchange={handleIofValueChange}></lightning-input>
+                                                    </div>
+                                                </div>
+            
+                                                <br>
+            
+                                                <div class = 'slds-grid slds-glutters'>
+                                                    <div class = 'slds-col'>
+                                                        <lightning-input placeholder = 'Digite aqui...' class ='lightningInput' type ="number" max-length="5" step ="0.01" label="Porcentagem da comissão" value={comissionPercentageInput} onchange={handleComissionPercentChange}></lightning-input>
+                                                    </div>
+                                                    <div class = 'slds-col slds-m-left_large'>
+                                                        <lightning-input placeholder = 'Digite aqui...' class ='lightningInput' type ="number" max-length="5" step ="0.01" label="Porcentagem agenciamento" value={agencyPercentageInput} onchange={handleAgencyPercentageChange}></lightning-input>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                            <br>
+            
+                                            <h3 class="slds-text-heading_small">Observações</h3>
+                                            <textarea class="custom-textarea" placeholder="Digite aqui..." onchange={handleCommentsInputChange}>{commentsInput}</textarea>
+                                            <br><br>
+
+                                            <template if:true={quoteEdit}>
+                                                <h3 class="slds-text-heading_small">Anexos</h3>
+                                                <ul>
+                                                    <template for:each={quoteFiles} for:item="file">
+                                                        <li key={file.Name} class ='file-item'>
+                                                            <div class = 'file-title'>
+                                                                <lightning-icon icon-name="utility:attach" size="x-small" class ='attach-icon'></lightning-icon>
+                                                                {file.Name}
+                                                            </div>
+                                                            <div class="button-group">
+                                                                <lightning-button label="Visualizar" icon-name="utility:preview" icon-position="left" onclick={handlePreviewFile} class = 'button-file-view' data-fileid={file.Id}></lightning-button>
+                                                            </div>
+                                                        </li>
+                                                    </template>
+                                                </ul>
+                                                <br>
+
+                                                <h3 class="slds-text-heading_small">Anexos adicionais</h3>
+                                            </template>
+                                            <template if:false={quoteEdit}>
+                                                <h3 class="slds-text-heading_small">Anexos</h3>
+                                            </template>
+                
+                                            <c-placement-upload-files-component show-drop-zone={showDropZone} object-to-save = 'Quote' drop-zone-class = 'drop-zone-modal' onselectedfiles={handleSelectedFiles}></c-placement-upload-files-component>
+            
+                                        </div>
+                                        <div class="slds-modal__footer">
+                                            <lightning-button class="buttonQuoteDelete" label="Excluir" onclick={deleteDataModal}></lightning-button>
+                                            <lightning-button class="buttonQuoteSave" label="Salvar" onclick={saveDataModal}></lightning-button>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="slds-backdrop slds-backdrop_open"></div>
+
+                            </template>
+                            <template if:false={loadedQuoteModal}>
+                                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                            </template>
+                        </template>
+
+
+                    </lightning-tab>
+
+
+                    <template if:true={approvedProposal}>
+                        <lightning-tab label="Emissão" value="Emission" onactive={handleActive}>
+                            <div class = 'contentEmission'>
+                                <template if:false={loadingEmissionPage}>
+
+                                    <div class = marginSession>
+                                        <h1> Proposta Aceita </h1>
+                                    </div> <br>
+
+                                    <div class = InfoSectionEmission>
+
+                                        <div class="fieldContainerEmission">
+                                            <p class="fieldLabel"><strong>SEGURADORA</strong></p>
+                                            <p class="fieldValue">{approvedProposalRecord.Company__c}</p>
+                                        </div>
+                                        
+                                        <div class="fieldContainerEmission">
+                                            <p class="fieldLabel"><strong>PRÊMIO</strong></p>
+                                            <p class="fieldValue">{approvedProposalPrizeAmount}</p>
+                                        </div>
+                                    </div>
+                                    <div class = InfoSectionEmission>
+
+                                        <div class="fieldContainerEmission">
+                                            <lightning-input placeholder = 'Digite aqui...' class ='policyNumber' type ="text" label="NÚMERO DA APÓLICE" value={policyNumber} onchange={handlePolicyNumberChange} required message-when-value-missing=" " disabled={blockedInput}></lightning-input>
+                                            <template if:true={requiredFieldErrorPolicyNumber}>
+                                                <p style="color: red;">Complete este campo.</p>
+                                            </template>
+                                        </div>
+                                    </div>
+                                    
+                                    <c-placement-upload-files-component file-item-emission-class={fileItemEmissionClass} show-drop-zone={showDropZoneEmission} object-to-save = 'OrderApolice' emission-session={emissionSession} add-files-emission={oppSusep382Documents} drop-zone-class = 'drop-zone-opp' files-title-class = 'filesTitleH1Opp' drop-zone-title-class = 'dropZoneH1' onselectedfiles={handleSelectedFiles} drop-zone-title ="Anexar apólice" files-title="Evidências de aceite do cliente"></c-placement-upload-files-component>
+                                    <c-placement-upload-files-component file-item-emission-class={fileItemEmissionClass} show-drop-zone={showDropZoneEmission} object-to-save = 'OrderBoleto' emission-session-boletos={emissionSessionBoletos} add-files-apolice-boletos={orderApoliceBoletos} drop-zone-class = 'drop-zone-opp' files-title-class = 'filesTitleH1Opp' drop-zone-title-class = 'dropZoneH1' onselectedfiles={handleSelectedFiles} drop-zone-title ="Anexar boletos" files-title='Apólices e Boletos' has-apolices-and-boletos={hasApolicesAndBoletos}></c-placement-upload-files-component>
+                                    
+                                <template if:true={newOrderActiveButton}>
+                                        <div class="buttonOrderDiv">
+                                            <lightning-button class="buttonOrderCreate" icon-name="utility:record_create" label="Cadastrar Apólice"
+                                                icon-position="left" onclick={handleCreateOrder}></lightning-button>
+                                        </div>
+                                    </template>
+                                
+                                </template>
+                                <template if:true={loadingEmissionPage}>
+                                    <div class = 'custom-spinner'>
+                                        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                                    </div>
+                                </template>
+                            </div>
+                        </lightning-tab>
+                    </template>
+
+                </lightning-tabset>
+
+            </div>
+            <c-placement-activity-timeline history-class={historyClass}></c-placement-activity-timeline>
+        </template>
+        <template if:false={dataLoaded}>
+            <div class = 'custom-spinner'>
+                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+            </div>
+        </template>
+
+    </lightning-card>
+</template>

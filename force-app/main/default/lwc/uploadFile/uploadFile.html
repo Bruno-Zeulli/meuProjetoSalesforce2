@@ -1,0 +1,44 @@
+<template>
+    <lightning-card title="Inserir novo arquivo" icon-name="standard:text_template">
+        <div if:true={loader}>
+            <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+        </div>
+
+
+        <div class="slds-grid slds-wrap" if:true={isOnline}>
+            <div class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_12-of-12 espacamento">
+                <c-combobox-autocomplete name="progress" label="Tipo de Arquivo" options={options}
+                    placeholder="Material Digital" onselectoption={handleChange}
+                    value={tipoDocumento}></c-combobox-autocomplete>
+            </div>
+            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 espacamento">
+                <input type="file" onchange={handleChangeFile} multiple class="slds-input" />
+            </div>
+        </div>
+        <div class="slds-grid slds-wrap" if:false={isOnline}>
+            <div class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_12-of-12 espacamento">
+                <c-combobox-autocomplete name="progress" label="Tipo de Arquivo" options={options} placeholder="Material Digital"
+                    onselectoption={handleChange} value={tipoDocumento}></c-combobox-autocomplete>
+            </div>
+            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 espacamento">
+                <lightning-file-upload name="fileUploader" accept={acceptedFormats} record-id={recordId}
+                    onuploadfinished={handleUploadFinishedOffline} multiple> </lightning-file-upload>
+            </div>
+        </div>
+    </lightning-card>
+    <lightning-card title="Arquivos" icon-name="standard:multi_picklist">
+        <lightning-accordion class="example-accordion" allow-multiple-sections-open>
+            <lightning-accordion-section name="Checklist de Documentos" label="Checklist de Documentos">
+                <c-required-files fileshecklistlist={filesChecklistList} recordid={recordId}
+                    ongetdocumentlist={getDocumentList}></c-required-files>
+            </lightning-accordion-section>
+            <lightning-accordion-section name="Arquivos relacionados" label="Arquivos relacionados">
+                <c-all-files fileslist={filesList} recordid={recordId} ondeletedoc={deleteDoc}></c-all-files>
+            </lightning-accordion-section>
+            <lightning-accordion-section lwc:if={accountRelatedDocs} name="Arquivos em registros relacionados"
+                label="Arquivos em registros relacionados">
+                <c-all-related-files fileslist={filesRelatedList} recordid={recordId}></c-all-related-files>
+            </lightning-accordion-section>
+        </lightning-accordion>
+    </lightning-card>
+</template>

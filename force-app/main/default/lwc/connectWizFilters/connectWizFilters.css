@@ -1,0 +1,55 @@
+.form-select {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  font-family: var(--font-family, 'Inter', sans-serif);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+
+  padding: var(--spacing, 6px),  var(--spacing, 8px);
+  height: 48px;
+
+  border: 2px solid var(--color-border-customer ,#B7BBBF);
+  border-radius: 4px;
+  background-color: var(--color-background-customer, #FCFCFC);
+  color: var(--color-text-customer,#8F4100);
+
+}
+
+button:hover{
+  background-color: var(--color-background-customer, #DAEFFF);
+}
+
+.text-filter{
+  padding-left: var(--spacing, 8px);
+  padding-top: var(--spacing, 12px);
+  padding-bottom: var(--spacing, 12px);
+  padding-right: var(--spacing, 8px);
+}
+
+.icon-filter{
+  padding-left: var(--spacing, 16px);
+  padding-top: var(--spacing, 12px);
+  padding-bottom: var(--spacing, 12px);
+}
+
+.icon-filter img{
+  width: 15.91px;
+  height: 16px;
+}
+
+.icon-dropdown{
+  padding-right: var(--spacing, 16px);
+  padding-top: var(--spacing, 12px);
+  padding-bottom: var(--spacing, 12px);
+}
+
+.icon-dropdown img{
+  width: 7.18px;
+  height: 4.56px;
+}

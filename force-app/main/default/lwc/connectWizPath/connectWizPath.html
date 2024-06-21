@@ -1,0 +1,55 @@
+<template>
+    <nav class="navbar nv-menu slds-path" role="navigation">
+        <div class="container">
+            <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                <li class="nv-path__item">
+                    <a href="#" class="text-decoration-none" title="Home" onclick={navigateToHomePage}>
+                        <span class="nv-icon">
+                            <svg class="home-icon" width="20" height="17" viewBox="0 0 20 17" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.99863 16V11H11.9986V16C11.9986 16.55 12.4486 17 12.9986 17H15.9986C16.5486 17 16.9986 16.55 16.9986 16V8.99997H18.6986C19.1586 8.99997 19.3786 8.42997 19.0286 8.12997L10.6686 0.599971C10.2886 0.259971 9.70863 0.259971 9.32863 0.599971L0.968633 8.12997C0.628633 8.42997 0.838633 8.99997 1.29863 8.99997H2.99863V16C2.99863 16.55 3.44863 17 3.99863 17H6.99863C7.54863 17 7.99863 16.55 7.99863 16Z"/>
+                            </svg>
+                        </span>
+                        <span class="nav-link text" title="Home">Home</span>
+                    </a>
+
+                </li>
+                <li class="nv-path__item">
+                    <span class="nv-icon">
+                        <svg class="separator-icon" width="11" height="20" viewBox="0 0 11 20" fill="#080809" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.380479 19.01C0.870479 19.5 1.66048 19.5 2.15048 19.01L10.4605 10.7C10.8505 10.31 10.8505 9.68005 10.4605 9.29005L2.15048 0.980049C1.66048 0.490049 0.870479 0.490049 0.380479 0.980049C-0.109521 1.47005 -0.109521 2.26005 0.380479 2.75005L7.62048 10L0.370478 17.25C-0.109522 17.73 -0.109521 18.5301 0.380479 19.01Z"/>
+                        </svg>
+                    </span>
+                </li>
+                <li class="nv-path__item">
+                    <a href="#" class="text-decoration-none active_link" title="Menu Item" onclick={navigateToHomePage}>
+                        <span class="nav-link active_link-text" title="Menu Item">Cotações</span>
+                    </a>
+                </li>
+                <li if:true={isAcompanhamento} class="nv-path__item">
+                    <span class="nv-icon">
+                        <svg class="separator-icon" width="11" height="20" viewBox="0 0 11 20" fill="#080809" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.380479 19.01C0.870479 19.5 1.66048 19.5 2.15048 19.01L10.4605 10.7C10.8505 10.31 10.8505 9.68005 10.4605 9.29005L2.15048 0.980049C1.66048 0.490049 0.870479 0.490049 0.380479 0.980049C-0.109521 1.47005 -0.109521 2.26005 0.380479 2.75005L7.62048 10L0.370478 17.25C-0.109522 17.73 -0.109521 18.5301 0.380479 19.01Z"/>
+                        </svg>
+                    </span>
+                </li>
+                <li if:true={isAcompanhamento} class="nv-path__item">
+                    <a href="#" class="text-decoration-none active_link" title="Menu Item" onclick={navigateToAcompanhamentoPage}>
+                        <span class="nav-link active_link-text" title="Menu Item">Acompanhamento</span>
+                    </a>
+                </li>
+                <li if:true={isQuotationData} class="nv-path__item">
+                    <span class="nv-icon">
+                        <svg class="separator-icon" width="11" height="20" viewBox="0 0 11 20" fill="#080809" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.380479 19.01C0.870479 19.5 1.66048 19.5 2.15048 19.01L10.4605 10.7C10.8505 10.31 10.8505 9.68005 10.4605 9.29005L2.15048 0.980049C1.66048 0.490049 0.870479 0.490049 0.380479 0.980049C-0.109521 1.47005 -0.109521 2.26005 0.380479 2.75005L7.62048 10L0.370478 17.25C-0.109522 17.73 -0.109521 18.5301 0.380479 19.01Z"/>
+                        </svg>
+                    </span>
+                </li>
+                <li if:true={isQuotationData} class="nv-path__item">
+                    <a href="#" class="text-decoration-none active_link" title="Menu Item">
+                        <span class="nav-link active_link-text" title="Menu Item">Dados da cotação</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</template>

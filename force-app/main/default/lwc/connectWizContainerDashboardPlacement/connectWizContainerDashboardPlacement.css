@@ -1,0 +1,36 @@
+.container-spacing{
+  background-color: var(--color-background-customer, #FCFCFC);
+  padding: var(--spacing, 24px);
+}
+
+.container-box{
+  border: 1px solid var(--color-border-customer , #C1C3C5);
+  border-radius: 8px ;
+}
+
+h2{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 150%;
+  color: var(--color-text-customer,#212223)
+  
+}
+
+.container-chart{
+  height: 400px;
+}
+
+.spacing-top{
+
+  padding-top: var(--spacing, 40px);
+  padding-bottom: var(--spacing, 40px);
+
+}
+
+.container-item{
+  background-color: var(--color-background-customer, #FCFCFC);
+  padding: var(--spacing, 24px);
+  border-radius: 8px ;
+}

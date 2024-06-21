@@ -1,0 +1,81 @@
+<template>
+	<article class="slds-card">
+			<div class="slds-card__header slds-grid">
+				<header class="slds-media slds-media_center slds-has-flexi-truncate">					
+							<div class="slds-media__figure">
+									<lightning-icon icon-name="custom:custom45" 
+                                                    size="small" 
+                                                    alternative-text="iconTicket"
+                                                    >
+                                    </lightning-icon>
+							</div>
+							<div class="slds-media__body">								
+                                <h2 class="slds-card__header-title">
+                                    <span>Tickets</span>
+                                </h2>
+                            </div>
+				</header>
+			</div>
+			<div class="slds-card__body slds-card__body_inner">	
+				<div class="">
+					<p>
+						<span>
+							Caso queira buscar um ticket específico utilize os filtros.
+						</span>
+					</p>	
+				</div>	
+				<div>
+                    <div>
+                        <div>
+                            <div style="position:absolute;right:8rem;top:32px">
+                                <lightning-button   label="Atribuição em Massa" 
+                                icon-name="utility:trailblazer_ext"
+                                icon-position="left"
+                                onclick={handleShowAtribuicaoMassa}
+                                >
+                                </lightning-button>
+                            </div>
+                            <div style="position:absolute;right:1.5rem;top:32px">
+                                <lightning-button   label="Filtros" 
+                                icon-name="utility:filterList"
+                                icon-position="left"
+                                onclick={handleShowFilters}
+                                >
+                                </lightning-button>
+                            </div>
+                            <div if:true={isShowFilters}>
+                                <section 	aria-describedby="dialog-body-id-58" 
+                                                aria-label="My Favourites" 
+                                                class="slds-popover slds-nubbin_top-right slds-dynamic-menu slds-float_right" 
+                                                role="dialog" 
+                                                style="position:absolute;right:1rem;top:72px">
+                                    <div class="slds-popover__body slds-p-horizontal_none" id="dialog-body-id-58">
+                                        <div class="slds-card">
+                                            <div class="slds-card__body">
+                                                <div class="slds-p-vertical_x-small slds-p-horizontal_small">
+                                                    <c-filtro-tickets 
+                                                        onfiltrarticket={filtrarTicket} 
+                                                        onlimparfiltro={limparFiltro} 
+                                                    ></c-filtro-tickets>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div if:true={openAtribuicaoModal}>
+                                <c-atribuicao-massa-tkt-lwc ></c-atribuicao-massa-tkt-lwc>
+                            </div>					
+                        </div>
+                    </div>					
+				</div>                
+                <div>
+                    <div>
+                        <div class="spacing-top">
+                            <c-tabela-tickets></c-tabela-tickets> 
+                        </div>                        
+                    </div>                    
+                </div>							
+			</div>			 
+		</article>
+</template>

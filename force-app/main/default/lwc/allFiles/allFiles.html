@@ -1,0 +1,103 @@
+<template>
+    <lightning-card>
+      <lightning-button label="Enviar Arquivos" slot="actions" onclick={sendFiles} ></lightning-button>
+        <div if:true={loader}>
+            <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+        </div>
+        <div class="slds-p-horizontal_small" if:true={showDocuments}>
+          <div class="slds-scrollable slds-table slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols tableDesignPrincipal">
+            <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered" style="font-size: 10px;">
+              <thead>
+                <tr class="slds-line-height_reset">
+                  <th class="" scope="col" style="font-size: 15px;">
+                      <div class="slds-truncate" title="Nome">
+                        Nome
+                      </div>
+                  </th>
+                  <th class="" scope="col" style="font-size: 15px;">
+                      <div class="slds-truncate" title="Tipo">
+                        Tipo
+                      </div>
+                  </th>
+                  <th class="" scope="col" style="font-size: 15px;">
+                    Criado
+                  </th>
+                  <th class="" scope="col" style="font-size: 15px;">
+                    Integrado
+                  </th>
+                  <th class="" scope="col" style="font-size: 15px;"></th>
+                  <th class="" scope="col" style="font-size: 15px;"></th>
+                  <th class="" scope="col" style="font-size: 15px;"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <template for:each={fileslist} for:item='file'>
+                  <tr class="slds-hint-parent" key={file.id}>
+                    <td data-label="name" style="font-size: 13px;">
+                        {file.name}
+                    </td>
+                    <td data-label="type" style="font-size: 13px;">
+                      {file.type}
+                    </td>
+                    <td data-label="type" style="font-size: 13px;">
+                      <lightning-formatted-date-time
+                        value={file.dataCriacao}
+                        year="2-digit"
+                        month="short"
+                        day="2-digit"
+                        hour="2-digit"
+                        minute="2-digit"
+                      ></lightning-formatted-date-time>
+                    </td>
+                    <td data-label="type" style="font-size: 13px;">
+                      <lightning-icon 
+                        	icon-name="action:approval" 
+                          size="xx-small" 
+                          alternative-text="Approved" 
+                          title="Approved" 
+                          if:true={file.isIntegrated}
+                        ></lightning-icon>
+                    </td>
+                    <td data-label="productCode" style="font-size: 13px;">
+                      <a 
+                        onclick={downloadFile} 
+                        value={file.url} 
+                        data-name={file.url} 
+                      > 
+                        <lightning-icon 
+                          icon-name="utility:download" 
+                          size="small" 
+                          alternative-text="download!" 
+                          title="download"
+                        ></lightning-icon>    
+                      </a>
+                    </td>
+                    <td data-label="productCode" style="font-size: 13px;">
+                      <lightning-button-icon 
+                        icon-name="utility:preview" 
+                        data-id={file.contentVersionId} 
+                        onclick={previewHandler}  
+                        alternative-text="Visualizar" 
+                        title="Visualizar"
+                      ></lightning-button-icon>
+                    </td>
+                    <td data-label="productCode" style="font-size: 13px;">
+                      <lightning-button-icon 
+                        icon-name="utility:delete" 
+                        data-id={file.id} 
+                        onclick={deleteDoc}
+                        alternative-text="Excluir" 
+                        title="Excluir"
+                      ></lightning-button-icon>
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+      </div>
+          <div class="slds-notify slds-notify_alert" role="alert" if:false={showDocuments}>
+              <span>Não foi encontrado nenhum arquivo!</span>
+          </div>
+      </lightning-card>
+</template>

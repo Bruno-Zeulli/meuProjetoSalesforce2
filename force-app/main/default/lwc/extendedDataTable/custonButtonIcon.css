@@ -1,0 +1,14 @@
+.meu-botao-personalizado {
+    --slds-c-icon-color-foreground: #FF8200;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-text-color-active: #FF8200;
+    --slds-c-button-neutral-color-background: #FFFFFF;
+    --slds-c-button-neutral-color-background-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background-active: #FFFFFF;
+    --slds-c-button-neutral-color-border: #FFFFFF;
+    --slds-c-button-neutral-color-border-hover: #FFFFFF;
+    --slds-c-button-neutral-color-border-active: #FFFFFF;
+    --slds-c-button-sizing-border: 0px;
+    --slds-c-button-inverse-shadow-focus: 0 0 0px #FFFFFF;
+    --slds-c-button-shadow-focus: 0 0 0px #FFFFFF;
+}

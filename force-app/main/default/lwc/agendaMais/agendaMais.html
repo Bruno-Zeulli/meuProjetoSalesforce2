@@ -1,0 +1,65 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-card__body slds-card__body_inner">
+            <div style="display: inline-block">
+                <lightning-combobox
+                    name="database"
+                    label="Base"
+                    options={databaseOptions}
+                    placeholder="-- Selecione --"
+                    onchange={handleDatabaseChange}
+                    >
+                </lightning-combobox>
+                <lightning-combobox
+                    name="city"
+                    label="Cidade"
+                    options={cityOptions}
+                    placeholder="-- Selecione --"
+                    onchange={handleCityChange}
+                    >  
+                </lightning-combobox>
+                <lightning-combobox
+                    name="stage"
+                    label="Fase"
+                    options={stageOptions}
+                    placeholder="-- Selecione --"
+                    onchange={handleStageChange}
+                    >  
+                </lightning-combobox>
+                <lightning-input 
+                    name="description"
+                    type="search"
+                    placeholder="Buscar na descrição"
+                    value={descriptionValue}
+                    onchange={handleDescriptionChange}
+                    oncommit={handleSearch}
+                    style="display: inline-block;">
+                </lightning-input>                
+            </div>
+            <br />
+            <br />
+            <c-agenda-mais-list>
+            </c-agenda-mais-list>
+            <br />
+            <lightning-layout>
+                <lightning-layout-item>  
+                    <lightning-button label="Anterior" icon-name="utility:chevronleft" onclick={handlePrevious} disabled={showPreviousButton}></lightning-button>  
+                </lightning-layout-item>  
+                <lightning-layout-item flexibility="grow"></lightning-layout-item>
+                <lightning-layout-item if:true={hasRecordsToShow}>
+                    Página {currentPage}
+                </lightning-layout-item>
+                <lightning-layout-item if:false={hasRecordsToShow}>
+                    Nenhum registro
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="grow"></lightning-layout-item>
+                <lightning-layout-item>  
+                    <lightning-button label="Próximo" icon-name="utility:chevronright" icon-position="right" onclick={handleNext} disabled={showNextButton}></lightning-button>  
+                </lightning-layout-item>
+            </lightning-layout> 
+            <br />
+            <c-agenda-mais-map>
+            </c-agenda-mais-map>
+        </div>
+    </article>
+</template>

@@ -1,0 +1,35 @@
+<template>
+    <div class="slds-var-p-around_small slds-var-m-right_large container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-sm-0 col-sm-0 px-sm-0">
+                <c-connect-wiz-side-bar></c-connect-wiz-side-bar>
+            </div>
+            <div class="col">
+                <!-- Top navigation-->
+                <c-connect-wiz-nav-bar></c-connect-wiz-nav-bar>
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <c-connect-wiz-path is-quotation-data={isQuotationData} is-acompanhamento={isAcompanhamento} case-id={caseId}></c-connect-wiz-path>
+                    </div>
+                </nav>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+                        <div class="slds-col slds-var-p-around_xxx-small slds-var-m-right_large slds-var-m-left_medium">
+                            <div if:true={isShowViewData}>
+                                <c-connect-wiz-quotation-form-item-view 
+                                    form-id={formId}
+                                    oneditquotationform={editQuotationForm}
+                                ></c-connect-wiz-quotation-form-item-view>
+                            </div>
+                            <div if:true={isShowEditForm}>
+                                <c-connect-wiz-quotation-form-item-edit 
+                                    quotation-form-original={quotationFormOriginal}
+                                ></c-connect-wiz-quotation-form-item-edit>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>    
+</template>

@@ -1,0 +1,42 @@
+.container-Datatable{
+    padding: var(--spacing,16px);
+    background-color: var(--color-background-customer, #FCFCFC);
+    background-color:#FCFCFC !important;
+}
+
+.container-Datatable table>thead .slds-th__action{
+    font-family: 'Inter', sans-serif !important;
+    font-style: normal!important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    line-height: 170% !important;
+
+    display: flex !important;
+    align-items: center !important;
+    letter-spacing: 0.01em !important;
+    color: #212223 !important;
+} 
+
+.container-Datatable table>thead .slds-th__action:focus, .container-Datatable table> .slds-th__action:hover, .container-Datatable table>.slds-is-resizable .slds-th__action:focus, .container-Datatable table> .slds-is-resizable .container-Datatable table>.slds-th__action:focus:hover{
+	background-color:#FCFCFC !important;
+    border-bottom: 1px solid #D6D7D8 !important;
+}
+
+.datatable-CellColor{
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px;
+    gap: 8px;
+
+    height: 80px;
+    background: #FCFCFC;
+    border-bottom: 1px solid #D6D7D8;
+}
+
+.datatable-CellColor:focus{
+    box-shadow:none;
+}
+
+svg.slds-icon-text-default {
+    --slds-c-icon-color-foreground: #BF5600 !important; 
+}

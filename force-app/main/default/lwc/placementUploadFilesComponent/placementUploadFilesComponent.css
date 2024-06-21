@@ -1,0 +1,369 @@
+.file-item {
+    display: flex;
+    align-items: center;
+    margin-top: 0.625rem;
+    margin-bottom: 0.938rem; 
+    justify-content: space-between;
+    border-bottom: solid;
+    border-color: rgb(209, 209, 209);
+    border-width: 0.124rem;
+    padding-bottom: 0.938rem;
+}
+
+.file-item-emission {
+    display: flex;
+    align-items: center;
+    margin-top: 0.625rem;
+    margin-bottom: 4rem; 
+    justify-content: space-between;
+    border-bottom: solid;
+    border-color: rgb(209, 209, 209);
+    border-width: 0.124rem;
+    padding-bottom: 0.938rem;
+}
+
+.file-item-emission-without-margin-bottom {
+    display: flex;
+    align-items: center;
+    margin-top: 0.625rem; 
+    justify-content: space-between;
+    border-bottom: solid;
+    border-color: rgb(209, 209, 209);
+    border-width: 0.124rem;
+    padding-bottom: 0.938rem;
+}
+
+.attachFile {
+    --slds-c-icon-color-foreground: #FF8200;
+    --slds-c-button-neutral-color-border: rgb(209, 209, 209);
+    --slds-c-button-neutral-color-border-hover: #FF8200;
+    --slds-c-button-neutral-color-border-active: #FF8200;
+    --slds-c-button-text-color: #FF8200;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-text-color-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background:#FFFFFF;
+    --slds-c-button-neutral-color-background-hover: #FF8200;
+    --slds-c-button-neutral-color-background-active: #FF8200;
+}
+
+.file-input {
+    position: absolute;
+    width: 0.063rem;
+    height: 0.063rem;
+    padding: 0;
+    margin: -0.063rem;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.dragFileSpan {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.sizeFileMessage {
+    margin-top: 0.5rem;
+}
+
+.button-file-delete {
+    margin-left: 0.938rem;
+
+    --slds-c-icon-color-foreground: #BA1B1B;
+    --slds-c-button-neutral-color-border: #BA1B1B;
+    --slds-c-button-neutral-color-border-hover: #BA1B1B;
+    --slds-c-button-neutral-color-border-active: #BA1B1B;
+    --slds-c-button-text-color: #BA1B1B;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-text-color-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background:#FFFFFF;
+    --slds-c-button-neutral-color-background-hover: #BA1B1B;
+    --slds-c-button-neutral-color-background-active: #BA1B1B;
+}
+
+.button-file-opp-delete {
+    margin-left: 0.938rem;
+
+    --slds-c-icon-color-foreground: #BA1B1B;
+    --slds-c-button-neutral-color-border: #BA1B1B;
+    --slds-c-button-neutral-color-border-hover: #BA1B1B;
+    --slds-c-button-neutral-color-border-active: #BA1B1B;
+    --slds-c-button-text-color: #BA1B1B;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-text-color-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background:#FFFFFF;
+    --slds-c-button-neutral-color-background-hover: #BA1B1B;
+    --slds-c-button-neutral-color-background-active: #BA1B1B;
+}
+
+.button-file-opp-download {
+    --slds-c-icon-color-foreground: #FFFFFF;
+    --slds-c-button-neutral-color-border: #FF8200;
+    --slds-c-button-neutral-color-border-hover: #FF8200;
+    --slds-c-button-neutral-color-border-active: #FF8200;
+    --slds-c-button-text-color: #FFFFFF;
+    --slds-c-button-text-color-active: #FF8200;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-neutral-color-background:#FF8200;
+    --slds-c-button-neutral-color-background-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background-active: #FFFFFF;
+}
+
+.button-file-preview {
+    margin-left: 0.938rem;
+    --slds-c-icon-color-foreground: #FF8200;
+    --slds-c-button-neutral-color-border: #FF8200;
+    --slds-c-button-neutral-color-border-hover: #FF8200;
+    --slds-c-button-neutral-color-border-active: #FF8200;
+    --slds-c-button-text-color: #FF8200;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-text-color-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background:#FFFFFF;
+    --slds-c-button-neutral-color-background-hover: #FF8200;
+    --slds-c-button-neutral-color-background-active: #FF8200;
+}
+
+.button-file-download {
+    --slds-c-icon-color-foreground: #FFFFFF;
+    --slds-c-button-neutral-color-border: #FF8200;
+    --slds-c-button-neutral-color-border-hover: #FF8200;
+    --slds-c-button-neutral-color-border-active: #FF8200;
+    --slds-c-button-text-color: #FFFFFF;
+    --slds-c-button-text-color-active: #FF8200;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-neutral-color-background:#FF8200;
+    --slds-c-button-neutral-color-background-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background-active: #FFFFFF;
+}
+
+.button-file-opp-view {
+    margin-left: 0.938rem;
+
+    --slds-c-icon-color-foreground: #FF8200;
+    --slds-c-button-neutral-color-border: #FF8200;
+    --slds-c-button-neutral-color-border-hover: #FF8200;
+    --slds-c-button-neutral-color-border-active: #FF8200;
+    --slds-c-button-text-color: #FF8200;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-text-color-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background:#FFFFFF;
+    --slds-c-button-neutral-color-background-hover: #FF8200;
+    --slds-c-button-neutral-color-background-active: #FF8200;
+}
+
+.button-file-view {
+    --slds-c-icon-color-foreground: #FF8200;
+    --slds-c-button-neutral-color-border: #FF8200;
+    --slds-c-button-neutral-color-border-hover: #FF8200;
+    --slds-c-button-neutral-color-border-active: #FF8200;
+    --slds-c-button-text-color: #FF8200;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-text-color-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background:#FFFFFF;
+    --slds-c-button-neutral-color-background-hover: #FF8200;
+    --slds-c-button-neutral-color-background-active: #FF8200;
+}
+
+
+.button-file-reject {
+    --slds-c-icon-color-foreground: #BA1B1B;
+    --slds-c-button-neutral-color-border: #BA1B1B;
+    --slds-c-button-neutral-color-border-hover: #BA1B1B;
+    --slds-c-button-neutral-color-border-active: #BA1B1B;
+    --slds-c-button-text-color: #BA1B1B;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-text-color-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background:#FFFFFF;
+    --slds-c-button-neutral-color-background-hover: #BA1B1B;
+    --slds-c-button-neutral-color-background-active: #BA1B1B;
+}
+
+.button-file-approve {
+    margin-left: 0.938rem;
+
+    --slds-c-icon-color-foreground: #008677;
+    --slds-c-button-neutral-color-border: #008677;
+    --slds-c-button-neutral-color-border-hover: #008677;
+    --slds-c-button-neutral-color-border-active: #008677;
+    --slds-c-button-text-color: #008677;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-text-color-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background:#FFFFFF;
+    --slds-c-button-neutral-color-background-hover: #008677;
+    --slds-c-button-neutral-color-background-active: #008677;
+}
+
+
+.attach-icon {
+    margin-right: 0.5rem; 
+}
+
+.drop-zone {
+    margin-top: 1.5rem;
+    height: 7.5rem;
+    width: 100%;
+    border-color: rgb(209, 209, 209);
+    border-radius: var(--slds-c-input-radius-border, var(--sds-c-input-radius-border, var(--lwc-borderRadiusMedium,0.25rem)));
+    border-style: dashed;
+    border-width: 0.124rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.drop-zone-modal {
+    margin-top: 0.375rem;
+    height: 7.5rem;
+    width: 100%;
+    border-color: rgb(209, 209, 209);
+    border-radius: var(--slds-c-input-radius-border, var(--sds-c-input-radius-border, var(--lwc-borderRadiusMedium,0.25rem)));
+    border-style: dashed;
+    border-width: 0.124rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.drop-zone-opp {
+    margin-top: 0.375rem;
+    height: 7.5rem;
+    width: 70%;
+    border-color: rgb(209, 209, 209);
+    border-radius: var(--slds-c-input-radius-border, var(--sds-c-input-radius-border, var(--lwc-borderRadiusMedium,0.25rem)));
+    border-style: dashed;
+    border-width: 0.124rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.highlighted {
+    border-color: #FF8200; /* Cor da borda quando o arquivo está sendo arrastado sobre a drop-zone */
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.button-footer-group {
+    justify-content: left;
+    align-items: left;
+    display: flex;
+    border-top: white;
+    margin-bottom: 2.5rem;
+    margin-top: 0.625rem;
+}
+
+.buttonQuoteDelete {
+
+    --slds-c-button-neutral-color-border: #BA1B1B;
+    --slds-c-button-neutral-color-border-hover: #BA1B1B;
+    --slds-c-button-neutral-color-border-active: #BA1B1B;
+    --slds-c-button-text-color: #BA1B1B;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-text-color-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background:#FFFFFF;
+    --slds-c-button-neutral-color-background-hover: #BA1B1B;
+    --slds-c-button-neutral-color-background-active: #BA1B1B; 
+
+    padding-left: 0.125rem;
+}
+
+.buttonQuoteSave {
+    --slds-c-button-neutral-color-border: #FF8200;
+    --slds-c-button-neutral-color-border-hover: #FF8200;
+    --slds-c-button-neutral-color-border-active: #FF8200;
+    --slds-c-button-text-color: #FFFFFF;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-neutral-color-background:#FF8200;
+    --slds-c-button-neutral-color-background-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background-active: #FF8200;
+
+    padding-left: 1rem;
+}
+
+h1 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #50555A;
+}
+
+h3 {
+    font-size: 0.875rem;
+    color: #50555A;
+
+    font-feature-settings: 'clig' off, 'liga' off;
+    /* Wiz.co/Caption/Caption M */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1rem; /* 114.286% */
+    letter-spacing: 0.025rem;
+}
+
+.filesTitleH1 {
+    margin-top: 2.5rem;
+}
+
+.filesTitleH1Opp {
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.dropZoneH1{
+    margin-top: 2.5rem;
+}
+
+.opp-file-title, .emission-file-title {
+    width: 100%;
+}
+
+.opp-button-file-group, .emission-button-file-group {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.oppUL, .emissionUL {
+    width: 70%;
+}
+
+.title-and-status, .title-and-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Accepted {
+    background: rgba(0, 191, 178, 0.10);
+    color: #00BFB2;
+    padding: 0.5rem 1rem;
+}
+
+.Refused {
+    background: rgba(186, 27, 27, 0.10);;
+    color: #BA1B1B;
+    padding: 0.5rem 1rem;
+}
+
+.Pending, .UnderReview {
+    background: rgba(123, 164, 219, 0.10);
+    color: #301600;
+    padding: 0.5rem 1rem;
+}
+
+.file-date-time {
+    font-size: 0.75rem;
+    margin-left: 1.563rem;
+    width: 50%;
+}

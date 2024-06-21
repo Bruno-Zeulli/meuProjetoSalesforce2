@@ -1,0 +1,86 @@
+.popover{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    position: absolute;
+
+    border-radius: 0px;
+    border: none;
+    box-shadow: 0px 4px 22px rgba(0, 0, 0, 0.25);
+}
+
+.list_item {
+    height: 50px;
+    width: 250px;
+    left: 0px;
+    top: 0px;
+    border-radius: 0px;
+    padding: 13px 16px 13px 16px;
+}
+
+.btn_popover {
+    border: none;
+    background: transparent;
+}
+
+.button-close{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 24px;
+    gap: 16px;
+
+    width: 669px;
+    height: 48px;
+
+    flex: none;
+    align-self: stretch;
+    flex-grow: 0;
+
+}
+
+.button-close button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 8px;
+
+    width: 85px;
+    height: 48px;
+
+    background: var(--color-background-customer, #BF5600);
+    border-radius: 4px;
+    border: none;
+
+    flex: none;
+    flex-grow: 0;
+}
+
+.button-close button:hover{
+    background: var(--color-background-customer, #8F4100);
+}
+
+.button-close button:focus{
+    background: var(--color-background-customer, #602B00);
+}
+
+.button-close span{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: var(--color-text-customer,#FCFCFC);
+
+    flex: none;
+    flex-grow: 0;
+}

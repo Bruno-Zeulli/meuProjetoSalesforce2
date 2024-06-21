@@ -1,0 +1,26 @@
+<template>
+    <div class="slds-m-left_large slds-m-right_large">
+        <lightning-card class="customCardClass">
+            <div class="tabs">
+                <c-custom-button onbuttonclick={handleButtonClick} class="full-width-button" is-active={tabPending}
+                    title="Pedidos de cotação" description="Demandas que ainda não foram atribuídas" badge-active="true"
+                    count-quotes={countQuotes}></c-custom-button>
+                <c-custom-button onbuttonclick={handleButtonClick} class="full-width-button" is-active={tabMyQuotes}
+                    title="Minhas cotações" description="Demandas atribuídas ao analista"></c-custom-button>
+                <c-custom-button onbuttonclick={handleButtonClick} class="full-width-button" is-active={tabAllQuotes}
+                    title="Todas as cotações" description="Todas as demandas em tratamento pelo time"></c-custom-button>
+            </div>
+            <template lwc:if={tabPending}>
+                <c-placement-pending-quotes onloaded={handleDataLoaded}></c-placement-pending-quotes>
+            </template>
+            <template lwc:if={tabMyQuotes}>
+                <c-placement-my-quotes></c-placement-my-quotes>
+            </template>
+            <template lwc:if={tabAllQuotes}>
+                <c-placement-all-quotes></c-placement-all-quotes>
+            </template>
+        
+        </lightning-card>
+    </div>
+    
+</template>

@@ -1,0 +1,92 @@
+@font-face {
+   font-family: "myFontInter";
+   src: url('/resource/InterRobotoFamily/static/Inter-Regular.ttf') format('TrueType');
+}
+
+.container-card-filter-placement{
+    background-color: var(--color-background-customer, #FCFCFC);
+}
+
+.spacing{
+    padding-left:var(--spacing, 24px);
+    padding-right:var(--spacing, 24px);
+    padding-bottom:var(--spacing, 40px);
+}
+
+button{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius:  8px;
+    background-color: var(--color-background-customer, #FCFCFC);
+    border: 1px solid var(--color-border-customer , #50555A);
+    color: var(--color-text-customer, #8F4100);
+    height: 109px;
+}
+
+.bnt-all-case-sla{
+    color: var(--color-text-customer, #353638);
+    background-color: var(--color-background-customer, #FFE1CA);
+    border: 2px solid var(--color-border-customer , #f64c00);
+}
+
+button:hover{
+    background-color: var(--color-background-customer, #FFE1CA);
+}
+
+button:focus{
+    color: var(--color-text-customer, #353638);
+    background-color: var(--color-background-customer, #FFE1CA);
+    border: 2px solid var(--color-border-customer , #f64c00);
+}
+
+button:active{
+    color: var(--color-text-customer, #353638);
+    background-color: var(--color-background-customer, #FFE1CA);
+    border: 2px solid var(--color-border-customer , #f64c00);
+}
+
+button:disabled{
+    background-color: var(--color-background-customer, #FCFCFC);
+    border: 1px solid var(--color-border-customer , #50555A);
+    color: var(--color-text-customer, #50555A);
+}
+
+.title-button{
+    font-family: var(--font-family, 'Inter', sans-serif);
+    font-style: normal;
+    font-weight: var(--font-weight-regular, 500);
+    font-size: var(--font-size, 1.125rem);
+    line-height: var(--line-height-text, 150%);
+    color: var(--color-text-customer,#8F4100);
+    padding-top:var(--spacing, 16px);
+}
+
+.content-button{
+    font-family: var(--font-family, 'Inter', sans-serif);
+    font-style: normal;
+    font-weight: var(--font-weight-regular, 700);
+    font-size: var(--font-size, 2rem);
+    line-height: var(--line-height-text, 130%);
+    color: var(--color-text-customer,#8F4100);
+    padding-top:var(--spacing, 8px);
+}
+
+button:focus > .title-button{
+    color: var(--color-text-customer, #353638);
+}
+
+button:focus > .content-button{
+    color: var(--color-text-customer, #353638);
+}
+
+
+
+button:active > .title-button{
+    color: var(--color-text-customer, #353638);
+}
+
+button:active > .content-button{
+    color: var(--color-text-customer, #353638);
+}

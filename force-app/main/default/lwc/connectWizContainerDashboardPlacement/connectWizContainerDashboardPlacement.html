@@ -1,0 +1,60 @@
+<template>
+    <div>
+        <div class="container-spacing">
+            <div>
+                <c-connect-wiz-date-picker onfiltercasesbydate={filterCasesByDate}></c-connect-wiz-date-picker>
+            </div>
+        </div>
+        <div class = "slds-col slds-size_12-of-12">
+            <c-connect-wiz-line-divider></c-connect-wiz-line-divider>
+        </div>
+        <div if:true={isFullScreen} class="container-spacing spacing-top">
+            <div class="slds-grid slds-wrap container-box">
+                <div class="slds-col slds-size_5-of-7 container-chart">
+                    <div>
+                        <div class="container-item">
+                            <H2>
+                                <span>
+                                    Visão geral das negociações
+                                </span>
+                            </H2>
+                        </div>
+                    </div>
+                    <div>
+                        <c-connect-wiz-chart-bar-opportunity-stage-name
+                            onsendchartjsfromparentquoteordermanagement={sendChartJsFromParentQuoteOrderManagement}
+                        ></c-connect-wiz-chart-bar-opportunity-stage-name>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_2-of-7">
+                    <div class="container-item">
+                        <c-connec-wiz-legend-bar-card onfilterstatuscases={filterStatusCases}></c-connec-wiz-legend-bar-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div if:false={isFullScreen} class="container-spacing spacing-top">
+            <div class="slds-grid slds-wrap container-box">
+                <div class="slds-col slds-size_7-of-12 container-chart">
+                    <div>
+                        <div class="container-item">
+                            <H2>
+                                <span>
+                                    Visão geral das negociações
+                                </span>
+                            </H2>
+                        </div>
+                    </div>
+                    <div>
+                        <c-connect-wiz-chart-bar-opportunity-stage-name></c-connect-wiz-chart-bar-opportunity-stage-name>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_5-of-12">
+                    <div class="container-item">
+                        <c-connec-wiz-legend-bar-card onfilterstatuscases={filterStatusCases}></c-connec-wiz-legend-bar-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

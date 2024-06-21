@@ -1,0 +1,118 @@
+@font-face {
+   font-family: "Inter";
+   src: url('/resource/InterRobotoFamily/static/Inter-Regular.ttf') format('TrueType');
+}
+
+.container-legend-cards{
+    background: #FCFCFC;
+    padding-left: var(--spacing,40px);
+    height: 240px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-itens{
+    background: #FCFCFC;
+    border-radius: 4px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 8px;
+    height: 240px;
+}
+.container-itens button{
+    border: none;
+    background: #FCFCFC;
+}
+
+.box-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.text-item{
+    font-family: var(--font-family, 'Inter', sans-serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 170%;
+    /* identical to box height, or 24px */
+
+    display: flex;
+    align-items: center;
+
+    /* ambient/neutral/super-darkest */
+
+    color: #212223;
+
+    padding-left: var(--spacing, 8px);
+}
+
+
+.item-1{
+
+    background: #83868A; /* 'rgb(131, 134, 138)' */
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+}
+
+.item-2{
+    background: #002F51; /* 'rgb(0,47,81)' */
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+}
+.item-3{
+    background: #C45600; /* 'rgb(196,86,0)' */
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+}
+.item-4{
+    background: #175296; /* 'rgb(23,82,150)'*/
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+}
+.item-5{
+    background: #5A3588; /* 'rgb(90, 53, 136)' */
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+}
+.item-6{
+    background: #F6AC3C;/* rgb(246,172,60)' */
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+}
+
+.item-7{
+    background: #008FF8; /* 'rgb(0,143,248)' */
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+}
+/* .item-8{
+    background: #008B7F;/* rgb(0, 139, 127) */
+    /* width: 14px;
+    height: 14px;
+    border-radius: 2px;
+} */
+.item-8{
+    background: #007019; /* 'rgb(0,112,25)', */
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+}
+.item-9{
+    background: #E00707;/* 'rgb(224,7,7)' */
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+}

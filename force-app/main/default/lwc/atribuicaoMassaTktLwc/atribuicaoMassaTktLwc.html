@@ -1,0 +1,105 @@
+<template>
+    <template if:true={isModalOpen}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC header here -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fechar" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="Fechar"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Fechar</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Atribuição de Tickets em Massa</h2>
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-p-around_medium modalBodySpinner" id="modal-content-id-1" style="min-height: 400px">
+                    <template if:true={showSpinner}>
+                        <lightning-spinner></lightning-spinner>
+                    </template>
+                    <div style="padding: 10px; margin-left: 17px; margin-right: 17px;">
+                            <p>Selecione os usuários e tickets que deseja realizar a transferência em massa:</p></br>
+                        <div class="slds-grid slds-gutters">
+                            <div class="slds-col">
+                                <lightning-record-edit-form object-api-name="Case" id="oldUserSearch">
+                                    <label for="oldUser">Proprietário Atual</label>
+                                    <lightning-input-field id="oldUser" field-name="UsuarioAtribuicao__c" variant="label-hidden" onchange={handleOldUserSelection}></lightning-input-field>
+                                </lightning-record-edit-form>
+                            </div>
+                            <div class="slds-col">
+                                <lightning-record-edit-form object-api-name="Case" id="newUserSearch">
+                                    <label for="newUser">Novo Proprietário</label>
+                                    <lightning-input-field data-id="newUser" field-name="UsuarioAtribuicao__c" variant="label-hidden" onchange={handleNewUserSelection} disabled={newUserDisabled}></lightning-input-field>
+                                </lightning-record-edit-form>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+
+                    <lightning-card if:true={showDataTable}>
+                        <div class="slds-p-horizontal_small slds-scrollable">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                                <thead>
+                                    <tr class="slds-line-height_reset" >
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Selecionado">
+                                                
+                                            </div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Código">
+                                                Código
+                                            </div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Proprietario">
+                                                Proprietario
+                                            </div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Grupo">
+                                                Grupo
+                                            </div>
+                                        </th>
+                                    </tr>   
+                                </thead>
+                                <tbody>
+                                    <template for:each={ticketsData} for:item='item'>
+                                        <tr class="slds-hint-parent" key={item.id}>
+                                            <td data-label="Selecionado" style="font-size: 13px;">
+                                                <input type="checkbox" class="checkbox" name={item.Id} onclick={checkTicket} checked={checkBoxChecked} disabled={checkBoxDisabled}/>
+                                            </td>
+                                            <td data-label="Código" style="font-size: 13px;">
+                                                <a href="#" name={item.Id} onclick={abrirGuia}>{item.CaseNumber}</a>
+                                            </td>
+                                            <td data-label="Proprietario" style="font-size: 13px;">
+                                                {item.Owner.Name}
+                                            </td>
+                                            <td data-label="Grupo" style="font-size: 13px;">
+                                                {item.Grupo_Tkt__c}
+                                            </td>
+                                        </tr>
+                                    </template>    
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--<div slot="footer" class="slds-var-m-vertical_medium">
+                            <c-pagination records={dataTicketsJSON} record-size="3" onupdate={updateTicketsHandler}></c-pagination>
+                        </div>-->
+                    </lightning-card> 
+
+                    
+                </div>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_brand" onclick={atribuirHandle} title="Atribuir" disabled={disabledAtribuir}>Atribuir</button>
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Finalizar">Finalizar</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

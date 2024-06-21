@@ -1,0 +1,19 @@
+<template>
+    <div class="slds-m-left_large slds-m-right_large">
+        <lightning-card class="customCardClass">
+            <div class="tabs">
+                <c-custom-button onbuttonclick={handleButtonClick} class="full-width-button" is-active={tabMyFinishedQuotes}
+                    title="Minhas cotações finalizadas" description="Demandas concluídas pelo analista"></c-custom-button>
+                <c-custom-button onbuttonclick={handleButtonClick} class="full-width-button" is-active={tabAllFinishedQuotes}
+                    title="Todas as cotações finalizadas" description="Todas as demandas concluídas pelo time"></c-custom-button>
+            </div>
+            <template lwc:if={tabMyFinishedQuotes}>
+                <c-placement-my-finished-quotes></c-placement-my-finished-quotes>
+            </template>
+            <template lwc:if={tabAllFinishedQuotes}>
+                <c-placement-all-finished-quotes></c-placement-all-finished-quotes>
+            </template>
+    
+        </lightning-card>
+    </div>
+</template>

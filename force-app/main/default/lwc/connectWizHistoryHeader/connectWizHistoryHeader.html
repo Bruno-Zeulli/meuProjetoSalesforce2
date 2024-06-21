@@ -1,0 +1,30 @@
+<template>
+    <div if:true={isLoading}>
+        <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+    </div>
+    <div class="main-box">
+        <div class="font-style">
+            <span> Historico da Venda </span>
+        </div>
+        <div class="slds-media__body">
+            <div class={statusContextClass}>
+                <span class="status-indicator">
+                    <svg class="statusContextClass" width="16" height="16" viewBox="0 0 16 16" fill="" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="statusContextClass" cx="8" cy="8" r="7.75" stroke="#212223" stroke-width="0.5"/>
+                    </svg>
+
+                </span>
+                <span>{status}</span>
+            </div>
+            <div if:true={tasks} class="slds-scrollable_y" style="height:35rem;">
+                 <ol class="slds-timeline">
+                    <template for:each={tasks} for:item="task">
+                        <li key={task.Id}>
+                            <c-connect-wiz-history-item content-details={task}></c-connect-wiz-history-item>
+                        </li>
+                    </template>
+                 </ol>
+            </div>
+        </div>
+    </div>
+</template>

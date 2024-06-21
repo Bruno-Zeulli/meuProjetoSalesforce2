@@ -1,0 +1,157 @@
+.cotacao-icon {
+    --sds-c-icon-color-foreground: orange;
+}
+
+.accordion-item-title {
+    color : #8F4100;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.button-header {
+    --sds-c-button-brand-color-background:  #F9F7F7;
+    --sds-c-button-brand-text-color: black;
+}
+
+.add-proposta {
+    --sds-c-icon-color-foreground-default: #8F4100;
+}
+
+.content-quote-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex;
+    padding: 24px;
+    background: var(--color-background-customer, #FCFCFC);
+}
+
+.action-quote-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex;
+    padding: 0px;
+}
+
+.btn-action-quote-active{
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 12px;
+    border: none;
+    border-bottom: 2px solid #EF6C00;
+    background: var(--color-background-customer, #FCFCFC);
+
+}
+
+.btn-action-quote-active>p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 180%;
+
+    display: flex;
+    align-items: flex-end;
+    color: #8F4100;
+
+}
+
+.btn-action-quote-deactive{
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 12px;
+    border: none;
+
+    border-bottom: 2px solid #93999F;
+    background: var(--color-background-customer, #FCFCFC);
+}
+
+.btn-action-quote-deactive>p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 180%;
+
+    display: flex;
+    align-items: flex-end;
+    color: #93999F;
+}
+
+.add-proposta-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 8px;
+}
+
+.add-proposta-div {
+    border: none;
+    border-bottom:  2px solid #EF6C00;
+    color : var(--color-text-customer,#8F4100);
+    background: var(--color-background-customer, #FCFCFC);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.add-proposta-div:hover {
+    background-color: var(--color-background-customer, #FFF0E4);
+    border-radius: 4px;
+    color: var(--color-text-customer,#8F4100);
+
+    border-bottom: 2px solid #8F4100;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.add-proposta-div:focus {
+    background-color: var(--color-background-customer, #FFB578);
+    border-radius: 4px;
+    color: var(--color-text-customer,#602B00);
+
+    border-bottom: 2px solid #602B00;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.add-proposta-icon>svg{
+    fill:#BF5600;
+}
+
+.add-proposta-icon:hover>svg{
+    fill:#8F4100;
+}
+
+.add-proposta-icon:focus>svg {
+    fill:#602B00;
+}
+
+.status-quote {
+    border: 1px solid #2175D6;
+    color: #103A6B;
+    border-radius: 15px;
+    background-color: #E8F1FB;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    height: 32px;
+    width: auto;
+}

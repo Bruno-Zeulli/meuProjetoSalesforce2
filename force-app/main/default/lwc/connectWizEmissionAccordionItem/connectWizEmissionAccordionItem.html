@@ -1,0 +1,351 @@
+<template>
+    
+    <div class="slds-grid">
+        <div onclick={handleAccordionClick} class="slds-col slds-size_11-of-12">
+            <span  onclick={handleAccordionClick} class="slds-var-m-horizontal_small" title="Emissao">
+                <svg width="20" height="18" viewBox="0 0 20 18" fill="#F56C00" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.4 17.4L18.85 9.92002C19.66 9.57002 19.66 8.43002 18.85 8.08002L1.4 0.600017C0.74 0.310017 0.00999999 0.800017 0.00999999 1.51002L0 6.12002C0 6.62002 0.37 7.05002 0.87 7.11002L15 9.00002L0.87 10.88C0.37 10.95 0 11.38 0 11.88L0.00999999 16.49C0.00999999 17.2 0.74 17.69 1.4 17.4Z"/>
+                </svg>
+            </span>
+            <span class="accordion-item-title slds-var-m-horizontal_small">
+                <b>Emissão</b>
+            </span>
+        </div>
+        <div onclick={handleAccordionClick} if:false={isOpen} class="slds-col slds-size_1-of-12">
+            <span class="slds-var-p-left_medium">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.11875 1.29006L5.99875 5.17006L9.87875 1.29006C10.2688 0.900059 10.8988 0.900059 11.2888 1.29006C11.6788 1.68006 11.6788 2.31006 11.2888 2.70006L6.69875 7.29006C6.30875 7.68006 5.67875 7.68006 5.28875 7.29006L0.69875 2.70006C0.30875 2.31006 0.30875 1.68006 0.69875 1.29006C1.08875 0.910059 1.72875 0.900059 2.11875 1.29006Z"/>
+                </svg>
+            </span>
+        </div>
+        <div if:true={isOpen} onclick={handleAccordionClick} class="slds-col slds-size_1-of-12">
+            <span class="slds-var-p-left_medium">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.11875 6.70998L5.99875 2.82998L9.87875 6.70998C10.2688 7.09998 10.8988 7.09998 11.2888 6.70998C11.6788 6.31998 11.6788 5.68998 11.2888 5.29998L6.69875 0.70998C6.30875 0.31998 5.67875 0.31998 5.28875 0.70998L0.69875 5.29998C0.30875 5.68998 0.30875 6.31998 0.69875 6.70998C1.08875 7.08998 1.72875 7.09998 2.11875 6.70998Z"/>
+                </svg>
+            </span>
+        </div>
+    </div>
+    <div if:true={isOpen} class="slds-var-m-around_medium slds-var-p-around_small">
+        <!-- <div if:true={isLoading}>
+        <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+        </div> -->
+        <div if:true={isBeneficios}>
+            <div class="slds-grid slds-wrap emissao-container slds-var-p-vertical_small">
+                <div class="emissao-titulo slds-var-p-around_medium slds-col slds-size_12-of-12">Proposta aceita</div>
+                <div class="emissao-item slds-col slds-size_6-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_x-small">
+                    PRODUTO
+                </div>
+                <div class="emissao-item slds-col slds-size_6-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_x-small">
+                    OPERADORA
+                </div>
+                <div class="emissao-subitem slds-col slds-size_6-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                    {quoteToEmit.produto}
+                </div>
+                <div class="emissao-subitem slds-col slds-size_6-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                    {quoteToEmit.seguradora}
+                </div>
+                <div class="slds-col slds-size_12-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                    
+                    <c-connect-wiz-file-view
+                        record-id={recordId}
+                        document-type-name={documentTypeName}
+                        show-button-view-file={showButtonViewFile}
+                        show-simple-view={showSimpleView}
+                        onhandleshowviewfile={handleControlShowViewFile}
+                        onrefresh={handleRefresh}
+                    ></c-connect-wiz-file-view>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap slds-var-p-vertical_small">
+                <div class="emissao-titulo slds-col slds-size_12-of-12 slds-var-p-vertical_x-small">
+                    Documentos para Implantação
+                </div>
+                <div if:false={showCompKit} class="slds-is-relative slds-col slds-size_12-of-12 slds-var-p-vertical_x-small" style="position:relative">
+                            <div class="slds-modal__container">
+                            <div  class="modal__spinner-container" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                                <div class="spinner-border" style="width: 2rem; height: 2rem; color: #BF5600;" role="status"></div>
+                                <div style="color: #BF5600;">
+                                    <p>
+                                        <span>&nbsp;<b>Carregando...</b></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                <div if:true={showViewFilesKitImplantacao} class="slds-col slds-var-p-vertical_xx-small">
+                    <c-connect-wiz-file-view
+                        record-id={recordId}
+                        document-type-name={documentTypeNameKitImplantacao}
+                        show-button-view-file={showButtonViewFile}
+                        show-simple-view={showSimpleView}
+                        show-button-delete-file={showButtonDeleteFile}
+                        onhandleshowviewfile={handleControlShowViewFileKitImplantacao}
+                        onhandledeletefile ={handleDeleteFileKitImplantacao}
+                        onrefresh={handleRefresh}
+                    ></c-connect-wiz-file-view>
+                </div>
+                <div if:true={showUploadFileKitImplantacao} class="slds-col slds-var-p-vertical_xx-small">
+                    <c-connect-wiz-file-upload
+                    record-id={recordId}
+                    label-name={labelName}
+                    tipo-documento={documentTypeNameKitImplantacao}
+                    onhandleshowuploadfile={handleControlShowUploadFileKitImplantacao}
+                    onrefresh={handleRefresh}
+                ></c-connect-wiz-file-upload>
+                </div>
+            </div>
+        </div>
+        <div if:true={isCorporate}>
+            <div class="slds-grid slds-wrap emissao-container slds-var-p-vertical_small">
+                <div class="emissao-titulo slds-var-p-around_medium slds-col slds-size_12-of-12">Proposta aceita</div>
+                <div class="emissao-item slds-col slds-size_6-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_x-small">
+                    SEGURADORA
+                </div>
+                <div class="emissao-item slds-col slds-size_6-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_x-small">
+                    PRÊMIO
+                </div>
+                <div class="emissao-subitem slds-col slds-size_6-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                    {quoteToEmit.seguradora}
+                </div>
+                <div class="emissao-subitem slds-col slds-size_6-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                    {quoteToEmit.premio}
+                </div>
+                <div class="slds-col slds-size_12-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                    <c-connect-wiz-file-view
+                        record-id={recordId}
+                        document-type-name={documentTypeName}
+                        show-button-view-file={showButtonViewFile}
+                        show-simple-view={showSimpleView}
+                        onhandleshowviewfile={handleControlShowViewFile}
+                        onrefresh={handleRefresh}
+                    ></c-connect-wiz-file-view>
+                </div>
+                <div class="slds-col slds-size_12-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                <hr >
+                </div>
+                <div class="file-title slds-col slds-size_12-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                    Evidência de aceite do cliente
+                </div>
+                <div class="slds-col slds-size_12-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                    <c-connect-wiz-file-view
+                        record-id={recordId}
+                        document-type-name={documentTypeNameAceiteDoCliente}
+                        show-button-view-file={showButtonViewFile}
+                        show-simple-view={showSimpleView}
+                        onhandleshowviewfile={handleControlShowViewFile}
+                        onrefresh={handleRefresh}
+                    ></c-connect-wiz-file-view>
+                </div>
+            </div>
+            <hr>
+            <div class="slds-grid slds-wrap slds-var-p-vertical_small">
+                <div class="emissao-titulo slds-col slds-size_12-of-12 slds-var-p-vertical_x-small">
+                    Enviar apólice e boletos
+                </div>
+                <div if:true={showUploadFileApolice} class="slds-col file-subtitle slds-size_12-of-12 slds-var-p-vertical_medium">
+                    Anexe a apólice
+                </div>
+                <div if:false={showCompApolice} class="slds-is-relative slds-col slds-size_12-of-12 slds-var-p-vertical_x-small" style="position:relative">
+                            <div class="slds-modal__container">
+                            <div  class="modal__spinner-container" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                                <div class="spinner-border" style="width: 2rem; height: 2rem; color: #BF5600;" role="status"></div>
+                                <div style="color: #BF5600;">
+                                    <p>
+                                        <span>&nbsp;<b>Carregando...</b></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                <div if:true={showUploadFileApolice} class="slds-col slds-size_12-of-12 slds-var-p-vertical_x-small">
+                    <c-connect-wiz-file-upload
+                    record-id={recordId}
+                    label-name={labelName}
+                    tipo-documento={documentTypeNameApolice}
+                    onhandleshowuploadfile={handleControlShowUploadFileApolice}
+                    onrefresh={handleRefresh}
+                ></c-connect-wiz-file-upload>
+                </div>
+                <div if:true={showViewFilesApolice} class="slds-col slds-size_12-of-12 slds-var-p-vertical_xx-small">
+                    <c-connect-wiz-file-view
+                        record-id={recordId}
+                        document-type-name={documentTypeNameApolice}
+                        show-button-view-file={showButtonViewFile}
+                        show-simple-view={showSimpleView}
+                        show-button-delete-file={showButtonDeleteFile}
+                        onhandleshowviewfile={handleControlShowViewFileApolice}
+                        onhandledeletefile={handleDeleteFileApolice}
+                        onrefresh={handleRefresh}
+                    ></c-connect-wiz-file-view>
+                </div>
+                <div if:true={showUploadFileBoleto} class="slds-col file-subtitle slds-size_12-of-12 slds-var-p-vertical_medium">
+                    Anexo o boleto
+                </div>
+                <div if:false={showCompBoleto} class="slds-is-relative slds-col slds-size_12-of-12 slds-var-p-vertical_x-small" style="position:relative">
+                            <div class="slds-modal__container">
+                            <div  class="modal__spinner-container" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                                <div class="spinner-border" style="width: 2rem; height: 2rem; color: #BF5600;" role="status"></div>
+                                <div style="color: #BF5600;">
+                                    <p>
+                                        <span>&nbsp;<b>Carregando...</b></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                <div if:true={showUploadFileBoleto} class="slds-col slds-size_12-of-12 slds-var-p-vertical_x-small">
+                    <c-connect-wiz-file-upload
+                    record-id={recordId}
+                    label-name={labelName}
+                    tipo-documento={documentTypeNameBoleto}
+                    onhandleshowuploadfile={handleControlShowUploadFileBoleto}
+                    onrefresh={handleRefresh}
+                ></c-connect-wiz-file-upload>
+                </div>
+                <div if:true={showViewFilesBoleto} class="slds-col slds-size_12-of-12 slds-var-p-vertical_xx-small">
+                    <c-connect-wiz-file-view
+                        record-id={recordId}
+                        document-type-name={documentTypeNameBoleto}
+                        show-button-view-file={showButtonViewFile}
+                        show-simple-view={showSimpleView}
+                        show-button-delete-file={showButtonDeleteFile}
+                        onhandleshowviewfile={handleControlShowViewFileBoleto}
+                        onhandledeletefile={handleDeleteFileBoleto}
+                        onrefresh={handleRefresh}
+                    ></c-connect-wiz-file-view>
+                </div>
+            </div>
+        </div>
+        <div if:true={isMcmv}>
+             <div class="slds-grid slds-wrap emissao-container slds-var-p-vertical_small">
+                <div class="emissao-titulo slds-var-p-around_medium slds-col slds-size_12-of-12">Proposta aceita</div>
+                <div class="emissao-item slds-col slds-size_6-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_x-small">
+                    SEGURADORA
+                </div>
+                <div class="emissao-item slds-col slds-size_6-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_x-small">
+                    PRÊMIO
+                </div>
+                <div class="emissao-subitem slds-col slds-size_6-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                    {quoteToEmit.seguradora}
+                </div>
+                <div class="emissao-subitem slds-col slds-size_6-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                    {quoteToEmit.premio}
+                </div>
+                <div class="slds-col slds-size_12-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                    <c-connect-wiz-file-view
+                        record-id={recordId}
+                        document-type-name={documentTypeName}
+                        show-button-view-file={showButtonViewFile}
+                        show-simple-view={showSimpleView}
+                        onhandleshowviewfile={handleControlShowViewFile}
+                        onrefresh={handleRefresh}
+                    ></c-connect-wiz-file-view>
+                </div>
+                <div class="slds-col slds-size_12-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                <hr >
+                </div>
+                <div class="file-title slds-col slds-size_12-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                    Evidência de aceite do cliente
+                </div>
+                <div class="slds-col slds-size_12-of-12 slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+                    <c-connect-wiz-file-view
+                        record-id={recordId}
+                        document-type-name={documentTypeNameAceiteDoCliente}
+                        show-button-view-file={showButtonViewFile}
+                        show-simple-view={showSimpleView}
+                        onhandleshowviewfile={handleControlShowViewFile}
+                        onrefresh={handleRefresh}
+                    ></c-connect-wiz-file-view>
+                </div>
+            </div>
+            <hr>
+            <div class="slds-grid slds-wrap slds-var-p-vertical_small">
+                <div class="emissao-titulo slds-col slds-size_12-of-12 slds-var-p-vertical_x-small">
+                    Enviar apólice e boletos
+                </div>
+                <div if:true={showUploadFileApolice} class="slds-col file-subtitle slds-size_12-of-12 slds-var-p-vertical_medium">
+                    Anexe a apólice
+                </div>
+                <div if:false={showCompApolice} class="slds-is-relative slds-col slds-size_12-of-12 slds-var-p-vertical_x-small" style="position:relative">
+                            <div class="slds-modal__container">
+                            <div  class="modal__spinner-container" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                                <div class="spinner-border" style="width: 2rem; height: 2rem; color: #BF5600;" role="status"></div>
+                                <div style="color: #BF5600;">
+                                    <p>
+                                        <span>&nbsp;<b>Carregando...</b></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                <div if:true={showUploadFileApolice} class="slds-col slds-size_12-of-12 slds-var-p-vertical_x-small">
+                    <c-connect-wiz-file-upload
+                    record-id={recordId}
+                    label-name={labelName}
+                    tipo-documento={documentTypeNameApolice}
+                    onhandleshowuploadfile={handleControlShowUploadFileApolice}
+                    onrefresh={handleRefresh}
+                ></c-connect-wiz-file-upload>
+                </div>
+                <div if:true={showViewFilesApolice} class="slds-col slds-size_12-of-12 slds-var-p-vertical_xx-small">
+                    <c-connect-wiz-file-view
+                        record-id={recordId}
+                        document-type-name={documentTypeNameApolice}
+                        show-button-view-file={showButtonViewFile}
+                        show-simple-view={showSimpleView}
+                        show-button-delete-file={showButtonDeleteFile}
+                        onhandleshowviewfile={handleControlShowViewFileApolice}
+                        onhandledeletefile={handleDeleteFileApolice}
+                        onrefresh={handleRefresh}
+                    ></c-connect-wiz-file-view>
+                </div>
+                <div if:true={showUploadFileBoleto} class="slds-col file-subtitle slds-size_12-of-12 slds-var-p-vertical_medium">
+                    Anexo o boleto
+                </div>
+                <div if:false={showCompBoleto} class="slds-is-relative slds-col slds-size_12-of-12 slds-var-p-vertical_x-small" style="position:relative">
+                            <div class="slds-modal__container">
+                            <div  class="modal__spinner-container" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                                <div class="spinner-border" style="width: 2rem; height: 2rem; color: #BF5600;" role="status"></div>
+                                <div style="color: #BF5600;">
+                                    <p>
+                                        <span>&nbsp;<b>Carregando...</b></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                <div if:true={showUploadFileBoleto} class="slds-col slds-size_12-of-12 slds-var-p-vertical_x-small">
+                    <c-connect-wiz-file-upload
+                    record-id={recordId}
+                    label-name={labelName}
+                    tipo-documento={documentTypeNameBoleto}
+                    onhandleshowuploadfile={handleControlShowUploadFileBoleto}
+                    onrefresh={handleRefresh}
+                ></c-connect-wiz-file-upload>
+                </div>
+                <div if:true={showViewFilesBoleto} class="slds-col slds-size_12-of-12 slds-var-p-vertical_xx-small">
+                    <c-connect-wiz-file-view
+                        record-id={recordId}
+                        document-type-name={documentTypeNameBoleto}
+                        show-button-view-file={showButtonViewFile}
+                        show-simple-view={showSimpleView}
+                        show-button-delete-file={showButtonDeleteFile}
+                        onhandleshowviewfile={handleControlShowViewFileBoleto}
+                        onhandledeletefile={handleDeleteFileBoleto}
+                        onrefresh={handleRefresh}
+                    ></c-connect-wiz-file-view>
+                </div>
+            </div>
+        </div>
+        <div if:false={isEmited} style="display: flex; justify-content: flex-end">
+            <!-- sldsValidatorIgnoreNextLine -->
+            <button class={buttonEnviar} onclick={handleSend}>
+                Enviar
+                <svg width="18" height="13" viewBox="0 0 18 13" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.99965 10.17L2.52965 6.70001C2.13965 6.31001 1.50965 6.31001 1.11965 6.70001C0.729648 7.09001 0.729648 7.72001 1.11965 8.11001L5.29965 12.29C5.68965 12.68 6.31965 12.68 6.70965 12.29L17.2896 1.71001C17.6796 1.32001 17.6796 0.690007 17.2896 0.300007C16.8997 -0.0899927 16.2696 -0.0899927 15.8796 0.300007L5.99965 10.17Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</template>

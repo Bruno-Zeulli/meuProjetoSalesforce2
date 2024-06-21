@@ -1,0 +1,29 @@
+.dropdown-btn{
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1px 12px;
+    gap: 2px;
+    height: 32px;
+
+    border-radius: 3px;
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin-top: 20px;
+    margin-bottom: 6px;
+}
+
+hr {
+    margin: 0;
+    padding-bottom: 16px;
+}
+
+.task-item {
+    flex-direction: column;
+}

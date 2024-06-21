@@ -1,0 +1,51 @@
+<template>
+    <div data-id={task.id} class="slds-grid slds-scrollable slds-scrollable_y" data-expanded="true">
+        <div class="dropdown-btn">
+            <div data-id={task.id} onclick={handleAccordionClick} if:false={isOpen}>
+                <span class="slds-var-p-left_medium">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.11875 1.29006L5.99875 5.17006L9.87875 1.29006C10.2688 0.900059 10.8988 0.900059 11.2888 1.29006C11.6788 1.68006 11.6788 2.31006 11.2888 2.70006L6.69875 7.29006C6.30875 7.68006 5.67875 7.68006 5.28875 7.29006L0.69875 2.70006C0.30875 2.31006 0.30875 1.68006 0.69875 1.29006C1.08875 0.910059 1.72875 0.900059 2.11875 1.29006Z" fill="#BF5600"/>
+                    </svg>
+                </span>
+            </div>
+            <div if:true={isOpen} data-id={task.id} onclick={handleAccordionClick}>
+                <span class="slds-var-p-left_medium">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.11875 6.70998L5.99875 2.82998L9.87875 6.70998C10.2688 7.09998 10.8988 7.09998 11.2888 6.70998C11.6788 6.31998 11.6788 5.68998 11.2888 5.29998L6.69875 0.70998C6.30875 0.31998 5.67875 0.31998 5.28875 0.70998L0.69875 5.29998C0.30875 5.68998 0.30875 6.31998 0.69875 6.70998C1.08875 7.08998 1.72875 7.09998 2.11875 6.70998Z" fill="#BF5600"/>
+                    </svg>
+                </span>
+            </div>
+        </div>
+        <span class="cotacao-icon slds-var-m-horizontal_small" title="Cotações">
+            <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="6.5" cy="6" r="6" fill="#844597"/>
+            </svg>
+        </span>
+        <a onclick={handleAccordionClick} class="slds-text-link_reset slds-has-flexi-truncate">
+            <h3 class="slds-truncate" title="Enviado para Placement">
+                <strong>{task.Type}</strong>
+            </h3>
+            <p class="slds-truncate" title="">{task.Owner.Name}</p>
+            <p>
+                <lightning-formatted-date-time value={task.CreatedDate} year="numeric" month="numeric" day="numeric"></lightning-formatted-date-time>
+                <span> | </span>
+                <lightning-formatted-date-time value={task.CreatedDate} hour="2-digit"
+                minute="2-digit" hour12={ampm}></lightning-formatted-date-time>
+                <!-- <abbr class="slds-text-link slds-m-horizontal_xxx-small" title="unread">●</abbr> -->
+            </p>
+        </a>
+        <!-- </div> -->
+    </div>
+    <div class="content">
+
+        <div class="list_content" data-id={task.id} data-expanded="true">
+            <div if:true={isOpen} >
+                <div class="task-item" data-id={task.id} data-expanded="true">
+                    <c-connect-wiz-history-item-detail content-details={task} contains-description={containsDescription} description={description} subject={subject}></c-connect-wiz-history-item-detail>
+
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+</template>

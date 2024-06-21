@@ -1,0 +1,48 @@
+<template>
+    <div if:true={loader}>
+        <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+    </div>
+    <div class="dragbox">
+        <div class="txt_proposal">
+            <span>
+                {labelName}
+            </span>
+        </div>
+        <div>
+            <div data-id="dropZoneContextId" class={dropZoneContextClass}>
+                <div data-id="droparea" class="">
+                    <div class="txt_drag-here">
+                        <span>
+                            Arraste-os aqui ou
+                        </span>
+                        <!-- sldsValidatorIgnoreNextLine -->
+                        <button class="btn-chosee_file" onclick={handleOpenDialog}>
+                            <span>
+                                <p> </p>
+                                <svg width="25" height="16" viewBox="0 0 25 16" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19.85 6.04C19.17 2.59 16.14 0 12.5 0C9.61 0 7.1 1.64 5.85 4.04C2.84 4.36 0.5 6.91 0.5 10C0.5 13.31 3.19 16 6.5 16H19.5C22.26 16 24.5 13.76 24.5 11C24.5 8.36 22.45 6.22 19.85 6.04ZM14.5 9V13H10.5V9H7.5L12.15 4.35C12.35 4.15 12.66 4.15 12.86 4.35L17.5 9H14.5Z"/>
+                                </svg>
+                            </span>
+                            <span> Selecione arquivos</span>
+                        </button>
+                    </div>
+                    <div class="chosee-file-exeptions">
+                        <span>(<b>5 MB</b> de tamanho máximo e é permitido qualquer tipo de arquivos)</span>
+                    </div>
+                </div>
+            </div>
+            <!-- sldsValidatorIgnoreNextLine -->
+            <input type="file" data-id="ChooseFiles" name="file to uploder" multiple style="display: none;"
+                    onchange={handleSelectedFiles}>
+            <ul class="slds-m-around_medium">
+                <template for:each={selectedFilesToUpload} for:item="file">
+                    <li key={file.name} class="slds-p-top_xx-small">
+                        <lightning-icon icon-name={file.stateIconClass} alternative-text={file.stateIconText}
+                            size="xx-small" class="slds-m-right_x-small"></lightning-icon>
+                        {file.name}
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,8 @@
+<template>
+    <div class="bBody">
+        <lightning-record-edit-form object-api-name={objectName} record-type-id={recordTypeId} >
+            <label class="slds-form-element__label" style="margin-right: 0.5rem;" for="fieldid">{objectLabel}</label>
+            <lightning-input-field class="slds-form-element__control" id="fieldid" field-name={fieldName} value={fieldValue} required={isRequired} onchange={handleChange} variant="label-hidden"></lightning-input-field>
+        </lightning-record-edit-form>
+    </div>  
+</template>

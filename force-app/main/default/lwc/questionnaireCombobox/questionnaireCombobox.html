@@ -1,0 +1,12 @@
+<template>
+    <div>
+        <div class="slds-p-around_medium">
+            <lightning-combobox label={label} options={_options} value={initialOption} placeholder="Escolha uma opção"
+                onchange={handleSelectionChange}></lightning-combobox>
+            <template lwc:if={allowComment}>
+                <lightning-textarea label="Comentários" value={comment} disabled={readOnly}
+                    onchange={handleCommentChange}></lightning-textarea>
+            </template>
+        </div>
+    </div>
+</template>

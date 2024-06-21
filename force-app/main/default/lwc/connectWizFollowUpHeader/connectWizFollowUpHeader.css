@@ -1,0 +1,251 @@
+.header-container {
+    margin: 12px 12px 12px 12px;
+}
+.item-header {
+    background-color: white;
+}
+
+.main-text {
+    color:#5C5E61;;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    padding-left: 10px;
+}
+
+.subtext {
+    font-size: 13px;
+    padding-left: 10px;
+}
+
+.subtext-pipe {
+    color:rgba(209, 190, 190, 0.733);
+    font-size: 13px;
+}
+
+.card-product{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 12px;
+    gap: 4px;
+
+    /* width: 205px;
+    height: 32px; */
+    font-style: normal;
+    font-weight: 400;
+    /* font-weight: var(--font-weight-regular, 600); */
+    font-size: var(--font-size, 14px);
+    line-height: var(--line-height-text, 170%);
+
+    color: var(--color-text-customer,#103A6B);
+    background: var(--color-background-customer, #E8F1FB);
+    border: 1px solid var(--color-border-customer, #2175D6);
+    border-radius: 24px;
+
+    width: auto;
+    height: 50%;
+    overflow-wrap: break-word;
+}
+.card-product-padding{
+    padding: var(--spacing,4px) var(--spacing,12px);
+}
+
+hr {
+    height: 0px;
+    border: none;
+    border-top: 3px solid rgba(134, 130, 130, 0.158);
+}
+
+
+.btn_history-registration {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 8px;
+
+    width: 175px;
+    height: 48px;
+
+    background: #BF5600;
+    border: 2px solid #BF5600;
+    border-radius: 4px;
+}
+
+.btn_history-label{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+    /* identical to box height, or 24px */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* ambient/deep/light */
+
+    color: #FFFFFF;
+}
+
+.btn_other-actions{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 8px;
+    margin: 0 0 0 14px;
+
+
+    width: 175px;
+    height: 48px;
+
+    /* component/button/secondary/color/border/default
+
+    Default
+    */
+    border: 2px solid #EF6C00;
+    border-radius: 4px;
+}
+
+.btn_other-actions:hover {
+    background: #FFF0E4;
+}
+
+.btn_other-actions:focus{
+    background: #FFF0E4;
+}
+
+.btn_actions-label {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+    /* identical to box height, or 24px */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #8F4100;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 0 0 12px;
+}
+
+.icon-item{
+    padding-left: 0.2rem;
+}
+
+button.btn-copy{
+    border: none;
+    background: transparent;
+    padding: 0;
+    width: auto;
+}
+
+.dentification-number{
+    align-items: flex-end;
+}
+
+.header-conteiner-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popover{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 365px;
+    position: absolute;
+
+    border-radius: 0px;
+    border: none;
+    box-shadow: 0px 4px 22px rgba(0, 0, 0, 0.25);
+}
+
+.list_item {
+    height: 50px;
+    width: 250px;
+    left: 0px;
+    top: 0px;
+    border-radius: 0px;
+    padding: 13px 16px 13px 16px;
+}
+
+.btn_popover {
+    border: none;
+    background: transparent;
+}
+
+/* .button-close{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 24px;
+    gap: 16px;
+
+    width: 669px;
+    height: 48px;
+
+    flex: none;
+    align-self: stretch;
+    flex-grow: 0;
+
+}
+
+.button-close button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 8px;
+
+    width: 85px;
+    height: 48px;
+
+    background: var(--color-background-customer, #BF5600);
+    border-radius: 4px;
+    border: none;
+
+    flex: none;
+    flex-grow: 0;
+}
+
+.button-close button:hover{
+    background: var(--color-background-customer, #8F4100);
+}
+
+.button-close button:focus{
+    background: var(--color-background-customer, #602B00);
+}
+
+.button-close span{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: var(--color-text-customer,#FCFCFC);
+
+    flex: none;
+    flex-grow: 0;
+} */

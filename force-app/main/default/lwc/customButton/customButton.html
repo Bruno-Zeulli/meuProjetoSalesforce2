@@ -1,0 +1,15 @@
+<template>
+    <button onclick={handleButtonClick} class={buttonClass}>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <h1 class="slds-text-align_left slds-p-left_small slds-p-top_xx-small">{title}</h1>
+                <p class="slds-text-align_left slds-p-left_small slds-p-top_xxx-small slds-p-bottom_xx-small">{description}</p>
+            </div>
+            <template lwc:if={badgeActive}>
+                <div class="slds-col slds-p-top_x-small slds-p-right_small">
+                    <span class="slds-badge">{countQuotes}</span>
+                </div>
+            </template>
+        </div>
+    </button>
+</template>

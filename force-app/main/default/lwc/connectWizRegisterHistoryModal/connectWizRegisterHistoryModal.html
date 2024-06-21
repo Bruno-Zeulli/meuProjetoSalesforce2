@@ -1,0 +1,180 @@
+<template>
+        <div if:true={isLoading}>
+            <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+        </div>
+        <div>
+            <section role="dialog" tabindex="-1"
+                aria-labelledby="modal-heading-01"
+                aria-modal="true"
+                aria-describedby="modal-content-id-1"
+                class="slds-modal slds-fade-in-open"
+                >
+                <div class="slds-modal__container">
+                    <div class="modal__container">
+                        <div class="modal-header__container">
+                            <h4>
+                                <span>
+                                Registrar histórico
+                                </span>
+                            </h4>
+                            <!-- sldsValidatorIgnoreNextLine -->
+                            <button class="btn-close" onclick={handleSelectCloseModal}></button>
+                        </div>
+                        <div class="frame-3271">
+                            <div>
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <select
+                                    data-id="recordList"
+                                    class="form-select text-select select1"
+                                    aria-label="Select Record Type"
+                                    required="required"
+                                    onchange={handleSelectedType}
+                                >
+                                    <option value="" disabled selected>
+                                        Tipo de registro
+                                    </option>
+                                    <div class="invalid-feedback" id="error-01">
+                                        <span>
+                                            Selecione um tipo de registro.
+                                        </span>
+                                    </div>
+                                </select>
+                            </div>
+                            <div>
+                                <div>
+                                    <span>
+                                        <!-- Após o envio do comentário a SLA não será paralizada. -->
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-text-area">
+                            <div>
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <textarea data-id="descriptionData" placeholder="Observações" onchange={handleSelectedDescription}></textarea>
+                            </div>
+                        </div>
+                        <div if:true={showDragbox} class="dragbox">
+                            <div class="txt_evidence">
+                                <span>
+                                    <strong>Anexar evidência</strong>
+                                </span>
+                            </div>
+                            <div class="txt_opcional">
+                                <span>
+                                    Opcional
+                                </span>
+                            </div>
+
+                            <div data-id="dropZoneContextId" class={dropZoneContextClass}>
+                                <div data-id="droparea" class="">
+                                    <div class="txt_drag-here"><b>Arraste-os aqui ou </b>
+                                        <!-- sldsValidatorIgnoreNextLine -->
+                                        <button class="btn-chosee_file" onclick={handleOpenDialog}>
+                                            <span>
+                                                <svg width="25" height="16" viewBox="0 0 25 16" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M19.85 6.04C19.17 2.59 16.14 0 12.5 0C9.61 0 7.1 1.64 5.85 4.04C2.84 4.36 0.5 6.91 0.5 10C0.5 13.31 3.19 16 6.5 16H19.5C22.26 16 24.5 13.76 24.5 11C24.5 8.36 22.45 6.22 19.85 6.04ZM14.5 9V13H10.5V9H7.5L12.15 4.35C12.35 4.15 12.66 4.15 12.86 4.35L17.5 9H14.5Z"/>
+                                                </svg>
+                                            </span>
+                                            <span> Selecione arquivos</span>
+                                        </button>
+                                    </div>
+                                    <div class="chosee-file-exeptions">
+                                    <span>(<b>5 MB</b> de tamanho máximo e é permitido qualquer tipo de arquivos)</span>
+                                </div>
+                                </div>
+
+                            </div>
+                            <!-- sldsValidatorIgnoreNextLine -->
+                            <input type="file" data-id="ChooseFiles" name="file to uploder" multiple style="display: none;"
+                                onchange={handleSelectedFiles}>
+                            <ul class="slds-var-m-around_medium">
+                                <template for:each={selectedFilesToUpload} for:item="file">
+                                    <li key={file.name} class="slds-var-p-top_xx-small">
+                                        <lightning-icon icon-name={file.stateIconClass} alternative-text={file.stateIconText}
+                                            size="xx-small" class="slds-var-m-right_x-small"></lightning-icon>
+                                        {file.name}
+                                    </li>
+                                </template>
+                            </ul>
+                            <template if:true={errorMessage}>
+                                <div class="slds-var-m-around_medium">{errorMessage}</div>
+                            </template>
+                            <template if:true={showSpinner}>
+                                <lightning-spinner alternative-text="Uploading the file......" size="medium">
+                                </lightning-spinner>
+                            </template>
+                        </div>
+                    <div class="button-assignment">
+                        <div>
+                            <!-- sldsValidatorIgnoreNextLine -->
+                            <button onclick={handleSelectToRegister}>
+                                <div>
+                                    <span>
+                                        Registrar
+                                    </span>
+                                </div>
+                                <div>
+                                    <svg width="18" height="13" viewBox="0 0 18 13" fill="#F9F7F7" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.00063 10.171L2.53063 6.70101C2.14063 6.31101 1.51063 6.31101 1.12062 6.70101C0.730625 7.09101 0.730625 7.72101 1.12062 8.11101L5.30063 12.291C5.69063 12.681 6.32063 12.681 6.71063 12.291L17.2906 1.71101C17.6806 1.32101 17.6806 0.691007 17.2906 0.301007C16.9006 -0.0889932 16.2706 -0.0889932 15.8806 0.301007L6.00063 10.171Z"/>
+                                    </svg>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div if:true={openModalSuccess}>
+        <section role="dialog" tabindex="-1"
+                aria-labelledby="modal-heading-01"
+                aria-modal="true"
+                aria-describedby="modal-content-id-1"
+                class="slds-modal slds-fade-in-open"
+            >
+            <div class="slds-modal__container">
+                <div class="modal__container">
+                    <div>
+                        <div class="modal-btn-close">
+                            <div>
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <button class="btn-close" onclick={handleSelectCloseModal}></button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="modal-content-success__container">
+                                <div>
+                                    <div class="circle-icon">
+                                        <div>
+                                            <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6.00063 10.171L2.53063 6.70101C2.14063 6.31101 1.51063 6.31101 1.12062 6.70101C0.730625 7.09101 0.730625 7.72101 1.12062 8.11101L5.30063 12.291C5.69063 12.681 6.32063 12.681 6.71063 12.291L17.2906 1.71101C17.6806 1.32101 17.6806 0.691007 17.2906 0.301007C16.9006 -0.0889932 16.2706 -0.0889932 15.8806 0.301007L6.00063 10.171Z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span>
+                                        <strong>{userSelectedType} registrado com sucesso</strong>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-close" onclick={handleSelectCloseModal}>
+                            <div>
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <button>
+                                    <div>
+                                        <span>
+                                            Fechar
+                                        </span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</template>

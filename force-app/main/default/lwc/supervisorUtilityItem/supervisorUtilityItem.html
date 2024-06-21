@@ -1,0 +1,11 @@
+<template>
+    <button type="submit" class="slds-button slds-button_neutral slds-button_stretch" onclick={handleButtonClick}>Detalhes</button>
+    <br />
+    <br />
+    <lightning-datatable
+        key-field="owner"
+        data={ranking.data}
+        columns={rankingColumns}
+        hide-checkbox-column>
+    </lightning-datatable>
+</template>

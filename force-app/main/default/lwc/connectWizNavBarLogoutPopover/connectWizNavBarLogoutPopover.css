@@ -1,0 +1,7 @@
+.slds-popover {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 0.1%;
+    width: 4rem;
+    padding: 1.5px;
+}

@@ -1,0 +1,247 @@
+<template>
+    <template if:true={oppSession}>
+        <h1 class={filesTitleClass}>{filesTitle}</h1>
+        <template if:true={addFilesCopy.length}>
+            <template if:true={loadedFile}>
+                <ul class = 'oppUL'>
+                    <template for:each={addFilesCopy} for:item="file">
+                        <li key={file.Name} class ='file-item'>
+                            <div class = 'opp-file-title'>
+                            
+                                <div class = 'title-and-status'>
+                                    <div class = 'icon-and-title'>
+                                        <lightning-icon icon-name="utility:attach" size="x-small" class ='attach-icon'></lightning-icon>{file.Name}
+                                    </div>
+    
+                                    <lightning-badge class ={file.Status__c} label={file.FormattedStatus}></lightning-badge>
+                                </div>
+                                <div class = 'file-date-time'>
+                                    {file.FormattedCreatedDate}
+                                </div>
+                
+                                <div class = 'opp-button-file-group'>
+                                    <div class="button-file-group">
+                                        <lightning-button icon-name="utility:download" onclick={handleDownloadFile} class = 'button-file-opp-download' data-fileid={file.Id}></lightning-button>
+                                        <lightning-button icon-name="utility:preview" onclick={handlePreviewFile} class = 'button-file-opp-view' data-fileid={file.Id}></lightning-button>
+                                    </div>
+                            
+                                    <template if:true={file.NeedsApproval}>
+                                        <div class="button-approve-group">
+                                            <lightning-button label="Reprovar" icon-name="utility:close" icon-position="left" onclick={handleRejectFile} class = 'button-file-reject' data-fileid={file.Id}></lightning-button>
+                                            <lightning-button label="Aprovar" icon-name="utility:check" icon-position="left" onclick={handleApproveFile} class = 'button-file-approve' data-fileid={file.Id}></lightning-button>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            <template if:false={loadedFile}>
+                <div class = 'custom-spinner'>
+                    <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                </div>
+            </template>
+        </template>
+    </template>
+
+    <template if:true={emissionSession}>
+        <h1 class={filesTitleClass}>{filesTitle}</h1>
+        <template if:true={addFilesEmissionCopy.length}>
+            <template if:true={loadedFile}>
+                <ul class = 'oppUL'>
+                    <template for:each={addFilesEmissionCopy} for:item="file">
+                        <li key={file.Name} class ={fileItemEmissionClass}>
+                            <div class = 'emission-file-title'>
+                            
+                                <div class = 'title-and-buttons'>
+                                    <div class = 'icon-and-title'>
+                                        <lightning-icon icon-name="utility:attach" size="x-small" class ='attach-icon'></lightning-icon>{file.Name}
+                                    </div>
+    
+                                    <div class="button-group">
+                                        <lightning-button label="Download" icon-name="utility:download" icon-position="left" onclick={handleDownloadFile} class = 'button-file-download' data-fileid={file.Id}></lightning-button>
+                                        <lightning-button label="Visualizar" icon-name="utility:preview" icon-position="left" onclick={handlePreviewFile} class = 'button-file-preview' data-fileid={file.Id}></lightning-button>
+                                    </div>
+                                </div>
+                                <div class = 'file-date-time'>
+                                    {file.FormattedCreatedDate}
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+        </template>
+    </template>
+    <template if:true={emissionSessionBoletos}>
+        <template if:true={hasApolicesAndBoletos}>
+            <h1 class={filesTitleClass}>{filesTitle}</h1>
+            <template if:true={addFilesApoliceBoletosCopy.length}>
+                <template if:true={loadedFile}>
+                    <ul class = 'oppUL'>
+                        <template for:each={addFilesApoliceBoletosCopy} for:item="file">
+                            <li key={file.Name} class ={fileItemEmissionClass}>
+                                <div class = 'emission-file-title'>
+                                
+                                    <div class = 'title-and-buttons'>
+                                        <div class = 'icon-and-title'>
+                                            <lightning-icon icon-name="utility:attach" size="x-small" class ='attach-icon'></lightning-icon>{file.Name}
+                                        </div>
+        
+                                        <div class="button-group">
+                                            <lightning-button label="Download" icon-name="utility:download" icon-position="left" onclick={handleDownloadFile} class = 'button-file-download' data-fileid={file.Id}></lightning-button>
+                                            <lightning-button label="Visualizar" icon-name="utility:preview" icon-position="left" onclick={handlePreviewFile} class = 'button-file-preview' data-fileid={file.Id}></lightning-button>
+                                        </div>
+                                    </div>
+                                    <div class = 'file-date-time'>
+                                        {file.FormattedCreatedDate}
+                                    </div>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+            </template>
+        </template>
+    </template>
+    
+    <template if:true={selectedFiles.length}>
+        <template if:true={oppSession}>
+            <h1 class={filesTitleClass}>Documentos Adicionais</h1>
+            <ul class = 'oppUL'>
+                <template for:each={selectedFiles} for:item="file">
+                    <li key={file.name} class ='file-item'>
+                        <div class = 'opp-file-title'>
+
+                            <div class = 'title-and-status'>
+                                <div class = 'icon-and-title'>
+                                    <lightning-icon icon-name="utility:attach" size="x-small" class ='attach-icon'></lightning-icon>{file.name}
+                                </div>
+                            </div>
+                            <div class = 'file-date-time'>
+                                {file.createdDate}
+                            </div>
+
+                            <div class = 'opp-button-file-group'>
+                                <div class="button-file-group">
+                                    <lightning-button icon-name="utility:download" onclick={handleDownloadFile} class = 'button-file-opp-download' data-fileid={file.id}></lightning-button>
+                                    <lightning-button icon-name="utility:preview" onclick={handlePreviewFile} class = 'button-file-opp-view' data-fileid={file.id}></lightning-button>
+                                    <lightning-button icon-name="utility:delete" icon-position="left" onclick={handleDeleteFile} class = 'button-file-opp-delete' data-fileid={file.id}></lightning-button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </template>
+            </ul>
+        </template>
+        <template if:true={emissionSession}>
+            <h1 class={filesTitleClass}>Enviar apólice</h1> 
+            <ul class = 'emissionUL'>
+                <template for:each={selectedFiles} for:item="file">
+                    <li key={file.name} class ='file-item'>
+                        <div class = 'emission-file-title'>
+
+                            <div class = 'title-and-buttons'>
+                                <div class = 'icon-and-title'>
+                                    <lightning-icon icon-name="utility:attach" size="x-small" class ='attach-icon'></lightning-icon>{file.name}
+                                </div>
+                                <div class="button-file-group-emission">
+                                    <lightning-button icon-name="utility:download" onclick={handleDownloadFile} class = 'button-file-opp-download' data-fileid={file.id}></lightning-button>
+                                    <lightning-button icon-name="utility:preview" onclick={handlePreviewFile} class = 'button-file-opp-view' data-fileid={file.id}></lightning-button>
+                                    <lightning-button icon-name="utility:delete" onclick={handleDeleteFile} class = 'button-file-opp-delete' data-fileid={file.id}></lightning-button>
+                                </div>
+                            </div>
+                            <div class = 'file-date-time'>
+                                {file.createdDate}
+                            </div>
+                        </div>
+                    </li>
+                </template>
+            </ul>
+        </template>
+        <template if:true={emissionSessionBoletos}>
+            <h1 class={filesTitleClass}>Enviar boletos</h1> 
+            <ul class = 'emissionUL'>
+                <template for:each={selectedFiles} for:item="file">
+                    <li key={file.name} class ='file-item'>
+                        <div class = 'emission-file-title'>
+
+                            <div class = 'title-and-buttons'>
+                                <div class = 'icon-and-title'>
+                                    <lightning-icon icon-name="utility:attach" size="x-small" class ='attach-icon'></lightning-icon>{file.name}
+                                </div>
+                                <div class="button-file-group-emission">
+                                    <lightning-button icon-name="utility:download" onclick={handleDownloadFile} class = 'button-file-opp-download' data-fileid={file.id}></lightning-button>
+                                    <lightning-button icon-name="utility:preview" onclick={handlePreviewFile} class = 'button-file-opp-view' data-fileid={file.id}></lightning-button>
+                                    <lightning-button icon-name="utility:delete" onclick={handleDeleteFile} class = 'button-file-opp-delete' data-fileid={file.id}></lightning-button>
+                                </div>
+                            </div>
+                            <div class = 'file-date-time'>
+                                {file.createdDate}
+                            </div>
+                        </div>
+                    </li>
+                </template>
+            </ul>
+        </template>
+        <template if:false={oppSession}>
+            <template if:false={emissionSession}>
+                <template if:false={emissionSessionBoletos}>
+                    <h1 class={filesTitleClass}>{filesTitle}</h1>
+                    <ul>
+                        <template for:each={selectedFiles} for:item="file">
+                            <li key={file.name} class ='file-item'>
+                                <div class = 'file-title'>
+                                    <lightning-icon icon-name="utility:attach" size="x-small" class ='attach-icon'></lightning-icon>
+                                    {file.name}
+                                </div>
+                                <div class="button-group">
+                                    <lightning-button label="Visualizar" icon-name="utility:preview" icon-position="left" onclick={handlePreviewFile} class = 'button-file-view' data-fileid={file.id}></lightning-button>
+                                    <lightning-button label="Deletar" icon-name="utility:delete" icon-position="left" onclick={handleDeleteFile} class = 'button-file-delete' data-fileid={file.id}></lightning-button>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+            </template>
+        </template>
+    </template>
+
+    <template if:true={showDropZone}>
+        <template if:false={docsOpp}>
+            <h1 class ={dropZoneTitleClass}>{dropZoneTitle}</h1>
+        </template>
+        <template if:true={docsOpp}>
+            <h3 class ={dropZoneTitleClass}>{dropZoneTitle}</h3>
+        </template>
+        
+
+        <div class={dropZoneClass} ondragover={handleDragOver} ondragleave={handleDragLeave} ondrop={handleDrop}>
+            <div class = 'center-content'>
+
+                <div class = 'slds-grid slds-glutters'>
+                    <div class = 'slds-col'>
+                        <lightning-button class = 'attachFile' icon-name="utility:upload" icon-position="left" label="Selecione Arquivos" onclick={handleUploadClick}></lightning-button>
+                        <input type="file" accept=".pdf,.doc,.docx,.txt" onchange={handleFileUpload} class="file-input" />
+                    </div>
+                    <div class = 'slds-col slds-m-left_medium dragFileSpan'>
+                        <span>ou Arraste-os aqui</span>
+                    </div>
+                </div>
+                <span class = 'sizeFileMessage'>(<strong>5 MB</strong> de tamanho máximo e é permitido qualquer tipo de arquivo)</span>
+            </div>
+        </div>
+    </template>
+    <br>
+
+    <template if:true={showFooterButtons}>
+        <!--
+        <div class ='button-footer-group'>
+            <lightning-button class="buttonQuoteDelete" label="Excluir" onclick={deleteDataModal}></lightning-button>
+            <lightning-button class="buttonQuoteSave" label="Salvar" onclick={saveDataModal}></lightning-button>
+        </div>
+        -->
+    </template>
+
+</template>

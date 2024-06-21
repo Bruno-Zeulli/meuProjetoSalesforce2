@@ -1,0 +1,153 @@
+<template>
+    <div if:true={isLoading}>
+        <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+    </div>
+    <div if:true={openModalAssignmentOwner}>
+         <section role="dialog" tabindex="-1"
+                    aria-labelledby="modal-heading-01"
+                    aria-modal="true"
+                    aria-describedby="modal-content-id-1"
+                    class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="modal__container">
+                    <div class="modal-header__container">
+                        <h4>
+                            <span>
+                                Atribuir oportunidade
+                            </span>
+                        </h4>
+                        <!-- sldsValidatorIgnoreNextLine -->
+                        <button class="btn-close" onclick={handleSelectCloseModal}></button>
+                    </div>
+                    <div class="modal-content__container">
+                        <h6>
+                            <span>
+                                NOME DO PROPONENTE
+                            </span>
+                        </h6>
+                        <div if:true={isRendered}>
+                            <p>
+                                <span>
+                                    {caseSelect.accountName}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-content__container">
+                        <h6>
+                            <span>
+                                PRODUTOS
+                            </span>
+                        </h6>
+                        <div if:true={isRendered}>
+                            <p>
+                                <span>
+                                    {caseSelect.productComboName}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="frame-3271">
+                        <div>
+                            <!-- sldsValidatorIgnoreNextLine -->
+                            <select data-id="ownerList" class="form-select text-select select"  aria-label="Select Owner" required="required" onchange={handleSelectValueToAssign}>
+                                <option value="" disabled selected>
+                                    Nome do técnico
+                                </option>
+                                <div class="invalid-feedback" id="error-01">
+                                    <img src="{warningIcon}" alt="warning">
+                                    <span>
+                                        Selecione um novo proprietário.
+                                    </span>
+                                </div>
+                            </select>
+                        </div>
+                        <div>
+                            <!-- sldsValidatorIgnoreNextLine -->
+                            <button onclick={handleSelectToAssignForMe}>
+                                <div>
+                                    <span>
+                                        Atribuir a mim
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                        <div class="modal-text-area">
+                            <div>
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <textarea data-id="descriptionData" placeholder="Observações" onchange={handleSelectedDescription}></textarea>
+                            </div>
+                        </div>
+                    <div class="button-assignment">
+                        <div>
+                            <!-- sldsValidatorIgnoreNextLine -->
+                            <button onclick={handleSelectToAssign}>
+                                <div>
+                                    <span>
+                                        Atribuir
+                                    </span>
+                                </div>
+                                <div>
+                                    <svg width="18" height="13" viewBox="0 0 18 13" fill="#F9F7F7" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.00063 10.171L2.53063 6.70101C2.14063 6.31101 1.51063 6.31101 1.12062 6.70101C0.730625 7.09101 0.730625 7.72101 1.12062 8.11101L5.30063 12.291C5.69063 12.681 6.32063 12.681 6.71063 12.291L17.2906 1.71101C17.6806 1.32101 17.6806 0.691007 17.2906 0.301007C16.9006 -0.0889932 16.2706 -0.0889932 15.8806 0.301007L6.00063 10.171Z"/>
+                                    </svg>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div if:true={openModalAssignmentSuccess}>
+        <section role="dialog" tabindex="-1"
+                    aria-labelledby="modal-heading-01"
+                    aria-modal="true"
+                    aria-describedby="modal-content-id-1"
+                    class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="modal__container">
+                    <div>
+                        <div class="modal-btn-close">
+                            <div>
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <button class="btn-close" onclick={handleSelectCloseModal}></button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="modal-content-success__container">
+                                <div>
+                                    <div class="circle-icon">
+                                        <div>
+                                            <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6.00063 10.171L2.53063 6.70101C2.14063 6.31101 1.51063 6.31101 1.12062 6.70101C0.730625 7.09101 0.730625 7.72101 1.12062 8.11101L5.30063 12.291C5.69063 12.681 6.32063 12.681 6.71063 12.291L17.2906 1.71101C17.6806 1.32101 17.6806 0.691007 17.2906 0.301007C16.9006 -0.0889932 16.2706 -0.0889932 15.8806 0.301007L6.00063 10.171Z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span>
+                                        Atribuição de propriedade registrado com sucesso
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-close" onclick={handleSelectCloseModal}>
+                            <div>
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <button>
+                                    <div>
+                                        <span>
+                                            Fechar
+                                        </span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</template>

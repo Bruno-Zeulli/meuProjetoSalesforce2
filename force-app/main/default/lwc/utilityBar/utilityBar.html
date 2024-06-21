@@ -1,0 +1,252 @@
+<!--
+  @description       :
+  @author            : joao@beecloud.com.br
+  @group             :
+  @last modified on  : 11-23-2023
+  @last modified by  : joao@beecloud.com.br
+-->
+<template>
+    <footer if-true={showUtilityBar} class="slds-utility-bar_container" aria-label="Utility Bar">
+        <h2 class="slds-assistive-text">Utility Bar</h2>
+        <ul class="slds-utility-bar">
+            <li class="slds-utility-bar__item">
+                <!-- sldsValidatorIgnoreNextLine -->
+                <button class="slds-button slds-utility-bar__action slds-is-active" onclick={handlerShowPhone}
+                    aria-pressed="true">
+                    <svg class="slds-icon slds-icon-text-default slds-icon_x-small" focusable="false" data-key="answer"
+                        aria-hidden="true" viewBox="0 0 52 52" part="icon">
+                        <g>
+                            <path
+                                d="M48.5 37.9L42.4 33c-1.4-1.1-3.4-1.2-4.8-.1l-5.2 3.8c-.6.5-1.5.4-2.1-.2l-7.8-7-7-7.8c-.6-.6-.6-1.4-.2-2.1l3.8-5.2c1.1-1.4 1-3.4-.1-4.8l-4.9-6.1c-1.5-1.8-4.2-2-5.9-.3L3 8.4c-.8.8-1.2 1.9-1.2 3 .5 10.2 5.1 19.9 11.9 26.7S30.2 49.5 40.4 50c1.1.1 2.2-.4 3-1.2l5.2-5.2c1.9-1.5 1.8-4.3-.1-5.7z">
+                            </path>
+                        </g>
+                    </svg>
+                    <span class="slds-utility-bar__text"> Telefone</span>
+                </button>
+            </li>
+            <!-- <li class="slds-utility-bar__item"> -->
+            <!-- sldsValidatorIgnoreNextLine -->
+            <!-- <button class="slds-button slds-utility-bar__action" aria-pressed="false">
+                    <svg class="slds-icon slds-icon-text-default slds-icon_x-small" focusable="false" data-key="message"
+                        aria-hidden="true" viewBox="0 0 52 52" part="icon">
+                        <g>
+                            <path
+                                d="M47.2 2.7H34.6c-.8 0-1.1.7-.4 1.4l4 4 .5.5-7.5 7.4c-.6.6-.6 1.6-.1 2.2 0 0 5.1 5.2 4.6 11.1 0 8.4-6.1 15.1-14.5 15.1-6.2.6-11.1-5.1-11.1-5.1-.6-.6-1.5-.6-2.1 0L4.3 43c-.6.6-.6 1.5 0 2.1l1.2 1.2c.6.6 1.5.6 2.1 0L9 45c3.4 2.7 7.7 4.2 12.3 4.2 11 0 19.9-8.9 19.9-19.9 0-4.6-1.6-8.9-4.2-12.3l5.1-5.1.7.7 4 4c.6.7 1.4.4 1.4-.4V3.6c-.1-.5-.5-.9-1-.9z">
+                            </path>
+                            <circle cx="21.1" cy="29.5" r="9.9"></circle>
+                        </g>
+                    </svg>
+                    <span class="slds-utility-bar__text"> -->
+            <!-- <span class="slds-var-m-bottom_xxx-small">Online</span> -->
+            <!-- <span>Message</span>
+                    </span>
+                </button>
+            </li> -->
+            <li class="slds-utility-bar__item">
+                <!-- sldsValidatorIgnoreNextLine -->
+                <button onclick={handlerShowClickToDial} class="slds-button slds-utility-bar__action"
+                    aria-pressed="false">
+                    <svg class="slds-icon slds-icon-text-default slds-icon_x-small" focusable="false" data-key="macros"
+                        aria-hidden="true" viewBox="0 0 52 52" part="icon">
+                        <g>
+                            <path
+                                d="M37.2 40.2c-.2.4-.6.5-1 .5h-4.7c-.4 0-.7-.3-.7-.7 0-.1.1-.3.1-.4l.1-.1.2-.2 10.3-12.5c.3-.4.4-1 .2-1.4 0-.1-.1-.2-.1-.2L30.9 12.5c-.1-.1-.1-.3-.1-.4 0-.4.4-.7.7-.7h4.7c.4 0 .8.1 1 .5l11.1 13.4c.2.2.2.5.2.7 0 .3-.1.6-.2.8L37.2 40.2z">
+                            </path>
+                            <path
+                                d="M25.6 40.2c-.2.4-.6.5-1 .5h-4.7c-.4 0-.7-.3-.7-.7 0-.1.1-.3.1-.4l.1-.1.2-.2 10.3-12.5c.3-.4.4-1 .2-1.4 0-.1-.1-.2-.1-.2L19.3 12.5c-.1-.1-.1-.3-.1-.4 0-.4.4-.7.7-.7h4.7c.4 0 .8.1 1 .5l11.1 13.4c.2.2.2.5.2.7 0 .3-.1.6-.2.8L25.6 40.2z">
+                            </path>
+                            <path
+                                d="M14 40.2c-.2.4-.6.5-1 .5H4.2c-.4 0-.7-.3-.7-.7 0-.1.1-.3.1-.4l.1-.1.2-.2 10.3-12.5c.3-.4.4-1 .2-1.4 0-.1-.1-.2-.1-.2L3.6 12.5c-.1-.1-.1-.3-.1-.4 0-.4.4-.7.7-.7h8.7c.4 0 .8.1 1 .5L25 25.3c.2.2.2.5.2.7 0 .3-.1.6-.2.8L14 40.2z">
+                            </path>
+                        </g>
+                    </svg>
+                    <span class="slds-utility-bar__text"> Discar</span>
+                </button>
+            </li>
+            <li onclick={copyProtocol} lwc:if={showProtocol} class="slds-utility-bar__item">
+                <!-- sldsValidatorIgnoreNextLine -->
+                <button class="slds-button slds-utility-bar__action" aria-pressed="false">
+                    <lightning-icon size="x-small" icon-name="utility:copy" alternative-text="Copiar protocolo"
+                        title="Copiar protocolo"></lightning-icon>
+                    <span class="slds-utility-bar__text"> Protocolo de Atendimento: {protocol}</span>
+                </button>
+            </li>
+        </ul>
+        <div style="position: fixed; left: 0; bottom: 80px; display: none; z-index: 99999;" if:true={showPhone}
+            class="slds-utility-panel slds-grid slds-grid_vertical slds-is-open modal-sofphone" role="dialog"
+            aria-labelledby="panel-heading-01">
+            <div class="slds-utility-panel__header slds-grid slds-shrink-none">
+                <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure slds-var-m-right_x-small">
+                        <span class="slds-icon_container">
+                            <svg class="slds-icon slds-icon-text-default slds-icon_x-small" focusable="false"
+                                data-key="answer" aria-hidden="true" viewBox="0 0 52 52" part="icon">
+                                <g>
+                                    <path
+                                        d="M48.5 37.9L42.4 33c-1.4-1.1-3.4-1.2-4.8-.1l-5.2 3.8c-.6.5-1.5.4-2.1-.2l-7.8-7-7-7.8c-.6-.6-.6-1.4-.2-2.1l3.8-5.2c1.1-1.4 1-3.4-.1-4.8l-4.9-6.1c-1.5-1.8-4.2-2-5.9-.3L3 8.4c-.8.8-1.2 1.9-1.2 3 .5 10.2 5.1 19.9 11.9 26.7S30.2 49.5 40.4 50c1.1.1 2.2-.4 3-1.2l5.2-5.2c1.9-1.5 1.8-4.3-.1-5.7z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 id="panel-heading-01"> Telefone</h2>
+                    </div>
+                </div>
+                <div class="slds-col_bump-left slds-shrink-none" style="display: flex; gap: 5px;">
+                    <!-- Area call screen flow
+                <button lwc:if={showTabulationButton} style="display: flex; gap: 3px;" class="slds-button slds-button_icon slds-button_icon buttonTabulation" title="Tabular chamada" onclick={handlerShowTabulation}>
+                    <p>Tabular atendimento</p>
+                    <lightning-icon size="x-small" icon-name="utility:record_create" alternative-text="Tabular chamada" title="Tabular chamada"></lightning-icon>
+                    <p class="tabulationTime">{tabulationTime}</p>
+                    <span class="slds-assistive-text">Tabular chamada</span>
+                </button> -->
+                    <!-- sldsValidatorIgnoreNextLine -->
+                    <button class="slds-button slds-button_icon slds-button_icon" onclick={handlerShowPhone}
+                        title="Close Panel">
+                        <svg class="slds-button__icon" focusable="false" data-key="minimize_window" aria-hidden="true"
+                            viewBox="0 0 52 52" part="icon">
+                            <g>
+                                <path
+                                    d="M50 48.5c0 .8-.7 1.5-1.5 1.5h-45c-.8 0-1.5-.7-1.5-1.5v-3c0-.8.7-1.5 1.5-1.5h45c.8 0 1.5.7 1.5 1.5v3z">
+                                </path>
+                            </g>
+                        </svg>
+                        <!-- <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#minimize_window"></use> -->
+                        <span class="slds-assistive-text">Close Panel</span>
+                    </button>
+                </div>
+            </div>
+            <!--iFrame para acoplar a tela do Agent Desktop Toolkit ao CRM-->
+            <iframe id="softphone"
+                allow="camera *; geolocation *; microphone *; autoplay *; display-capture *;frame-scr 'self' *"
+                src="https://apps.sae1.pure.cloud/crm/embeddableFramework.html" width="100%" height="100%"
+                frameborder="0"></iframe>
+            <!-- <iframe allow="camera *; geolocation *; microphone *; autoplay *; display-capture *" src="https://app.five9.com/clients/integrations/adt.main.html?f9crmapi=true" width="100%" height="100%" frameborder="0"></iframe> -->
+        </div>
+        <div if:true={showClickToDial} class="slds-utility-panel slds-grid slds-grid_vertical slds-is-open"
+            role="dialog" aria-labelledby="panel-heading-01">
+            <div class="slds-utility-panel__header slds-grid slds-shrink-none">
+                <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure slds-var-m-right_x-small">
+                        <span class="slds-icon_container">
+                            <svg class="slds-icon slds-icon-text-default slds-icon_x-small" focusable="false"
+                                data-key="answer" aria-hidden="true" viewBox="0 0 52 52" part="icon">
+                                <g>
+                                    <path
+                                        d="M48.5 37.9L42.4 33c-1.4-1.1-3.4-1.2-4.8-.1l-5.2 3.8c-.6.5-1.5.4-2.1-.2l-7.8-7-7-7.8c-.6-.6-.6-1.4-.2-2.1l3.8-5.2c1.1-1.4 1-3.4-.1-4.8l-4.9-6.1c-1.5-1.8-4.2-2-5.9-.3L3 8.4c-.8.8-1.2 1.9-1.2 3 .5 10.2 5.1 19.9 11.9 26.7S30.2 49.5 40.4 50c1.1.1 2.2-.4 3-1.2l5.2-5.2c1.9-1.5 1.8-4.3-.1-5.7z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 id="panel-heading-02"> Discar</h2>
+                    </div>
+                </div>
+                <div class="slds-col_bump-left slds-shrink-none">
+                    <!-- sldsValidatorIgnoreNextLine -->
+                    <button class="slds-button slds-button_icon slds-button_icon" onclick={handlerShowClickToDial}
+                        title="Close Panel">
+                        <svg class="slds-button__icon" focusable="false" data-key="minimize_window" aria-hidden="true"
+                            viewBox="0 0 52 52" part="icon">
+                            <g>
+                                <path
+                                    d="M50 48.5c0 .8-.7 1.5-1.5 1.5h-45c-.8 0-1.5-.7-1.5-1.5v-3c0-.8.7-1.5 1.5-1.5h45c.8 0 1.5.7 1.5 1.5v3z">
+                                </path>
+                            </g>
+                        </svg>
+                        <span class="slds-assistive-text">Close Panel</span>
+                    </button>
+                </div>
+            </div>
+            <div class="slds-utility-panel__body">
+                <div class="slds-grid slds-grid_vertical-align-start">
+                    <div class="slds-page-header slds-page-header_vertical">
+                        <div class="slds-media">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-contact" title="Contact">
+                                    <lightning-icon icon-name="standard:contact" size="small"></lightning-icon>
+                                    <span class="slds-assistive-text">contact</span>
+                                </span>
+                            </div>
+                            <div class="slds-media__body">
+                                <div class="slds-page-header__name">
+                                    <div class="slds-page-header__name-title">
+                                        <h1>
+                                            <span class="slds-page-header__title slds-hyphenate"
+                                                title={recordName}>Contato</span>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add Edit and Delete buttons here if needed -->
+                        <ul class="slds-page-header__detail-list">
+                            <template for:each={data} for:item="item">
+                                <li key={item.label} class="slds-page-header__detail-item">
+                                    <template if:true={item.label}>
+                                        <div class="slds-text-title slds-truncate" title={item.label}>{item.label}</div>
+                                    </template>
+                                    <template if:false={item.label}>
+                                        <!-- Exiba uma mensagem de erro ou trate como preferir -->
+                                    </template>
+                                    <div title={item.value}>
+                                        <template if:true={item.value}>
+                                            <a href="javascript:void(0);" onclick={clickToDialLink}
+                                                data-phone={item.phoneNumber}>{item.value}</a>
+                                        </template>
+                                        <template if:false={item.value}>
+                                            <!-- Exiba uma mensagem de erro ou trate como preferir -->
+                                        </template>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+
+                    <!-- <button onclick={clickToDialLink}> Discar</button>
+                    <a href="javascript:void(0);" onclick={clickToDialLink} id='clickToDial'>{phoneNumber}</a>
+                    <br/> -->
+                    <!-- sldsValidatorIgnoreNextLine -->
+                    <!-- <button >Tabular</button> -->
+                </div>
+            </div>
+        </div>
+        <div lwc:if={showTabulationFlow} class="tabulationFlow" style="
+                width: 40%;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1000;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                border-radius: 5px;
+                padding: 20px; 
+                max-height: 500px;
+                overflow-y: scroll;
+            ">
+            <lightning-flow flow-api-name="GenesysTabulationFlow" flow-input-variables={inputVariables}
+                onstatuschange={handleStatusChange}>
+            </lightning-flow>
+        </div>
+        <div lwc:if={showCreateLeadFlow} class="tabulationFlow" style="
+                max-width: 40%;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1000;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                border-radius: 5px;
+                padding: 20px; 
+            ">
+            <lightning-flow flow-api-name="GenesysCreateLeadFlow" flow-input-variables={inputVariablesCreateLead}
+                onstatuschange={handleStatusChangeCreateLead}>
+            </lightning-flow>
+        </div>
+    </footer>
+</template>

@@ -1,0 +1,120 @@
+:host {
+    --slds-c-card-color-background: #50555A;
+    --slds-c-card-radius-border: 0px;
+}
+
+.badge{
+    --slds-c-badge-color-background: #FEF0E4;
+}
+
+.fechar-btn{
+    --slds-c-icon-color-foreground: #FF8200;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-text-color-active: #FF8200;
+    --slds-c-button-color-border-active: #FFFFFF;
+    --slds-c-button-inverse-shadow-focus: 0 0 6px #FFFFFF;
+    --slds-c-button-shadow-focus: 0 0 6px #FFFFFF;
+    --slds-c-button-sizing-border: 0px;
+}
+
+.button-history{
+    --slds-c-button-brand-color-background: #FF8200;
+    --slds-c-button-brand-color-border: #FF8200;
+    --slds-c-button-brand-color-background-hover: #FFFFFF;
+    --slds-c-button-brand-color-border-hover: #FF8200;
+    --slds-c-button-brand-text-color-hover: #FF8200;
+    --slds-c-button-brand-text-color-active: #FF8200;
+    --slds-c-button-brand-color-background-active: #FFFFFF;
+    --slds-c-button-brand-color-border-active: #FF8200;
+    --slds-c-button-inverse-shadow-focus: 0 0 6px #FF8200;
+    --slds-c-button-shadow-focus: 0 0 6px #FF8200;
+}
+
+.button-other-actions{
+    --slds-c-button-text-color: #FF8200;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-text-color-active: #FF8200;
+    --slds-c-button-color-border: #50555A;
+    --slds-c-button-color-border-hover: #50555A;
+    --slds-c-button-color-border-active: #50555A;
+
+}
+
+.button-copy{
+    --slds-c-icon-color-foreground: #FF8200;
+    --slds-c-button-text-color: #FF8200;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-text-color-active: #FF8200;
+    --slds-c-button-color-background: #50555A;
+    --slds-c-button-color-background-hover: #50555A;
+    --slds-c-button-color-background-active: #50555A;
+    --slds-c-button-color-border: #50555A;
+    --slds-c-button-color-border-hover: #50555A;
+    --slds-c-button-color-border-active: #50555A;
+}
+
+.registrar-btn{
+    --slds-c-button-brand-color-border: #FF8200;
+    --slds-c-button-brand-color-border-hover: #FF8200;
+    --slds-c-button-color-border-active: #FF8200;
+    --slds-c-button-brand-color-background: #FF8200;
+    --slds-c-button-brand-color-background-hover: #FFFFFF;
+    --slds-c-button-brand-color-background-active: #FFFFFF;
+    --slds-c-button-text-color: #FFFFFF;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-text-color-active: #FF8200;
+    --slds-c-button-inverse-shadow-focus: 0 0 6px #FF8200;
+    --slds-c-button-shadow-focus: 0 0 6px #FF8200;
+}
+
+.button-active{
+    --slds-c-button-brand-color-background: #FF8200;
+    --slds-c-button-brand-color-background-hover: #FF8200;
+    --slds-c-button-brand-color-background-active: #FF8200;
+    --slds-c-button-brand-color-border: #FF8200;
+    --slds-c-button-brand-color-border-hover: #FF8200;
+    --slds-c-button-brand-color-border-active: #FF8200;
+    --slds-c-button-brand-text-color-hover: #FFFFFF;
+    --slds-c-button-brand-text-color-active: #FFFFFF;
+    --slds-c-button-inverse-shadow-focus: 0 0 6px #FF8200;
+    --slds-c-button-shadow-focus: 0 0 6px #FF8200;
+    --slds-c-button-radius-border: 0;
+}
+
+.button-off{
+    --slds-c-button-brand-color-background: #FFFFFF;
+    --slds-c-button-brand-color-background-hover: #FFFFFF;
+    --slds-c-button-brand-color-background-active: #FFFFFF;
+    --slds-c-button-brand-color-border: #94989D;
+    --slds-c-button-brand-color-border-hover: #94989D;
+    --slds-c-button-brand-color-border-active: #94989D;
+    --slds-c-button-brand-text-color: #FF8200;
+    --slds-c-button-brand-text-color-hover: #FF8200;
+    --slds-c-button-brand-text-color-active: #FF8200;
+    --slds-c-button-inverse-shadow-focus: 0 0 6px #FF8200;
+    --slds-c-button-shadow-focus: 0 0 6px #FF8200;
+    --slds-c-button-radius-border: 0;
+}
+
+.assign-btn{
+    --slds-c-button-brand-color-border: #FF8200;
+    --slds-c-button-brand-color-border-hover: #FF8200;
+    --slds-c-button-color-border-active: #FF8200;
+    --slds-c-button-brand-color-background: #FF8200;
+    --slds-c-button-brand-color-background-hover: #FFFFFF;
+    --slds-c-button-brand-color-background-active: #FFFFFF;
+    --slds-c-button-text-color: #FFFFFF;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-text-color-active: #FF8200;
+    --slds-c-button-inverse-shadow-focus: 0 0 6px #FF8200;
+    --slds-c-button-shadow-focus: 0 0 6px #FF8200;
+}
+
+@media (min-width: 48em) {
+.slds-modal__container {
+
+    width: 100%;
+    max-width: 25rem;
+    min-width: 20rem;
+}
+}

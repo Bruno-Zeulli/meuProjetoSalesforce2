@@ -1,0 +1,13 @@
+.logo-content{
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-center;
+    padding: 2.6rem 0rem 2.188rem 0rem;
+    width: 100%;
+}
+
+.wiz-logo img{
+    width: 2.125rem;
+}

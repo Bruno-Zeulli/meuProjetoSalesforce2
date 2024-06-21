@@ -1,0 +1,11 @@
+.questionLabel {
+    font-size: 0.80rem;
+    font-family: Montserrat;
+    color: #50555A;
+}
+
+.addRow {
+    cursor: pointer;
+    font-family: Montserrat;
+    font-size: 0.75rem;
+}

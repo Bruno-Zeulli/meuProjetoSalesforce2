@@ -1,0 +1,119 @@
+.div-datatable{
+    margin: 0 1rem !important;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.row{
+    padding: 12px 0;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #333;
+}
+
+.row-modal{
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #333;
+}
+
+.row-modal div{
+    display: flex;
+    flex-direction: row;
+}
+
+.docInfo{
+    width: 60%;
+    display: flex;
+    flex-direction: column !important;
+}
+
+.docLink{
+    width: 40%;
+    display: flex;
+    justify-content: end;
+}
+
+.docActions{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.docActions button{
+    margin: 0 3px;
+}
+
+.actionButton{
+    padding: 4px;
+    background: #fff;
+    color: #ff8400;
+    border-radius: .25rem;
+    border: 1px solid #bbb;
+    height: 36px;
+}
+
+.row-modal .docReason{
+    display: flex;
+    align-items: center;
+}
+
+.row-modal input{
+    margin-left: 3px;
+    border: none;
+    border-bottom: 1px solid #888;
+    padding: 3px;
+}
+
+.actionButton:hover{
+    background: #ddd;
+}
+
+.downloadLink{
+    color: rgb(1, 118, 211);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+.downloadLink:hover{
+    text-decoration: underline;
+}
+
+.btn-selected{
+    background: #ddd;
+}
+
+.Aceito{
+    color:darkgreen;
+}
+.Recusado{
+    color: red;
+}
+.EmAnalise{
+    color: gray;
+}
+
+/*Scrollbar Styles*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ff8400;
+  width: 5px;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b75f00;
+}

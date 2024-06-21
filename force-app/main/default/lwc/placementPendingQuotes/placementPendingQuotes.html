@@ -1,0 +1,18 @@
+<template>
+    <template if:true={loaded}>
+        <c-composite-data-table 
+        onrefresh={refresh}
+        is-pending={isPending} 
+        is-quotes={isQuotes} columns={columns} 
+        is-finished={isFinished}
+        received-data={allQuotesRequest}
+        headers={headers}
+        users-queue={listUsersQueue}
+        >
+        </c-composite-data-table>
+    </template>
+    <template if:false={loaded}>
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+    
+</template>

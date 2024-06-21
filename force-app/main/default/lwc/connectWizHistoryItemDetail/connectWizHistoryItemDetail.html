@@ -1,0 +1,28 @@
+<template>
+    <div class="content_details">
+        <div class="task-item_content">
+            <span class="task_item">Motivo: <b>{subject}</b></span>
+        </div>
+        <div if:true={containsDescription} class="task-item_content">
+            <span class="task_item">Descrição: <b>{description}</b></span>
+        </div>
+        <div if:true={hasDocument} class="content_docs_container">
+            <div style="display: inline-flex;">
+                <svg width="12" height="23" viewBox="0 0 12 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 5.75015V16.3301C10 18.4201 8.47 20.2801 6.39 20.4801C4 20.7101 2 18.8401 2 16.5001V4.14015C2 2.83015 2.94 1.64015 4.24 1.51015C5.74 1.36015 7 2.53015 7 4.00015V14.5001C7 15.0501 6.55 15.5001 6 15.5001C5.45 15.5001 5 15.0501 5 14.5001V5.75015C5 5.34015 4.66 5.00015 4.25 5.00015C3.84 5.00015 3.5 5.34015 3.5 5.75015V14.3601C3.5 15.6701 4.44 16.8601 5.74 16.9901C7.24 17.1401 8.5 15.9701 8.5 14.5001V4.17015C8.5 2.08015 6.97 0.220146 4.89 0.020146C2.51 -0.209854 0.5 1.66015 0.5 4.00015V16.2701C0.5 19.1401 2.6 21.7101 5.46 21.9801C8.75 22.2801 11.5 19.7201 11.5 16.5001V5.75015C11.5 5.34015 11.16 5.00015 10.75 5.00015C10.34 5.00015 10 5.34015 10 5.75015Z" fill="#080809"/>
+                </svg>
+                <span class="task_docs_txt">Documento.pdf</span>
+            </div>
+
+            <!-- sldsValidatorIgnoreNextLine -->
+            <button class="btn_doc_look">
+                <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.5 0C6.5 0 2.23 3.11 0.5 7.5C2.23 11.89 6.5 15 11.5 15C16.5 15 20.77 11.89 22.5 7.5C20.77 3.11 16.5 0 11.5 0ZM11.5 12.5C8.74 12.5 6.5 10.26 6.5 7.5C6.5 4.74 8.74 2.5 11.5 2.5C14.26 2.5 16.5 4.74 16.5 7.5C16.5 10.26 14.26 12.5 11.5 12.5ZM11.5 4.5C9.84 4.5 8.5 5.84 8.5 7.5C8.5 9.16 9.84 10.5 11.5 10.5C13.16 10.5 14.5 9.16 14.5 7.5C14.5 5.84 13.16 4.5 11.5 4.5Z" fill="#BF5600"/>
+                </svg>
+
+               <span class="btn_txt">Ver</span>
+            </button>
+        </div>
+
+    </div>
+</template>

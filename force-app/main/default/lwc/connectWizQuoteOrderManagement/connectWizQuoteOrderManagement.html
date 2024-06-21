@@ -1,0 +1,112 @@
+<!--
+  @description       : 
+  @author            : samuelsirkis@wiz.co
+  @group             : 
+  @last modified on  : 10-26-2023
+  @last modified by  : samuelsirkis@wiz.co
+-->
+<template>
+    <div class="slds-grid slds-wrap none-margin">
+        <!-- sldsValidatorIgnoreNextLine -->
+        <button class="container-sections-management-quote button-quote-management-001 slds-col slds-size_4-of-12"
+            onclick={handleSelectNewCases}>
+            <div class="slds-grid slds-size_12-of-12 spacing-top">
+                <div>
+                    <h3>
+                        <span>
+                            Pedidos de cotação
+                        </span>
+                    </h3>
+                </div>
+                <div class="card-new-case slds-col_bump-left" if:true={hasNewCase}>
+                    <div class="slds-truncate card-new-case-padding">
+                        {sizeNewCasesList} novos
+                    </div>
+                </div>
+            </div>
+            <div class="spacing-bottom">
+                <p>
+                    <span>
+                        Demandas que ainda não foram atribuídas
+                    </span>
+                </p>
+            </div>
+        </button>
+        <!-- sldsValidatorIgnoreNextLine -->
+        <button class="container-sections-management-quote button-quote-management-002 slds-col slds-size_4-of-12"
+            onclick={handleSelectMyCases}>
+            <div class="spacing-top">
+                <h3>
+                    <span>
+                        Minhas cotações
+                    </span>
+                </h3>
+            </div>
+            <div class="spacing-bottom">
+                <p>
+                    <span>
+                        Demandas atribuídas ao analista
+                    </span>
+                </p>
+            </div>
+        </button>
+        <!-- sldsValidatorIgnoreNextLine -->
+        <button class="container-sections-management-quote button-quote-management-003 slds-col slds-size_4-of-12"
+            onclick={handleSelectAllCases}>
+            <div class="spacing-top">
+                <h3>
+                    <span>
+                        Todas as cotações
+                    </span>
+                </h3>
+            </div>
+            <div class="spacing-bottom">
+                <p>
+                    <span>
+                        Todas as demandas em tratamento pelo time
+                    </span>
+                </p>
+            </div>
+        </button>
+    </div>
+    <div if:false={isScreenQuoteRequest}>
+        <div>
+            <c-connect-wiz-container-dashboard-placement onfilterstatuscases={filterStatusCases}
+                onfiltercasesbydate={filterCasesByDate}>
+            </c-connect-wiz-container-dashboard-placement>
+        </div>
+        <div>
+            <div>
+                <h2>
+                    <span>
+                        Tabela de Oportunidades
+                    </span>
+                </h2>
+            </div>
+            <div>
+                <c-connect-wiz-cards-filters-placement
+                    onfiltercasesbysla={filterCasesBySla}></c-connect-wiz-cards-filters-placement>
+            </div>
+        </div>
+        <div>
+            <c-connect-wiz-search-placement onfiltercasesbyparams={filterCasesByParams} onclearfilters={clearFilters}
+                quotes-to-export={lQuotesRequest}></c-connect-wiz-search-placement>
+        </div>
+    </div>
+    <div style="background-color: white;">
+        <div if:true={isScreenQuoteRequest} class="slds-var-p-vertical_medium">
+            <c-connect-wiz-search-placement onfiltercasesbyparams={filterCasesByParams} onclearfilters={clearFilters}
+                quotes-to-export={lQuotesRequest}></c-connect-wiz-search-placement>
+        </div>
+        <c-connect-wiz-data-table-placement ongetcasesfromchilddatatable={getCasesFromChildDataTable}
+            onsendcaseidtoassign={getCasesIdToAssignFromChildDataTable}></c-connect-wiz-data-table-placement>
+    </div>
+    <div if:true={showModalToAssignCase}>
+        <c-connect-wiz-assignment-owner
+            onsendclosemodaltoparent={closeModalToAssignCase}></c-connect-wiz-assignment-owner>
+    </div>
+    <div if:true={showModalToAutoAssignCase}>
+        <c-connect-wiz-auto-assingment-owner
+            onsendclosemodalautotoparent={closeModalAutoToAssignCase}></c-connect-wiz-auto-assingment-owner>
+    </div>
+</template>

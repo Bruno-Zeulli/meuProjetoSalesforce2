@@ -1,0 +1,113 @@
+.cotacao-icon {
+    --sds-c-icon-color-foreground-default: orange;
+}
+
+.accordion-item-title {
+    color : #8F4100;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.button-header {
+    --sds-c-button-brand-color-background:  #F9F7F7;
+    --sds-c-button-brand-text-color: black;
+}
+
+/* .active {
+    border-bottom: groove #004E87;
+    color : #004E87;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+} */
+
+hr {
+    height: 0px;
+    border: none;
+    border-top: 3px solid rgba(134, 130, 130, 0.158);
+}
+
+/* .deactive {
+    border-bottom: groove #bdbfc2;
+    color : rgb(225, 225, 233);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+} */
+
+.div-container {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 24px 0px 0px;
+    gap: 8px;
+}
+
+.button-assignment{
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 0px 0px;
+  gap: 12px;
+
+}
+
+.button-assignment button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 8px;
+
+  width: 122px;
+  height: 48px;
+
+  background: var(--color-background-customer, #BF5600);
+  border-radius: 4px;
+  border: none;
+}
+
+.button-assignment button:hover{
+  background: var(--color-background-customer, #8F4100);
+}
+
+.button-assignment button:focus{
+  background: var(--color-background-customer, #602B00);
+}
+
+.button-assignment span{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: var(--color-text-customer,#FCFCFC);
+
+  flex: none;
+  flex-grow: 0;
+}
+
+
+.button-assignment svg{
+  height: 12.58px;
+  width: 16.76px;
+}

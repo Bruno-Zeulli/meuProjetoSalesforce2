@@ -1,0 +1,93 @@
+<template>
+    <div class="header-bar">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse">
+                    <ul class="slds-global-actions navbar-nav ms-auto mt-2 mt-lg-0">
+                        <li class="slds-global-actions__item nav-item active nav-notifications">
+                            <div if:true={containsNotification} class="slds-dropdown-trigger slds-dropdown-trigger_click">
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <button class="btn-notification"
+                                        title="New Notification(s)" aria-live="assertive"
+                                        aria-atomic="true"
+                                        onclick={showNotifications}
+                                    >
+                                <a class="nav-link" href="#!">
+                                    <svg width="16" height="20" viewBox="0 0 16 20" fill="#C45600" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.00054 20C9.10054 20 10.0005 19.1 10.0005 18H6.00054C6.00054 19.1 6.89054 20 8.00054 20ZM14.0005 14V9C14.0005 5.93 12.3605 3.36 9.50054 2.68V2C9.50054 1.17 8.83054 0.5 8.00054 0.5C7.17054 0.5 6.50054 1.17 6.50054 2V2.68C3.63054 3.36 2.00054 5.92 2.00054 9V14L0.71054 15.29C0.0805397 15.92 0.52054 17 1.41054 17H14.5805C15.4705 17 15.9205 15.92 15.2905 15.29L14.0005 14Z"/>
+                                    </svg>
+                                </a>
+                                <span class="slds-assistive-text">new notifications</span>
+                            </button>
+                                <span aria-hidden="true" class="slds-notification-badge slds-incoming-notification slds-show-notification">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#A05EB5" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="16" height="16" rx="8"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div if:false={containsNotification} class="slds-dropdown-trigger slds-dropdown-trigger_click">
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <button class="btn-notification"
+                                        title="New Notification(s)" aria-live="assertive"
+                                        aria-atomic="true"
+                                        onclick={showNotifications}
+                                    >
+                                <a class="nav-link" href="#!">
+                                    <svg width="16" height="20" viewBox="0 0 16 20" fill="#C45600" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.00054 20C9.10054 20 10.0005 19.1 10.0005 18H6.00054C6.00054 19.1 6.89054 20 8.00054 20ZM14.0005 14V9C14.0005 5.93 12.3605 3.36 9.50054 2.68V2C9.50054 1.17 8.83054 0.5 8.00054 0.5C7.17054 0.5 6.50054 1.17 6.50054 2V2.68C3.63054 3.36 2.00054 5.92 2.00054 9V14L0.71054 15.29C0.0805397 15.92 0.52054 17 1.41054 17H14.5805C15.4705 17 15.9205 15.92 15.2905 15.29L14.0005 14Z"/>
+                                    </svg>
+                                </a>
+                                <span class="slds-assistive-text">new notifications</span>
+                            </button>
+                                <span aria-hidden="true" class="slds-notification-badge">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#A05EB5" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="16" height="16" rx="8"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <template class="slds-popover" if:true={showNotificationsPopover}>
+                                <c-connect-wiz-nav-bar-notifications-popover onremovetask={removeTaskHandler} contains-notification={containsNotification} lst-notification={lstNotification}></c-connect-wiz-nav-bar-notifications-popover>
+                            </template>
+                        </li>
+                        <li class="slds-global-actions__item nav-item employee">
+                            <div class="employee-name">
+                                <span class="employee-name">{userName}</span>
+                            </div>
+                            <div class="employee-role">
+                                <span class="employee-role">{userProfileName}</span>
+                            </div>
+                        </li>
+                        <li class="slds-global-actions__item nav-item">
+                            <div class="slds-dropdown-trigger slds-dropdown-trigger_click btn-avatar">
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <button class="slds-global-actions__avatar slds-global-actions__item-action avatar dropbtn" aria-haspopup="true">
+                                    <span class="slds-avatar slds-avatar_circle slds-avatar_large">
+                                        <a class="avatar_a" href="#">
+                                            <lightning-avatar size="large" variant="circle" src="" initials={initials} fallback-icon-name="" alternative-text={userName} class="slds-var-m-right_small"></lightning-avatar>
+                                        </a>
+                                    </span>
+                                </button>
+                            </div>
+                        </li>
+
+                        <li class="slds-global-actions__item nav-item">
+                            <div class="slds-dropdown-trigger slds-dropdown-trigger_click dropdown">
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <button class="slds-global-actions__item-action btn-dropdown" onclick={showLogoutMenu} aria-haspopup="true">
+                                    <span>
+                                        <svg width="12" height="8" viewBox="0 0 12 8" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.88047 1.29006L6.00047 5.17006L2.12047 1.29006C1.73047 0.900059 1.10047 0.900059 0.710469 1.29006C0.320469 1.68006 0.320469 2.31006 0.710469 2.70006L5.30047 7.29006C5.69047 7.68006 6.32047 7.68006 6.71047 7.29006L11.3005 2.70006C11.6905 2.31006 11.6905 1.68006 11.3005 1.29006C10.9105 0.910059 10.2705 0.900059 9.88047 1.29006Z"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </li>
+                        <template class="slds-popover" if:true={showLogoutPopover}>
+                            <c-connect-wiz-nav-bar-logout-popover></c-connect-wiz-nav-bar-logout-popover>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</template>

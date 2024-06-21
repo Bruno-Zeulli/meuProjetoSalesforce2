@@ -1,0 +1,9 @@
+<template>
+    <div class="checkbox-group">
+        <template for:each={options} for:item="option" for:index="index">
+            <div key={option.value} class="checkbox-wrapper">
+                <lightning-input type="checkbox" name={option.value} label={option.label} onchange={handleCheckboxChange} checked={option.checked}></lightning-input>
+            </div>
+        </template>
+    </div>
+</template>

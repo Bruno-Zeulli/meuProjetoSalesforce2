@@ -1,0 +1,155 @@
+.header-bar{
+    background: transparent;
+    /* background-color: rgb(234, 235, 235); */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-top: 1.5rem;
+
+}
+
+.nav-notifications{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0px;
+    justify-content: flex-end;
+
+    width: 3rem;
+    height: 3rem;
+}
+
+.employee{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 5px;
+    justify-content: flex-end;
+
+    padding-left: 2rem;
+    padding-right: 0.9rem;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.employee-name{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+    color: #212223;
+}
+
+.employee-role{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #212223;
+}
+
+/*  */
+
+.avatar a {
+    width: 25px;
+    height: 24px;
+    align-content: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.06em;
+        cursor: default;
+    text-decoration: none;
+    color: #633471;
+    border-color: #633471;
+}
+
+.slds-avatar{
+    cursor: default;
+    text-decoration: none;
+    border-color: #633471;
+    color: #633471 ;
+}
+
+.dropdown{
+}
+
+.btn-notification {
+    border-radius: 4px;
+    background-color: transparent;
+    border: 2px solid var(--color-border-customer, #F56C00);
+
+}
+
+.btn-avatar .dropdown{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    background-color: transparent;
+    border-radius: 34px;
+}
+
+.btn-dropdown{
+    background-color: transparent;
+    display: flex;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+}
+
+.avatar{
+    align-items: center;
+    background-color: #FFF0E4;
+    border-color: #633471;
+    border: 1px solid #633471;
+
+
+}
+
+.btn-avatar .dropdown {
+    border-style: none;
+    flex-direction: column;
+}
+
+.dropbtn {
+    padding: 3px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    margin: 120px 0 0 -40px;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    /* background-color: #f1f1f1 */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.slds-notification-badge{
+    background-color: transparent;
+    top: -0.30rem;
+    right: -0.438rem;
+}
+
+.slds-popover {
+    top: calc(100% + 1px) !important;
+    /* right: 262px !important; */
+}

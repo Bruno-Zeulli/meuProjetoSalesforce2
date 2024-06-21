@@ -1,0 +1,83 @@
+<template>
+    <div class="slds-grid slds-wrap none-margin">
+        <div class="form-container col slds-size_12-of-12">
+            <div class="form-header-container col slds-size_12-of-12">
+                <div class="form-header">
+                    <h3>
+                        <span>
+                            {quotationForm.type}
+                        </span>
+                    </h3>
+                </div>
+                <div class="btn-form-container">
+                    <div>
+                        <!-- sldsValidatorIgnoreNextLine -->
+                        <button class="btn-actions">
+                            <div>
+                                <span>
+                                    Ações
+                                </span>
+                            </div>
+                            <div class="btn-action_icon">
+                                <svg width="4" height="16" viewBox="0 0 4 16" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4C3.1 4 4 3.1 4 2C4 0.9 3.1 0 2 0C0.9 0 0 0.9 0 2C0 3.1 0.9 4 2 4ZM2 6C0.9 6 0 6.9 0 8C0 9.1 0.9 10 2 10C3.1 10 4 9.1 4 8C4 6.9 3.1 6 2 6ZM2 12C0.9 12 0 12.9 0 14C0 15.1 0.9 16 2 16C3.1 16 4 15.1 4 14C4 12.9 3.1 12 2 12Z"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div if:true={isBenefits}>
+                 <!-- Seção de dados da Operadora atual usada em benefícios -->
+                <div class="col slds-size_12-of-12">
+                    <div class="form-section-container">
+                        <div class="form-section-header">
+                            <h4>
+                                <span>
+                                    Operadora Atual
+                                </span>
+                            </h4>
+                        </div>
+                        <div class=" edit-form-container" >
+                            <div class="slds-grid slds-gutters col slds-size_12-of-12 test" >
+                                <div class="col ">
+                                    <lightning-combobox name="Operadora"
+                                                        value={selectedOperatorValue}
+                                                        placeholder="Operadora*"
+                                                        options={ownerOptions}
+                                                        onchange={handleChangeOperator}
+                                    ></lightning-combobox>
+                                </div>
+                                <div class="col">
+                                    <lightning-input    type="number"
+                                                        name="Número total de vidas"
+                                                        placeholder="Número total de vidas*"
+                                                        value={selectedCreatedDateInitialValue}
+                                                        onchange={handletermOfContract}
+                                    ></lightning-input>
+                                </div>
+                            </div>
+
+                            <div class="col slds-size_6-of-12">
+                                <lightning-input    type="date"
+                                                    name="Vigência contratual"
+                                                    placeholder="Vigência contratual*"
+                                                    value={selectedCreatedDateInitialValue}
+                                                    onchange={handletermOfContract}
+                                ></lightning-input>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <lightning-combobox name="Modelo de contratação"
+                                                    value={selectedOperatorValue}
+                                                    placeholder="Modelo de contratação*"
+                                                    options={ownerOptions}
+                                                    onchange={handleChangeOperator}
+                                ></lightning-combobox>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,21 @@
+.modal-title{
+    color : black;
+}
+
+.title-modal{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: 0.01em;
+    color: #000000;
+}
+
+.close-modal{
+    --slds-c-icon-color-foreground-default: black;
+    --slds-c-icon-color-foreground: black;
+}
+.icon-close {
+    color : black;
+}

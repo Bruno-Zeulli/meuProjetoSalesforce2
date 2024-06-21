@@ -1,0 +1,25 @@
+@font-face {
+   font-family: "myFontInter";
+   src: url('/resource/InterRobotoFamily/static/Inter-Regular.ttf') format('TrueType');
+}
+
+* {
+    font-family: var(--font-family, "myFontInter") !important;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: var(--font-family, "myFontInter") !important;
+}
+
+.container-fluid{
+    --bs-gutter-x: 0rem;
+}
+
+.navbar>.container-fluid {
+    margin-left: 0.765rem;
+}
+
+.header-container {
+    margin: 1% 0;
+}

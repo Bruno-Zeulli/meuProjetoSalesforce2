@@ -1,0 +1,45 @@
+<template>
+    <section aria-describedby="dialog-body-id-8" aria-labelledby="dialog-heading-id-8" class="slds-popover slds-popover_large" role="dialog">
+        <!-- sldsValidatorIgnoreNextLine -->
+        <div class="flex-container">
+            <div>
+                <header class="slds-popover__header">
+                    <h2 class="slds-text-heading_large" id="dialog-heading-id-8">Notificações</h2>
+                </header>
+            </div>
+            <div>
+                <button class="slds-button slds-button_outline-brand" onclick={completeAllTasks}>Limpar todas</button>
+            </div>
+        </div>
+        <div class="slds-popover__body slds-p-around_none" id="dialog-body-id-8">
+            <div class="slds-media">
+                <div if:true={containsNotification} class="slds-media__body slds-scrollable_y " style="height:18rem">
+                    <template for:each={lstNotification} for:item="notification" for:index="index">
+                        <div key={notification.taskId} data-id={notification.taskId} onclick={handleNotification} class="slds-p-around_small notification-div" >
+                            <div class="slds-grid slds-gutters">
+                            <div class="slds-col slds-size_1-of-12">
+                                <lightning-icon icon-name="utility:record" size="small" class="dot-icon"></lightning-icon>
+                                </div>
+                                <div class="slds-col slds-size_11-of-12">
+                                    <ul>
+                                        <a>
+                                             <li class="subject">
+                                                <b>{notification.subject}</b>
+                                            </li>
+                                            <li class="additional-info slds-p-vertical_x-small">
+                                                {notification.additionalInformation}
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div if:false={containsNotification} class="slds-media__body">
+                    <span class="slds-p-around_small">Não há novas notificações.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>

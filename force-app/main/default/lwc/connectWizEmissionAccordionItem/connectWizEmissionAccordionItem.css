@@ -1,0 +1,113 @@
+.accordion-item-title {
+    color : #8F4100;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+
+hr {
+    height: 0px;
+    border: none;
+    border-top: 4px solid rgba(134, 130, 130, 0.158);
+}
+
+.emissao-titulo {
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 180%;
+    color: #5C5E61;
+}
+
+.emissao-container {
+    border: rgb(19, 82, 19) 2px solid;
+    border-radius: 10px;
+}
+
+.emissao-item {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #6F7276;
+}
+
+.emissao-subitem {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 180%;
+    display: flex;
+    align-items: center;
+    color: #212223;
+}
+
+.file-title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 180%;
+    color: #5C5E61;
+}
+
+.file-subtitle {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 180%;
+    color: #5C5E61;
+}
+
+.button-enviar {
+    background: #BF5600;
+    border-radius: 4px;
+    border : 1px solid #BF5600;
+    color: #FCFCFC;
+    fill: #F9F7F7;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 8px;
+    width: 132px;
+    height: 46px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    --sds-c-icon-color-foreground: #FCFCFC;
+    --slds-c-icon-color-background: #BF5600;
+}
+
+.button-enviar-disabled {
+    background: #DBDDDF;
+    border-radius: 4px;
+    border : 1px solid #DBDDDF;
+    color: #50555A;
+    fill: #212223;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 8px;
+    width: 132px;
+    height: 46px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    --sds-c-icon-color-foreground: #50555A;
+    --slds-c-icon-color-background: #DBDDDF;
+}

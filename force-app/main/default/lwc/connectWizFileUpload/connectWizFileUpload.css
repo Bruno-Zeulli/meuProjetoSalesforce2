@@ -1,0 +1,246 @@
+.dragbox{   
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+}
+
+.txt_proposal{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+
+    display: flex;
+    align-items: center;
+
+    color: #212223;
+}
+
+
+.active{
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+
+  border: 3px solid #BF5600;
+  border-radius: 8px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.inactive{
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+  
+  border: 2px dashed #B7BBBF;
+  border-radius: 8px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.btn-chosee_file{
+
+  box-sizing: border-box;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+  margin-left: 6px;
+  padding: 12px 0px;
+  gap: 8px;
+
+
+  border: none;
+  border-bottom: 2px solid #EF6C00;
+  color: #8F4100;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.chosee-file-exeptions{
+  padding-top: 1px;
+  width: 455px;
+  height: 24px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+  display: flex;
+  align-items: center;
+
+  color: #080809;
+}
+
+.txt_drag-here{
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  justify-content: center;
+
+  display: flex;
+  align-items: center;
+
+  color: #080809;
+
+}
+
+.btn-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 0px 0px;
+  gap: 12px;
+}
+
+.btn-cancel{
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 8px;
+
+  height: 48px;
+  background: var(--color-background-customer, #FCFCFC);
+  border: 2px solid var(--color-border-customer, #E00707);
+  border-radius: 4px;
+}
+
+.btn-cancel:hover{
+  border: 2px solid var(--color-border-customer ,#990000);
+  background-color: var(--color-background-customer, #FCFCFC);
+}
+
+.btn-cancel:focus {
+  border: 2px solid var(--color-border-customer ,#660000);
+  background-color: var(--color-background-customer, #fcf2f2);
+}
+
+.btn-cancel span{
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  height: 24px;
+
+  color: var(--color-text-customer, #E00707);
+}
+
+.btn-cancel:hover span{
+  color: var(--color-text-customer, #990000); 
+}
+
+.btn-cancel:focus span{
+  color: var(--color-text-customer,#660000);
+}
+
+.btn-save{
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 8px;
+
+  height: 48px;
+
+  background: var(--color-background-customer, #BF5600);
+  border: none;
+  border-radius: 4px;  
+}
+
+.btn-save:hover{
+  background: var(--color-background-customer, #8F4100);
+}
+
+.btn-save:focus{
+  background: var(--color-background-customer, #602B00);
+}
+
+.btn-save span{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: var(--color-text-customer, #FFFFFF);
+}
+
+
+/* TODO CSS importado no theme > edit CSS Community*/
+/* .fileClass{
+  width:100% !important;
+}
+
+
+.fileClass .slds-file-selector{
+  width:100% !important;
+}
+
+.fileClass .slds-file-selector__dropzone{
+  width:100% !important;
+  border: 2px dashed #B7BBBF;
+  border-radius: 8px;
+}
+
+.fileClass .slds-file-selector__dropzone slot{
+  display: inline-block;
+  width:100% !important;
+  padding-top:2%;
+  padding-bottom:2%
+}
+
+.fileClass .slds-file-selector__dropzone slot .slds-file-selector__button {
+  color: var(--color-text-customer, #8F4100) !important;
+}
+
+.fileClass .slds-file-selector__dropzone slot .slds-button__icon {
+  fill: var(--color-text-customer, #8F4100) !important;
+}
+
+.fileClass .slds-file-selector__body{
+     display: grid;
+    justify-content: center;
+}
+
+.fileClass .slds-medium-show {
+    display: flex !important;
+    justify-content: center !important;
+} */

@@ -1,0 +1,15 @@
+.container-filters-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  
+  height: 56px;
+}
+
+.spacing-right{
+  padding-right: 16px;
+  width: 225px;
+}

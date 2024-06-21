@@ -1,0 +1,191 @@
+<template>
+    <div onclick={handleAccordionClick}>
+        <lightning-layout>
+            <lightning-layout-item alignment-bump="right">
+                <span class="proposal-icon slds-var-m-horizontal_small" title="Propostas">
+                    <svg width="21" height="20" viewBox="0 0 21 20" fill="#F56C00" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6 16C4.9 16 4.01 16.9 4.01 18C4.01 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16ZM0 1C0 1.55 0.45 2 1 2H2L5.6 9.59L4.25 12.03C3.52 13.37 4.48 15 6 15H17C17.55 15 18 14.55 18 14C18 13.45 17.55 13 17 13H6L7.1 11H14.55C15.3 11 15.96 10.59 16.3 9.97L19.88 3.48C20.25 2.82 19.77 2 19.01 2H4.21L3.54 0.57C3.38 0.22 3.02 0 2.64 0H1C0.45 0 0 0.45 0 1ZM16 16C14.9 16 14.01 16.9 14.01 18C14.01 19.1 14.9 20 16 20C17.1 20 18 19.1 18 18C18 16.9 17.1 16 16 16Z" />
+                    </svg>
+                </span>
+                <span class="accordion-item-title slds-var-m-horizontal_small">
+                    Propostas
+                </span>
+            </lightning-layout-item>
+            <lightning-layout-item size="1">
+                <span lwc:if={isOpen} class="slds-var-p-left_medium">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M2.11875 6.70998L5.99875 2.82998L9.87875 6.70998C10.2688 7.09998 10.8988 7.09998 11.2888 6.70998C11.6788 6.31998 11.6788 5.68998 11.2888 5.29998L6.69875 0.70998C6.30875 0.31998 5.67875 0.31998 5.28875 0.70998L0.69875 5.29998C0.30875 5.68998 0.30875 6.31998 0.69875 6.70998C1.08875 7.08998 1.72875 7.09998 2.11875 6.70998Z" />
+                    </svg>
+                </span>
+                <span lwc:else class="slds-var-p-left_medium">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M2.11875 1.29006L5.99875 5.17006L9.87875 1.29006C10.2688 0.900059 10.8988 0.900059 11.2888 1.29006C11.6788 1.68006 11.6788 2.31006 11.2888 2.70006L6.69875 7.29006C6.30875 7.68006 5.67875 7.68006 5.28875 7.29006L0.69875 2.70006C0.30875 2.31006 0.30875 1.68006 0.69875 1.29006C1.08875 0.910059 1.72875 0.900059 2.11875 1.29006Z" />
+                    </svg>
+                </span>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+    <div if:true={isOpen}>
+        <hr class="slds-var-m-top_medium">
+    </div>
+    <div if:true={isOpen} class="slds-is-relative" role="list">
+        <template lwc:if={isLoading}>
+            <div class="slds-text-align_center slds-text-color_weak">
+                <lightning-spinner class="spins" variant="brand" size="large"
+                    alternative-text="Buscando informações"></lightning-spinner>
+            </div>
+        </template>
+        <div class="slds-col slds-size_4-of-4 slds-var-p-around_x-small">
+            <template for:each={proposalList} for:item="proposal">
+                <div data-id={proposal.id}
+                    class="proposal-accordion form-container slds-var-m-around_x-small slds-var-p-around_medium"
+                    key={proposal.id}>
+                    <div onclick={handleOpenCloseProposal} data-id={proposal.id} class="proposal-accordion-container">
+                        <lightning-layout>
+                            <lightning-layout-item padding="horizontal-small" alignment-bump="right">
+                                <template lwc:if={proposal.insuranceCompanies}>
+                                    {proposal.insuranceCompanies}
+                                </template>
+                                <template lwc:else>
+                                    Adicionar nova proposta
+                                </template>
+                            </lightning-layout-item>
+                            <lightning-layout-item padding="horizontal-small">
+                                <lightning-button-icon lwc:if={proposal.showDetails} variant="bare" size="medium"
+                                    icon-name="utility:chevronup" value={proposal} class="slds-p-horizontal_medium"
+                                    title="Fechar detalhes da proposta" onclick={handleOpenCloseProposal}>
+                                </lightning-button-icon>
+                                <lightning-button-icon lwc:else variant="bare" size="medium"
+                                    icon-name="utility:chevrondown" value={proposal} class="slds-p-horizontal_medium"
+                                    title="Vizualizar detalhes da proposta" onclick={handleOpenCloseProposal}>
+                                </lightning-button-icon>
+
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </div>
+                    <template if:true={proposal.showDetails}>
+                        <div class="slds-col_bump-left slds-size_12-of-12">
+                            <hr>
+                        </div>
+                        <lightning-layout multiple-rows data-id={proposal.id}>
+                            <lightning-layout-item size="12" class="slds-p-horizontal_medium slds-p-bottom_medium">
+                                Cotação da seguradora líder
+                                <c-extended-data-table
+                                    key-field="id"
+                                    data={proposal.availablePartialQuotes}
+                                    columns={quoteTableColumns}
+                                    max-row-selection="1"
+                                    selected-rows={proposal.selectedLead}
+                                    onrowselection={handleLeadQuoteSelection}
+                                ></c-extended-data-table>
+                            </lightning-layout-item>
+
+                            <lightning-layout-item size="12" padding="around-medium">
+                                Cotações das seguradores coparticipantes
+                                <c-extended-data-table
+                                    key-field="id"
+                                    data={proposal.availableCoinsureQuotes}
+                                    columns={quoteTableColumns}
+                                    selected-rows={proposal.selectedCoinsurance}
+                                    onrowselection={handleCoinsureQuoteSelection}
+                                ></c-extended-data-table>
+                            </lightning-layout-item>
+
+                            <lightning-layout-item size="12" padding="around-medium">
+                                Composição da proposta
+                                <c-extended-data-table
+                                    key-field="id"
+                                    data={proposal.compositionQuotes}
+                                    draft-values={proposal.compositionQuotesDraft}
+                                    columns={compositionTableColumns}
+                                    hide-checkbox-column
+                                    oncellchange={handleCellChange}
+                                    onsave={handleCompositionTableSave}
+                                    oncancel={resetTable}
+                                ></c-extended-data-table>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        
+                        <div lwc:if={proposal.errors} class="slds-text-color_destructive">{proposal.errors}</div>
+                        <lightning-layout>
+                            <lightning-layout-item size="3" padding="around-small">
+                                <lightning-button variant="neutral" label="Excluir" title="Excluir"
+                                    onclick={openDeleteModal} class="slds-m-left_x-small cancel-button" stretch="true"
+                                    data-id={proposal.id}></lightning-button>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="3" padding="around-small">
+                                <lightning-button variant="brand" label="Salvar" title="Salvar" onclick={handleSave}
+                                    class="slds-m-left_x-small submit-button" stretch="true"
+                                    data-id={proposal.id} disabled={proposal.disableSaveButton}></lightning-button>
+                            </lightning-layout-item>
+                        </lightning-layout>
+
+                        <div lwc:if={proposal.filesAvailable} class="slds-size_12-of-12 slds-var-p-around_xx-small file-container slds-is-relative">
+                            <template if:false={proposal.fileLoaded}>
+                                <div class="slds-text-align_center slds-text-color_weak">
+                                    <lightning-spinner class="spins" variant="brand" size="small"
+                                        alternative-text="Buscando documentos"></lightning-spinner>
+                                </div>
+                            </template>
+
+                            <template lwc:if={proposal.showViewFile}>
+                                <c-connect-wiz-file-view
+                                    record-id={proposal.id}
+                                    document-type-name={documentTypeName}
+                                    show-button-view-file={showButtonViewFile}
+                                    show-button-delete-file={showButtonDeleteFile}
+                                    show-simple-view={showSimpleView}
+                                    onfinish={handleControlShowViewFile}
+                                    onrefresh={onRefresh}
+                                ></c-connect-wiz-file-view>
+                            </template>
+                            <template lwc:if={proposal.showUploadFile}>
+                                <c-connect-wiz-file-upload
+                                    record-id={proposal.id}
+                                    tipo-documento={documentTypeName}
+                                    onfinish={handleControlShowViewFile}
+                                    onrefresh={onRefresh}
+                                ></c-connect-wiz-file-upload>
+                            </template>
+                            
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <lightning-button variant="base" label="+ Adicionar nova Proposta" title="Adicionar nova Proposta"
+                onclick={addNewProposal} class="slds-m-left_x-small add-button"></lightning-button>
+        </div>
+    </div>
+
+    <template if:true={deleteModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close"
+                    onclick={closeDeleteModal}>
+                    <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                        size="small"></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-2">
+                    <p class="modal-title"><b>Tem certeza que deseja deletar a proposta?
+                        </b></p>
+                    <p class="modal-subtitle slds-var-p-around_small">Essa ação não pode ser desfeita.</p>
+                    <div class="slds-grid slds-grid_vertical-align-center slds-var-p-horizontal_medium slds-var-p-top_x-large slds-grid_align-center">
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <lightning-button variant="neutral" label="Cancelar" title="Cancelar" onclick={closeDeleteModal}
+                                class="slds-m-left_x-small cancel-button" stretch="true"></lightning-button>
+                        </div>
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <lightning-button variant="brand" label="Deletar cotação" title="Deletar cotação" onclick={handleDelete}
+                                class="slds-m-left_x-small submit-button" stretch="true"></lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

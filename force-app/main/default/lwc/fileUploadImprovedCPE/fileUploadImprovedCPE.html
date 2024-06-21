@@ -1,0 +1,71 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 11-23-2022
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <c-flow-banner banner-color="#4C6E96" banner-label="Set Basic Configuration" banner-info={basicConfiguration}>
+    </c-flow-banner>
+
+    <c-flow-checkbox name="required" label={inputValues.required.label} checked={inputValues.cb_required.value}
+        oncheckboxchanged={handleCheckboxChange}></c-flow-checkbox>
+
+    <template if:true={isRequired}>
+        <c-flow-combobox name="requiredMessage" value={inputValues.requiredMessage.value}
+            builder-context-filter-type="String" label={inputValues.requiredMessage.label}
+            onvaluechanged={handleFlowComboboxValueChange} automatic-output-variable={automaticOutputVariables}></c-flow-combobox>
+    </template>
+
+    <c-flow-checkbox name="allowMultiple" label={inputValues.allowMultiple.label}
+        checked={inputValues.cb_allowMultiple.value} oncheckboxchanged={handleCheckboxChange}></c-flow-checkbox>
+
+    <c-flow-combobox name="sessionKey" value={inputValues.sessionKey.value} builder-context-filter-type="String"
+        label={inputValues.sessionKey.label} onvaluechanged={handleFlowComboboxValueChange}></c-flow-combobox>
+
+    <c-flow-combobox name="label" value={inputValues.label.value} label={inputValues.label.label}
+        builder-context-filter-type="String" onvaluechanged={handleFlowComboboxValueChange}></c-flow-combobox>
+
+    <c-flow-combobox name="recordId" value={inputValues.recordId.value} builder-context-filter-type="String"
+        label={inputValues.recordId.label} onvaluechanged={handleFlowComboboxValueChange}></c-flow-combobox>
+
+    <c-flow-combobox name="acceptedFormats" value={inputValues.acceptedFormats.value}
+        builder-context-filter-type="String" label={inputValues.acceptedFormats.label}
+        onvaluechanged={handleFlowComboboxValueChange}></c-flow-combobox>
+
+    <c-flow-combobox name="helpText" value={inputValues.helpText.value} builder-context-filter-type="String"
+        label={inputValues.helpText.label} onvaluechanged={handleFlowComboboxValueChange}></c-flow-combobox>
+        
+    <c-flow-banner banner-color="#4C6E96" banner-label="Advanced Features"
+        banner-info={advancedConfiguration}>
+    </c-flow-banner>
+
+    <c-pick-icon name="icon" mode="combobox" oniconselection={handlePickIcon} icon-name={inputValues.icon.value}>
+    </c-pick-icon>
+
+    <c-flow-combobox name="uploadedlabel" value={inputValues.uploadedlabel.value}
+        label={inputValues.uploadedlabel.label} builder-context-filter-type="String"
+        onvaluechanged={handleFlowComboboxValueChange}></c-flow-combobox>
+
+    <c-flow-combobox name="overriddenFileName" value={inputValues.overriddenFileName.value}
+        label={inputValues.overriddenFileName.label} builder-context-filter-type="String"
+        onvaluechanged={handleFlowComboboxValueChange}></c-flow-combobox>
+
+    <c-flow-checkbox name="renderExistingFiles" label={inputValues.renderExistingFiles.label}
+        checked={inputValues.cb_renderExistingFiles.value} oncheckboxchanged={handleCheckboxChange}>
+    </c-flow-checkbox>
+
+    <c-flow-checkbox name="renderFilesBelow" label={inputValues.renderFilesBelow.label}
+        checked={inputValues.cb_renderFilesBelow.value} oncheckboxchanged={handleCheckboxChange}></c-flow-checkbox>
+
+    <c-flow-checkbox name="visibleToAllUsers" label={inputValues.visibleToAllUsers.label}
+        checked={inputValues.cb_visibleToAllUsers.value} oncheckboxchanged={handleCheckboxChange}></c-flow-checkbox>
+
+    <c-flow-checkbox name="embedExternally" label={inputValues.embedExternally.label}
+        checked={inputValues.cb_embedExternally.value} oncheckboxchanged={handleCheckboxChange} field-level-help={inputValues.embedExternally.helpText}></c-flow-checkbox>
+
+    <c-flow-checkbox name="disableDelete" label={inputValues.disableDelete.label}
+        checked={inputValues.cb_disableDelete.value} oncheckboxchanged={handleCheckboxChange}></c-flow-checkbox>
+
+</template>

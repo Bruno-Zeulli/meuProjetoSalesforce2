@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <description>Picklist Filtered by RecordType</description>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__FlowScreen</target>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="objectName" type="String" label="Object Name" required="true"/>
+            <property name="recordTypeId" type="String" label="RecordTypeId" required="true"/>
+            <property name="fieldName" type="String" label="Picklist field API name, ex: Account Source, Type, Industry..." required="true"/>
+        </targetConfig>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="objectName" type="String" label="Object API name" role="inputOnly" description="Object API rame, ex: Account, Opportunity..."/>
+            <property name="objectLabel" type="String" label="Label Name" role="inputOnly" description="Picklist Label"/>
+            <property name="fieldName" type="String" label="Picklist field API name" role="inputOnly" description="Picklist field API name, ex: Account Source, Type, Industry..."/>
+            <property name="recordTypeId" type="String" label="RecordTypeId" role="inputOnly" description="Id of recordType, ex: Account.RecordTypeId "/>
+            <property name="isRequired" type="Boolean" label="Required input" role="inputOnly" default="false" description="Field is required, ex: {!$GlobalConstant.False} "/>
+            <property name="errorMessage" type="String" label="Error message" role="inputOnly" description="Error message to show" default="Campo obrigatório"/>
+            <property name="fieldValue" type="String" label="Selected value by user" description="Create a variable to store selected value, ex: {!pklTypeSelectedValue}"/>
+            <!-- <property name="outputValue" label="Output Value" type="Boolean" role="outputOnly"/> --></targetConfig>
+    </targetConfigs>
+    <masterLabel>Picklist by RecordType</masterLabel>
+</LightningComponentBundle>

@@ -1,0 +1,22 @@
+<template>
+    <div>
+        <div class="slds-p-around_medium">
+            <span class = 'questionLabel'>{label}</span>
+            <lightning-datatable
+            key-field="id"
+            data={data}
+            show-row-number-column
+            hide-checkbox-column
+            suppress-bottom-bar
+            onrowaction={handleRowAction}
+            oncellchange={handleInLineEdit}
+            columns={columns}>
+            </lightning-datatable>
+            <template lwc:if={allowComment}>
+                <lightning-textarea label="Comentários" value={comment} disabled={readOnly}
+                    onchange={handleCommentChange}></lightning-textarea>
+            </template>
+            <button class="addRow" onclick={addRow}>Adicionar Linha</button>
+        </div>
+    </div>
+</template>

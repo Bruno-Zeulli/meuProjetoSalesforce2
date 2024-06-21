@@ -1,0 +1,122 @@
+.accordion-item-title {
+    color : #8F4100;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.button-header {
+    --sds-c-button-brand-color-background:  #F9F7F7;
+    --sds-c-button-brand-text-color: black;
+}
+
+.active {
+    border-bottom: groove #8F4100;
+    color : #8F4100;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+}
+
+hr {
+    height: 0px;
+    border: none;
+    border-top: 3px solid rgba(134, 130, 130, 0.158);
+}
+.deactive {
+    border-bottom: groove #bdbfc2;
+    color : rgb(225, 225, 233);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+}
+
+.div-container {
+    display: flex;
+    justify-content: center;
+}
+
+.add-proposta {
+    --sds-c-icon-color-foreground-default: #8F4100;
+}
+
+.add-proposta-div {
+    border-bottom: groove #8F4100;
+    color : #8F4100;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.add-proposta-div:hover {
+    background-color: rgb(248, 244, 244);
+}
+
+.content_form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 24px 24px 24px;
+    gap: 16px;
+
+    /* width: 792px;
+    height: 828px; */
+
+    background: #FCFCFC;
+}
+
+.form-element {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 4px;
+/*
+    width: 744px;
+    height: 52px; */
+}
+
+.form-element__label {
+    text-transform: uppercase;
+    /* width: 744px;
+    height: 24px; */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 170%;
+
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+
+    color: #6F7276;
+}
+
+.form-element__control {
+    /* width: 744px;
+    height: 24px; */
+
+    /* body/body 2/semibold (600) */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    /* identical to box height, or 24px */
+
+    display: flex;
+    align-items: center;
+
+    /* ambient/neutral/super-darkest */
+
+    color: #212223;
+}

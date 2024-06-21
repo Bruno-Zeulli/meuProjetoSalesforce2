@@ -1,0 +1,20 @@
+.tabs{
+    display: flex;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+.full-width-button {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+:host {
+  /* Removes SF Card Header padding/margin top/bottom only */
+  --slds-c-card-header-spacing-block-end: 0px;
+  --slds-c-card-header-spacing-block-start: 0px;
+  
+    /* Removes SF Card body padding/margin top/bottom only */
+  --slds-c-card-body-spacing-block-start: 0px;
+}

@@ -1,0 +1,23 @@
+.content {
+    display: contents;
+}
+
+.h3class {
+    color: #50555A;
+    font-weight: 700;
+}
+
+.exportQuestionnaire {
+    --slds-c-icon-color-foreground: #FFFFFF;
+    --slds-c-button-neutral-color-border: #FF8200;
+    --slds-c-button-neutral-color-border-hover: #FF8200;
+    --slds-c-button-neutral-color-border-active: #FF8200;
+    --slds-c-button-text-color: #FFFFFF;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-neutral-color-background:#FF8200;
+    --slds-c-button-neutral-color-background-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background-active: #FF8200;
+
+    width: 25%;
+}

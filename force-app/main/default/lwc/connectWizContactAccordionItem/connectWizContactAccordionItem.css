@@ -1,0 +1,32 @@
+.accordion-item-title {
+    color : #8F4100;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.contato-item {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 170%;
+    color: #8F4100;
+}
+
+.button-accordion {
+    --slds-c-icon-color-foreground: #8F4100;
+}
+
+hr {
+    height: 0px;
+    border: none;
+    border-top: 3px solid rgba(134, 130, 130, 0.158);
+}
+
+.form-container {
+    border: 1px solid #C1C3C5;
+    border-style: solid;
+    border-radius: 10px;
+}

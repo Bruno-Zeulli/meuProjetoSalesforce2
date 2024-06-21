@@ -1,0 +1,85 @@
+<template>
+    
+    <div class="slds-grid">
+        <div onclick={handleAccordionClick} class="slds-col slds-size_11-of-12">
+            <span onclick={handleAccordionClick} class="cotacao-icon slds-var-m-horizontal_small" size="small" alternative-text="Documentação" title="Documentação">
+                <svg width="22" height="18" viewBox="0 0 22 18" fill="#F56C00" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 0H2C0.89 0 0 0.89 0 2V16C0 17.11 0.89 18 2 18H20C21.11 18 22 17.11 22 16V2C22 0.89 21.11 0 20 0ZM19 16.02H3C2.45 16.02 2 15.57 2 15.02V2.98C2 2.43 2.45 1.98 3 1.98H19C19.55 1.98 20 2.43 20 2.98V15.02C20 15.57 19.55 16.02 19 16.02ZM9 9H7L10.65 5.35C10.85 5.15 11.16 5.15 11.36 5.35L15 9H13V13H9V9Z"/>
+                </svg>
+            </span>
+            <span class="accordion-item-title slds-var-m-horizontal_small">
+                Estudo de mercado
+            </span>
+        </div>
+        <div onclick={handleAccordionClick} if:false={isOpen} class="slds-col slds-size_1-of-12 slds-col_bump-left">
+            <span class="slds-var-p-left_medium">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.11875 1.29006L5.99875 5.17006L9.87875 1.29006C10.2688 0.900059 10.8988 0.900059 11.2888 1.29006C11.6788 1.68006 11.6788 2.31006 11.2888 2.70006L6.69875 7.29006C6.30875 7.68006 5.67875 7.68006 5.28875 7.29006L0.69875 2.70006C0.30875 2.31006 0.30875 1.68006 0.69875 1.29006C1.08875 0.910059 1.72875 0.900059 2.11875 1.29006Z"/>
+                </svg>
+            </span>
+        </div>
+        <div if:true={isOpen} onclick={handleAccordionClick} class="slds-col slds-size_1-of-12 slds-col_bump-left">
+            <span class="slds-var-p-left_medium">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.11875 6.70998L5.99875 2.82998L9.87875 6.70998C10.2688 7.09998 10.8988 7.09998 11.2888 6.70998C11.6788 6.31998 11.6788 5.68998 11.2888 5.29998L6.69875 0.70998C6.30875 0.31998 5.67875 0.31998 5.28875 0.70998L0.69875 5.29998C0.30875 5.68998 0.30875 6.31998 0.69875 6.70998C1.08875 7.08998 1.72875 7.09998 2.11875 6.70998Z"/>
+                </svg>
+            </span>
+        </div>
+    </div>
+    <div if:true={isOpen}>
+        <hr class="slds-var-m-top_medium">
+    </div>
+    <div if:true={isOpen} class="slds-grid" role="list">
+        
+        <div class="slds-col slds-size_4-of-4 slds-var-p-around_x-small">
+            <div if:true={showViewFiles}>
+                <div if:false={showComp} class="slds-is-relative" style="position:relative">
+                    <div class="slds-modal__container">
+                        <div  class="modal__spinner-container" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                        <div class="spinner-border" style="width: 2rem; height: 2rem; color: #BF5600;" role="status"></div>
+                            <div style="color: #BF5600;">
+                                <p>
+                                    <span> &nbsp;<b>Carregando...</b></span>
+                                </p>
+                            </div>
+                    </div>
+                </div>
+                </div>
+                <c-connect-wiz-file-view
+                    record-id={recordId}
+                    document-type-name={documentTypeName}
+                    show-button-disapprove-file={showButtonDisapproveFile}
+                    show-button-view-file={showButtonViewFile}
+                    show-button-delete-file={showButtonDeleteFile}
+                    show-simple-view={showSimpleView}
+                    onhandleshowviewfile={handleControlShowViewFile}
+                ></c-connect-wiz-file-view>
+                <div if:true={showButtonSend} class="footer-container">
+                    <div class="button-assignment">
+                        <!-- sldsValidatorIgnoreNextLine -->
+                        <button onclick={handleSelectToSend}>
+                            <div>
+                                <span>
+                                    Enviar
+                                </span>
+                            </div>
+                            <div>
+                                <svg width="18" height="13" viewBox="0 0 18 13" fill="#F9F7F7" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.00063 10.171L2.53063 6.70101C2.14063 6.31101 1.51063 6.31101 1.12062 6.70101C0.730625 7.09101 0.730625 7.72101 1.12062 8.11101L5.30063 12.291C5.69063 12.681 6.32063 12.681 6.71063 12.291L17.2906 1.71101C17.6806 1.32101 17.6806 0.691007 17.2906 0.301007C16.9006 -0.0889932 16.2706 -0.0889932 15.8806 0.301007L6.00063 10.171Z"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div if:true={showUploadFile}>
+                <c-connect-wiz-file-upload
+                    record-id={recordId}
+                    label-name={labelName}
+                    tipo-documento={tipoDocumento}
+                    onhandleshowuploadfile={handleControlShowUploadFile}
+                ></c-connect-wiz-file-upload>
+            </div>
+        </div>
+    </div>
+</template>

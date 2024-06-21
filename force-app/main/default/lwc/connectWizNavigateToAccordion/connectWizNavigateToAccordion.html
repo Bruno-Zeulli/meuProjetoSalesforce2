@@ -1,0 +1,101 @@
+<template>
+    <!-- <button class="spacing-content-td slds-truncate card-product-padding" onclick={fireCustomTypeA}>{caseId}</button> -->
+    <div if:true={isCotacoes} onclick={fireGetCaseId} class="spacing-content-td container-cell">
+        <div if:true={selectedAllSLA} class="card-quotes">
+            <div class="card-product-padding">{solicitadas} Solicitadas </div>
+        </div>
+        <div if:true={selectedInsideSLA} class="card-quotes">
+            <div class="card-product-padding">{requestInsideSLA} Solicitadas </div>
+        </div>
+        <div if:true={selectedOutsideSLA} class="card-quotes">
+            <div class="card-product-padding">{requestOutsideSLA} Solicitadas </div>
+        </div>
+        <div class="card-quotes">
+            <div class="card-product-padding">{recebidas} Recebidas </div>
+        </div>
+    </div>
+    <div if:true={isProduto} onclick={fireGetCaseId} class="slds-grid slds-grid_vertical-align-center spacing-content-td container-cell">
+        <div class="card-product">
+            <div class="slds-truncate card-product-padding">{produto}</div>
+        </div>
+    </div>
+    <div if:true={isToAssign} class="slds-grid slds-grid_vertical-align-center slds-align_absolute-center spacing-content-td">
+        <div class="button-assignment">
+            <!-- sldsValidatorIgnoreNextLine -->
+            <button title="Assignment" onclick={fireToAssignCase}>
+                <span>
+                    Atribuir
+                </span>
+            </button>
+        </div>
+    </div>
+    <div if:true={isSelectableCell} onclick={fireGetCaseId} class= "spacing-content-td container-cell">
+        <div>
+            <span>
+                {name}
+            </span>
+        </div>
+    </div>
+    <div if:true={isSelectableCell} onclick={fireGetCaseId} class= "spacing-content-td container-cell">
+        <div>
+            <span>
+                {status}
+            </span>
+        </div>
+    </div>
+    <div if:true={isSelectableCell} onclick={fireGetCaseId} class= "spacing-content-td container-cell">
+        <div>
+            <span>
+                {createdDate}
+            </span>
+        </div>
+    </div>
+    <div if:true={isSelectableCell} onclick={fireGetCaseId} class= "spacing-content-td container-cell">
+        <div>
+            <span>
+                {modifiedAt}
+            </span>
+        </div>
+    </div>
+    <div if:true={isSelectableCell} onclick={fireGetCaseId} class= "spacing-content-td container-cell">
+        <div>
+            <span>
+                {source}
+            </span>
+        </div>
+    </div>
+    <div if:true={isComercial} onclick={fireGetCaseId} class= "spacing-content-td container-cell">
+        <div>
+            <span>
+                {comercialName} <br> {salesUnit}
+            </span>
+        </div>
+    </div>
+    <div if:true={isLeadSource} onclick={fireGetCaseId} class= "spacing-content-td container-cell">
+        <div>
+            <span>
+                {leadSource}
+            </span>
+        </div>
+    </div>
+    <div if:true={isSelectableCell} onclick={fireGetCaseId} class= "spacing-content-td container-cell">
+        <div>
+            <span>
+                {owner}
+            </span>
+        </div>
+    </div>
+    <div if:true={isOppCell} onclick={fireGetCaseId}>
+        <!-- <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-p-top_xxx-small">
+                {opportunityNumber}
+            </div>
+            <div if:true={containsEnterpriseName} class="slds-col slds-p-bottom_small">
+                <lightning-helptext icon-size="large" class="slds-m-bottom_small" content={enterpriseName}></lightning-helptext>
+            </div>
+        </div> -->
+        <div class="slds-p-top_x-small slds-p-bottom_small">
+            <span class="slds-p-top_x-small slds-m-top_x-small slds-p-right_small"> {opportunityNumber}  <span style="position:relative; top:-3px;"><lightning-helptext if:true={containsEnterpriseName} class="slds-p-bottom_medium slds-m-bottom_small" content={enterpriseName}></lightning-helptext></span></span>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,24 @@
+.content {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+@media(max-width:1536px) {
+    .content {
+        padding-left: 2%;
+        padding-right: 2%;
+        width: 1360px;
+    }
+}
+
+@media(max-width:1286px) {
+    .content {
+        padding-left: 2%;
+        padding-right: 2%;
+        width: 1100px;
+    }
+}
+
+.custom-progress-indicator{
+    --slds-c-card-color-border: white; 
+};

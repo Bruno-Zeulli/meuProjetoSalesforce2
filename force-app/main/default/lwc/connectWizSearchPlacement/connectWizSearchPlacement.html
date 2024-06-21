@@ -1,0 +1,71 @@
+<template>
+    <div class="buttons-header-table-container">
+        <div class="buttons-container-id-1 ">
+            <div class="slds-grid slds-wrap slds-size_5-of-12">
+                <div class="slds-col slds-size_5-of-12">
+                    <!-- sldsValidatorIgnoreNextLine -->
+                    <select data-id = "selectFieldSearch" class="form-select text-filter select" aria-label="Select filters" onchange={handleSelectFieldSearch}>
+                        <div>
+                            <option value="productComboName">Produtos</option>
+                            <option value="accountName">Nome do Cliente</option>
+                            <option value="originCase">Origem da Demanda</option>
+                            <option value="ownerName">Responsável</option>
+                            <option value="accountIdentificationNumber">CPF/CNPJ</option>
+                            <option value="statusCase">Status</option>
+                            <option value="enterpriseName">Nome do Empreendimento</option>
+                            <option value="comercialName">Nome do Comercial</option>
+                            <option value="leadSource">Origem</option>
+                            <option value="opportunityNumber">Número da Oportunidade</option>
+                        </div>
+                    </select>
+                </div>
+                <div class="slds-form-element slds-col slds-size_7-of-12">
+                    <div class="slds-form-element__control
+                                slds-input-has-icon
+                                slds-input-has-icon_left-right
+                                searh-input-container">
+                        <div    class=" slds-icon
+                                        slds-input__icon
+                                        slds-input__icon_right
+                                        slds-icon-text-default"
+                                aria-hidden="true"
+                        >
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11V11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z"/>
+                            </svg>
+                        </div>
+                        <!-- sldsValidatorIgnoreNextLine -->
+                        <input  data-id = "selectValueSearch"
+                                type="search"
+                                placeholder="Pesquisar"
+                                class="slds-input searh-input"
+                                onkeyup={handleValueSearch}
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="btn-container slds-grid slds-size_7-of-12">
+                <div class="">
+                    <div>
+                        <!-- sldsValidatorIgnoreNextLine -->
+                        <button class="btn-clear"  onclick={handleClearFilters}>
+                            <div class="text-clear-filter">
+                                <span>
+                                    Limpar filtros
+                                </span>
+                            </div>
+                            <div class="icon-clear-filter">
+                                <svg width="12" height="14" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 16C1 17.1 1.9 18 3 18H11C12.1 18 13 17.1 13 16V6C13 4.9 12.1 4 11 4H3C1.9 4 1 4.9 1 6V16ZM13 1H10.5L9.79 0.29C9.61 0.11 9.35 0 9.09 0H4.91C4.65 0 4.39 0.11 4.21 0.29L3.5 1H1C0.45 1 0 1.45 0 2C0 2.55 0.45 3 1 3H13C13.55 3 14 2.55 14 2C14 1.45 13.55 1 13 1Z"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="">
+                    <c-connect-wiz-export-data file-title="Oportunidades" file-type="CSV" csv-data={csvData} csv-headers={csvHeaders}></c-connect-wiz-export-data>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

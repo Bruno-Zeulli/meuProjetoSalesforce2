@@ -1,0 +1,19 @@
+<template>
+    <div key={file.value} class="slds-box">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_12-of-12 espacamento">
+              <p><strong>{file.label}</strong></p>
+            </div>
+            <div class="slds-col slds-large-size_2-of-12 slds-medium-size_2-of-12 slds-size_12-of-12" style="margin-left: 15px;">
+              <a href="https://wizcorphml001.blob.core.windows.net/documentos/28475201806%5Cwflow/sinistros/apolice/4ea5cadf-ded2-4ea1-8606-15b4ddec8f28.png" download> <lightning-icon icon-name="utility:download" size="small" alternative-text="download!" title="download"></lightning-icon></a>
+            </div>
+            <div class="slds-col slds-large-size_2-of-12 slds-medium-size_2-of-12 slds-size_12-of-12 espacamento" >
+               <lightning-button-icon icon-name="utility:preview" data-id={file.value} onclick={previewHandler}  alternative-text="Visualizar" title="Visualizar"></lightning-button-icon>
+
+            </div>
+            <div class="slds-col slds-large-size_2-of-12 slds-medium-size_2-of-12 slds-size_12-of-12">
+              <lightning-button-icon icon-name="utility:delete" data-id={file.value} onclick={deleteDoc}    alternative-text="Excluir" title="Excluir"></lightning-button-icon>
+              </div>
+          </div>
+    </div>
+</template>

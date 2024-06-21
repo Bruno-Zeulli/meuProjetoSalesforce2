@@ -1,0 +1,52 @@
+<template>
+    <div class="slds-grid slds-wrap none-margin container-card-filter-placement">
+        <div class="slds-col slds-size_4-of-12 spacing">
+            <!-- sldsValidatorIgnoreNextLine -->
+            <button autofocus class=" slds-size_12-of-12 button-card-filter bnt-all-case-sla"
+                onclick={handleSelectAllCasesSLA}>
+                <div class="title-button">
+                    <span>
+                        Total de Oportunidades
+                    </span>
+                </div>
+                <div class="content-button">
+                    <span>
+                        {sizeAllCasesSelect}
+                    </span>
+                </div>
+            </button>
+        </div>
+        <div class="slds-col slds-size_4-of-12 spacing">
+            <!-- sldsValidatorIgnoreNextLine -->
+            <button class="slds-col slds-size_12-of-12 button-card-filter bnt-case-inside-sla"
+                onclick={handleSelectInsideSLA} aria-hidden={filterCasesInsideSLA}>
+                <div class="title-button">
+                    <span>
+                        Dentro da SLA
+                    </span>
+                </div>
+                <div class="content-button">
+                    <span>
+                        {requestInsideSLA}
+                    </span>
+                </div>
+            </button>
+        </div>
+        <div class="slds-col slds-size_4-of-12 spacing">
+            <!-- sldsValidatorIgnoreNextLine -->
+            <button class="slds-col slds-size_12-of-12 button-card-filter bnt-case-outside-sla"
+                onclick={handleSelectOutsideSLA} aria-hidden={filterCasesInsideSLA}>
+                <div class="title-button">
+                    <span>
+                        Fora da SLA
+                    </span>
+                </div>
+                <div class="content-button">
+                    <span>
+                        {requestOutsideSLA}
+                    </span>
+                </div>
+            </button>
+        </div>
+    </div>
+</template>

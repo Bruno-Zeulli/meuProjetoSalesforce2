@@ -1,0 +1,62 @@
+<template>
+    <div if:true={isLoading}>
+        <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+    </div>
+    <div if:true={openModalAutoAssignmentOwner}>
+         <section role="dialog" tabindex="-1"
+                    aria-labelledby="modal-heading-01"
+                    aria-modal="true"
+                    aria-describedby="modal-content-id-1"
+                    class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div if:true={isLoading} class="modal__spinner-container">
+                    <div class="spinner-border" style="width: 2rem; height: 2rem; color: #BF5600;" role="status"></div>
+                    <div>
+                        <p>
+                            <span> Carregando...</span>
+                        </p>
+                    </div>
+                </div>
+                <div if:false={isLoading} class="modal__container">
+                    <div class="modal-header__container">
+                        <div class="modal-btn-close">
+                            <div>
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <button class="btn-close" onclick={handleSelectPrevious}></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-content__container">
+                        <h4>
+                            <span>
+                                Tem certeza que deseja atribuir essa oportunidade a você?
+                            </span>
+                        </h4>
+                    </div>
+                    <div class="modal-button__conteiner">
+                        <div class="button-previous">
+                            <!-- sldsValidatorIgnoreNextLine -->
+                            <button onclick={handleSelectPrevious}>
+                                <div>
+                                    <span>
+                                        Voltar
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="button-assignment">
+                            <!-- sldsValidatorIgnoreNextLine -->
+                            <button onclick={handleSelectToAssignForMe}>
+                                <div>
+                                    <span>
+                                        Atribuir a mim
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</template>

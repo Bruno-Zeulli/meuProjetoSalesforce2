@@ -1,0 +1,31 @@
+:host{
+    font: 0.75rem Montserrat;
+    color: #50555A;
+}
+
+.task-icon{
+    --slds-c-icon-color-background: #FF8200;
+}
+
+.slds-timeline__item_task:before {
+    background-color: #FF8200;
+    margin-left: 10px;
+    height: 80%;
+}
+
+.slds-box{
+    background-color: #E1E1E2;
+}
+
+.slds-gutters .slds-col{
+    padding-left: var(--slds-spacing-none);
+}
+
+.historyCustomClass_global {
+    max-width: 69%;
+}
+
+.historyCustomClass_quotePage {
+    max-width: 100%;
+    padding-right: 1.875rem;
+}

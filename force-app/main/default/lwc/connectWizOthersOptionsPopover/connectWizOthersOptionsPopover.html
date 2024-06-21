@@ -1,0 +1,52 @@
+<!-- sldsValidatorIgnore -->
+<template>
+     <section aria-describedby="popover-body-id" class="popover" role="dialog">
+        <div class="slds-p-around_none" id="dialog-body-id-8">
+            <div class="slds-media">
+                  <!-- <div class="modal-header__container"> -->
+                        <!-- sldsValidatorIgnoreNextLine -->
+                        <!-- <button class="btn-close" onclick={handleSelectCloseModal}></button>
+                    </div>
+                <div class="modal__container">
+
+                </div> -->
+
+                <div id="popover-body-id" class="popover__body">
+                    <!-- sldsValidatorIgnoreNextLine -->
+                    <div class="list_item">
+                        <div class="media__body">
+                            <button class="slds-text-link_reset btn_popover" onclick={showReassign}>
+                                <h3 class="slds-truncate" title="Reassing Opportunity">
+                                    Reatribuir oportunidade
+                                </h3>
+                            </button>
+                            <template if:true={showReassignModal}>
+                                <c-connect-wiz-reassign-opportunity-modal
+                                    onsendclosemodaltoparent={closeModalOthersOptions}
+                                    onsendclosepopovertoparent={handleSelectClosePopover}
+                                    onrefresh={handleRefresh}
+                                ></c-connect-wiz-reassign-opportunity-modal>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="list_item">
+                        <div class="slds-media__body">
+                            <button class="slds-text-link_reset btn_popover" onclick={showMarkAsLost}>
+                                <h3 class="slds-truncate" title="Mark as lost">
+                                    Marcar como perdido
+                                </h3>
+                            </button>
+                            <template if:true={showMarkAsLostModal}>
+                                <c-connect-wiz-mark-as-lost-modal
+                                    onsendclosemodaltoparent={closeModalOthersOptions}
+                                    onsendclosepopovertoparent={handleSelectClosePopover}
+                                    onrefresh={handleRefresh}
+                                ></c-connect-wiz-mark-as-lost-modal>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>

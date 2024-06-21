@@ -1,0 +1,6 @@
+<template>
+    <c-questionnaire-table question-id={question.Id} label={question.Question_Label__c}
+        options={question.Questionnaire_Question__r.Options__c} answer={question.Answer__c}
+        allow-comment={question.Questionnaire_Question__r.Allow_Comment__c} comment={question.Comment__c}
+        read-only={readOnly} onanswerchange={handleChange}></c-questionnaire-table>
+</template>

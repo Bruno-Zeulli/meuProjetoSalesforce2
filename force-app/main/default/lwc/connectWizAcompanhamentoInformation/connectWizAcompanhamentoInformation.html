@@ -1,0 +1,142 @@
+<template>
+    <div if:true={isLoading}>
+        <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+    </div>
+    <div class="slds-var-p-around_small slds-var-m-right_large container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-sm-0 col-sm-0 px-sm-0">
+                <c-connect-wiz-side-bar></c-connect-wiz-side-bar>
+            </div>
+            <div class="col">
+                <!-- Top navigation-->
+                <c-connect-wiz-nav-bar></c-connect-wiz-nav-bar>
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <c-connect-wiz-path is-acompanhamento={isAcompanhamento}></c-connect-wiz-path>
+                    </div>
+                </nav>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12">
+                        <div class="slds-col slds-var-p-around_xx-small slds-var-m-right_large slds-var-m-left_medium item-header">
+                            <c-connect-wiz-follow-up-header
+                                record-id={caseId}
+                                account-name={accountName}
+                                identification-number={identificationNumber}
+                                user-name={userName}
+                                origin={origin}
+                                opportunity-number={opportunityNumber}
+                                opportunity-id={opportunityId}
+                                contact-or-lead-id={contactOrLeadId}
+                                account-id={accountId}
+                                product-name={productName}
+                                onrefresh={renderRefreshHistory}
+                            ></c-connect-wiz-follow-up-header>
+                        </div>
+                        <div class="header-container slds-grid slds-var-p-top_small slds-var-m-right_large">
+                            <div class="slds-col slds-var-p-around_xx-small slds-var-m-right_large slds-var-m-left_medium item-header">
+                                <c-connect-wiz-contact-accordion-item
+                                    case-id={caseId}
+                                    onrefresh={renderRefreshHistory}
+                                ></c-connect-wiz-contact-accordion-item>
+                            </div>
+                        </div>
+                        <div class="header-container slds-grid slds-var-p-top_small slds-var-m-right_large">
+                            <div class="slds-col slds-var-p-around_xx-small slds-var-m-right_large slds-var-m-left_medium item-header">
+                                <c-connect-wiz-opportunity-accordion-item
+                                    case-id={caseId}
+                                    record-id={opportunityId}
+                                    onrefresh={renderRefreshHistory}
+                                ></c-connect-wiz-opportunity-accordion-item>
+                            </div>
+                        </div>
+                        <div class="header-container slds-grid slds-var-p-top_small slds-var-m-right_large">
+                            <div class="slds-col slds-var-p-around_xx-small slds-var-m-right_large slds-var-m-left_medium item-header">
+                                <c-connect-wiz-documents-accordion-item
+                                    case-id={caseId}
+                                    opportunity-id={opportunityId}
+                                    record-id={opportunityId}
+                                    onrefresh={renderRefreshHistory}
+                                ></c-connect-wiz-documents-accordion-item>
+                            </div>
+                        </div>
+                        <div class="header-container slds-grid slds-var-p-top_small slds-var-m-right_large">
+                            <div class="slds-col slds-var-p-around_xx-small slds-var-m-right_large slds-var-m-left_medium item-header">
+                                <c-connect-wiz-cotacoes-parciais-accordion-item
+                                    opportunity-id={opportunityId}
+                                    insured-amount={insuredAmount}
+                                    onpartialquoteupdated={handlePartialQuoteUpdate}
+                                    onproposalcreation={handleProposalCreation}
+                                ></c-connect-wiz-cotacoes-parciais-accordion-item>
+                            </div>
+                        </div>
+                        <div class="header-container slds-grid slds-var-p-top_small slds-var-m-right_large">
+                            <div class="slds-col slds-var-p-around_xx-small slds-var-m-right_large slds-var-m-left_medium item-header">
+                                <c-connect-wiz-propostas-accordion-item
+                                    opportunity-id={opportunityId}
+                                    insured-amount={insuredAmount}
+                                    partial-quote-list={partialQuotes}
+                                ></c-connect-wiz-propostas-accordion-item>
+                            </div>
+                        </div>
+                        <!-- <div class="header-container slds-grid slds-var-p-top_small slds-var-m-right_large">
+                            <div class="slds-col slds-var-p-around_xx-small slds-var-m-right_large slds-var-m-left_medium item-header">
+                                <c-connect-wiz-cotacoes-accordion-item
+                                    case-id={caseId}
+                                    opportunity-id={opportunityId}
+                                    has-form={hasForm}
+                                    onrefresh={renderRefreshHistory}
+                                ></c-connect-wiz-cotacoes-accordion-item>
+                            </div>
+                        </div> -->
+                        <div class="header-container slds-grid slds-var-p-top_small slds-var-m-right_large">
+                            <div class="slds-col slds-var-p-around_xx-small slds-var-m-right_large slds-var-m-left_medium item-header">
+                                <c-connect-wiz-order-accordion-item
+                                    case-id={caseId}
+                                    opportunity-id={opportunityId}
+                                    record-id={opportunityId}
+                                    onrefresh={renderRefreshHistory}
+                                ></c-connect-wiz-order-accordion-item>
+                            </div>
+                        </div>
+                        <div class="header-container slds-grid slds-var-p-top_small slds-var-m-right_large">
+                            <div class="slds-col slds-var-p-around_xx-small slds-var-m-right_large slds-var-m-left_medium item-header">
+                                <c-connect-wiz-questionnaire-accordion-item
+                                    record-id={opportunityId}
+                                    onrefresh={renderRefreshHistory}
+                                ></c-connect-wiz-questionnaire-accordion-item>
+                            </div>
+                        </div>
+                        <div if:true={hasQuoteToEmit} class="header-container slds-grid slds-var-p-top_small slds-var-m-right_large">
+                            <div class="slds-col slds-var-p-around_xx-small slds-var-m-right_large slds-var-m-left_medium item-header">
+                                <c-connect-wiz-emission-accordion-item
+                                    case-id={caseId}
+                                    opportunity-id={opportunityId}
+                                    record-id={quoteId}
+                                    is-corporate={isCorporate}
+                                    is-beneficios={isBeneficios}
+                                    is-mcmv={isMcmv}
+                                    quote-to-emit={quoteToEmit}
+                                    has-quote-to-emit={hasQuoteToEmit}
+                                    has-opp-to-emit={hasOppToEmit}
+                                    has-case-to-emit={hasCaseToEmit}
+                                    is-emited={isEmited}
+                                    onhandleemit={handleEmit}
+                                    onrefresh={renderRefreshHistory}
+                                ></c-connect-wiz-emission-accordion-item>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                        <div class="slds-col slds-wrap slds-var-p-around_xx-small slds-var-m-right_large item-header">
+                            <c-connect-wiz-history-header
+                                record-id={caseId}
+                                opportunity-id={opportunityId}
+                                onrefresh={renderRefreshHistory}
+                            ></c-connect-wiz-history-header>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

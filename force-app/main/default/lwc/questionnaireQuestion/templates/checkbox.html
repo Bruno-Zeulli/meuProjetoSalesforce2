@@ -1,0 +1,6 @@
+<template>
+    <c-questionnaire-checkbox question-id={question.Id} label={question.Question_Label__c}
+        options={question.Questionnaire_Question__r.Options__c} initial-options={question.Answer__c}
+        allow-comment={question.Questionnaire_Question__r.Allow_Comment__c} comment={question.Comment__c}
+        read-only={readOnly} onanswerchange={handleChange}></c-questionnaire-checkbox>
+</template>

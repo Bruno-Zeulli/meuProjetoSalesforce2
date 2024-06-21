@@ -1,0 +1,406 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <div if:true={isLoading}>
+        <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+    </div>
+    <template for:each={listPropostaTratada} for:item="proposta">
+        <div data-id={proposta.quoteId} class="proposta-accordion slds-wrap form-container slds-var-m-around_x-small slds-var-p-around_medium slds-grid" key={proposta.quoteId}>
+            <div onclick={editPropostaHandler} data-id={proposta.quoteId} class="proposta-accordion-container slds-col slds-size_9-of-12">
+                <div>
+                    <span>
+                        {proposta.seguradora} | <lightning-formatted-date-time value={proposta.dataDeEnvioParaSeguradora}></lightning-formatted-date-time>
+                    </span>
+                </div>
+                <div if:true={proposta.isSolicitada} class="status-quote status-quote_solicitada">
+                    <span>
+                        Solicitada
+                    </span>
+                </div>
+                <div if:true={proposta.isRecebida} class=" status-quote status-quote_check">
+                    <span>
+                        Recebida
+                    </span>
+                </div>
+                <div if:true={proposta.isEnviada} class="status-quote status-quote_check">
+                    <svg width="13" height="13" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM7.29 14.29L3.7 10.7C3.31 10.31 3.31 9.68 3.7 9.29C4.09 8.9 4.72 8.9 5.11 9.29L8 12.17L14.88 5.29C15.27 4.9 15.9 4.9 16.29 5.29C16.68 5.68 16.68 6.31 16.29 6.7L8.7 14.29C8.32 14.68 7.68 14.68 7.29 14.29Z"/>
+                    </svg>
+                    <span>
+                        Enviada para o comercial
+                    </span>
+                </div>
+                <div if:true={proposta.isAceita} class="status-quote status-quote_check">
+                    <svg width="13" height="13" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM7.29 14.29L3.7 10.7C3.31 10.31 3.31 9.68 3.7 9.29C4.09 8.9 4.72 8.9 5.11 9.29L8 12.17L14.88 5.29C15.27 4.9 15.9 4.9 16.29 5.29C16.68 5.68 16.68 6.31 16.29 6.7L8.7 14.29C8.32 14.68 7.68 14.68 7.29 14.29Z"/>
+                    </svg>
+                    <span>
+                        Aceita
+                    </span>
+                </div>
+                <div if:true={proposta.isNegada} class="status-quote status-quote_negado">
+                    <svg width="13" height="13" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 0C4.47 0 0 4.47 0 10C0 15.53 4.47 20 10 20C15.53 20 20 15.53 20 10C20 4.47 15.53 0 10 0ZM14.3 14.3C13.91 14.69 13.28 14.69 12.89 14.3L10 11.41L7.11 14.3C6.72 14.69 6.09 14.69 5.7 14.3C5.31 13.91 5.31 13.28 5.7 12.89L8.59 10L5.7 7.11C5.31 6.72 5.31 6.09 5.7 5.7C6.09 5.31 6.72 5.31 7.11 5.7L10 8.59L12.89 5.7C13.28 5.31 13.91 5.31 14.3 5.7C14.69 6.09 14.69 6.72 14.3 7.11L11.41 10L14.3 12.89C14.68 13.27 14.68 13.91 14.3 14.3Z"/>
+                    </svg>
+                    <span>
+                        Negada
+                    </span>
+                </div>
+                <div if:true={proposta.isCancelled} class="status-quote status-quote_negado">
+                    <svg width="13" height="13" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 0C4.47 0 0 4.47 0 10C0 15.53 4.47 20 10 20C15.53 20 20 15.53 20 10C20 4.47 15.53 0 10 0ZM14.3 14.3C13.91 14.69 13.28 14.69 12.89 14.3L10 11.41L7.11 14.3C6.72 14.69 6.09 14.69 5.7 14.3C5.31 13.91 5.31 13.28 5.7 12.89L8.59 10L5.7 7.11C5.31 6.72 5.31 6.09 5.7 5.7C6.09 5.31 6.72 5.31 7.11 5.7L10 8.59L12.89 5.7C13.28 5.31 13.91 5.31 14.3 5.7C14.69 6.09 14.69 6.72 14.3 7.11L11.41 10L14.3 12.89C14.68 13.27 14.68 13.91 14.3 14.3Z"/>
+                    </svg>
+                    <span>
+                        Cancelada
+                    </span>
+                </div>
+            </div>
+            <div onclick={editPropostaHandler} data-id={proposta.quoteId} class="slds-col_bump-left slds-size_1-of-12">
+                <lightning-button-icon if:false={proposta.showDetails} variant="bare" size="medium" icon-name="utility:chevrondown" value={proposta} class="slds-p-horizontal_medium"
+                title="Vizualizar detalhes da proposta">
+                </lightning-button-icon>
+                <lightning-button-icon if:true={proposta.showDetails} variant="bare" size="medium" icon-name="utility:chevronup" value={proposta} class="slds-p-horizontal_medium"
+                title="Fechar detalhes da proposta">
+                </lightning-button-icon>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-col_bump-left slds-size_12-of-12">
+                <hr>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-col_bump-left slds-size_12-of-12 div-action">
+                <div class="dropdown">
+                    <!-- <lightning-button label="Ações" title="Ações" icon-name="utility:threedots_vertical" icon-position="right" class="slds-m-left_x-small action-button"></lightning-button> -->
+                    <button class="action-button" title="Ações">Ações<lightning-icon class="action-icon" icon-name="utility:threedots_vertical" alternative-text="Success!" size="x-small" title="default style"></lightning-icon></button>
+                    <div class="dropdown-content">
+                    <div class="dropdown-item" onclick={clonePropostaHandler} data-id={proposta.quoteId}><a>Duplicar Cotação</a></div>
+                    <div class="dropdown-item" onclick={editPropostaFormHandler} data-id={proposta.quoteId}><a>Editar Cotação</a></div>
+                    <div class="dropdown-item" onclick={deletePropostaHandler} data-id={proposta.quoteId}><a>Deletar Cotação</a></div>
+                    <div if:false={proposta.isCancelled} class="dropdown-item" onclick={cancelPropostaHandler} data-id={proposta.quoteId}><a>Cancelar Cotação</a></div>
+                    </div>
+                  </div>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_12-of-12 slds-var-p-around_xx-small form-title">
+                <span>SEGURADORA</span>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_12-of-12 slds-var-p-around_xx-small form-value">
+                {proposta.seguradora}
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-title">
+                <span>PRÊMIO</span>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-title">
+                <span>IMPORTÂNCIA SEGURADA</span>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-value">
+                {proposta.premio}
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-value">
+                {proposta.importanciaSegurada}
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-title">
+                <span>VALOR LÍQUIDO DO PRÊMIO</span>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-title">
+                <span>IMPORTÂNCIA SEGURADA 2</span>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-value">
+                {proposta.valorLiquidoPremio}
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-value">
+                {proposta.importanciaSeguradaAdicional}
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-title">
+                <span>VALOR IOF DO PRÊMIO</span>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-title">
+                <span>IMPORTÂNCIA SEGURADA 3</span>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-value">
+                {proposta.valorIOFPremio}
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-value">
+                {proposta.importanciaSeguradaAdicional2}
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-title">
+                <span>PORCENTAGEM COMISSÃO</span>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-title">
+                <span>PORCENTAGEM AGENCIAMENTO</span>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-value">
+                {proposta.porcentagemComissao}
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-value">
+                {proposta.porcentagemAgenciamento}
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-title">
+                <span>DATA DE ENVIO</span>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-title">
+                <span>DATA DE RECEBIMENTO</span>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-value">
+                <lightning-formatted-date-time value={proposta.dataDeEnvioParaSeguradora}></lightning-formatted-date-time>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_6-of-12 slds-var-p-around_xx-small form-value">
+                <lightning-formatted-date-time value={proposta.dataDeRecebimentoDaSeguradora}></lightning-formatted-date-time>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_12-of-12 slds-var-p-around_xx-small form-title">
+                <span>OBSERVAÇÕES</span>
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_12-of-12 slds-var-p-around_xx-small form-value">
+                {proposta.observacoes}
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_12-of-12 slds-var-p-around_xx-small file-container">
+                    <div if:true={proposta.showViewFiles}>
+                        <div if:false={proposta.fileLoaded} class="slds-is-relative" style="position:relative">
+                            <div class="slds-modal__container">
+                            <div  class="modal__spinner-container" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                                <div class="spinner-border" style="width: 2rem; height: 2rem; color: #BF5600;" role="status"></div>
+                                <div style="color: #BF5600;">
+                                    <p>
+                                        <span>&nbsp;<b>Carregando...</b></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    <c-connect-wiz-file-view
+                        record-id={recordId}
+                        document-type-name={documentTypeName}
+                        show-button-view-file={showButtonViewFile}
+                        show-button-delete-file={showButtonDeleteFile}
+                        show-simple-view={showSimpleView}
+                        onhandleshowviewfile={handleControlShowViewFile}
+                        onrefresh={onRefresh}
+                    ></c-connect-wiz-file-view>
+                </div>
+                <div class="slds-var-p-around_medium" if:true={proposta.showUploadFile}>
+                    <c-connect-wiz-file-upload
+                        record-id={recordId}
+                        label-name={labelName}
+                        tipo-documento={tipoDocumento}
+                        onhandleshowuploadfile={handleControlShowUploadFile}
+                        onrefresh={onRefresh}
+                    ></c-connect-wiz-file-upload>
+                </div>
+                
+                
+            </div>
+            <div if:true={proposta.showDetails} class="slds-size_12-of-12 slds-var-p-around_xx-small form-value enviar-comercial">
+                <button if:false={proposta.showSendToComercial} class="button-comercial" data-id={proposta.quoteId} onclick={enviarComercial}>Enviar para comercial</button>
+            </div>
+        </div>
+    </template>
+
+    <template if:true={cloneQuote}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeCloneModal}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <!-- Modal/Popup Box LWC header here -->
+                <!-- <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Tem certeza que quer excluir a proposta?</h2>
+                </header> -->
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-1">
+                    <p class="modal-title"><b>Tem certeza que deseja duplicar a oportunidade?
+                    </b></p>
+                    <div if:true={isLoading} class="slds-grid slds-grid_vertical-align-center slds-var-p-horizontal_medium slds-var-p-top_x-large slds-grid_align-center">
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="cancel-button" onclick={closeCloneModal} disabled title="Cancel">Voltar</button>
+                        </div>
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="execute-button" onclick={cloneQuoteHandler} disabled title="OK">Duplicar</button>
+                        </div >
+                        <div class="slds-col">
+                            <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+                        </div>
+                    </div>
+                    <div if:false={isLoading} class="slds-grid slds-grid_vertical-align-center slds-var-p-horizontal_medium slds-var-p-top_x-large slds-grid_align-center">
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="cancel-button" onclick={closeCloneModal} title="Cancel">Voltar</button>
+                        </div>
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="execute-button" onclick={cloneQuoteHandler} title="OK">Duplicar</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <!-- <footer class="slds-modal__footer">
+                </footer> -->
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:true={deleteQuote}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeDeleteModal}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <!-- Modal/Popup Box LWC header here -->
+                <!-- <header class="slds-modal__header">
+                    <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Tem certeza que quer excluir a proposta?</h2>
+                </header> -->
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-2">
+                    <p class="modal-title"><b>Tem certeza que deseja deletar a cotação?
+                    </b></p>
+                    <p class="modal-subtitle slds-var-p-around_small">Essa ação não pode ser desfeita.</p>
+                    <div if:true={isLoading} class="slds-grid slds-grid_vertical-align-center slds-var-p-horizontal_medium slds-var-p-top_x-large slds-grid_align-center">
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="cancel-button" onclick={closeDeleteModal} disabled title="Cancel">Cancelar</button>
+                        </div>
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="execute-button" onclick={deleteQuoteHandler} disabled title="OK">Deletar cotação</button>
+                        </div>
+                        <div class="slds-col">
+                            <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+                        </div>
+                    </div>
+                    <div if:false={isLoading} class="slds-grid slds-grid_vertical-align-center slds-var-p-horizontal_medium slds-var-p-top_x-large slds-grid_align-center">
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="cancel-button" onclick={closeDeleteModal} title="Cancel">Cancelar</button>
+                        </div>
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="execute-button" onclick={deleteQuoteHandler} title="OK">Deletar cotação</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <!-- <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeDeleteModal} title="Cancel">Não</button>
+                    <button class="slds-button slds-button_brand submit-delete" onclick={deleteQuoteHandler} title="OK">Sim</button>
+                </footer> -->
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:true={cancelQuote}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeCancelModal}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <!-- Modal/Popup Box LWC header here -->
+                <!-- <header class="slds-modal__header">
+                    <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Tem certeza que quer excluir a proposta?</h2>
+                </header> -->
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-4">
+                    <div class="modal-header__container">
+                        <div>
+                            <p class="modal-title"><b>Tem certeza que deseja cancelar a cotação?</b></p>
+                        </div>
+                        <div>
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <select data-id="reasonList" name="reasonList" id="reasonList" class="form-select text-select select1"  aria-label="Select Reason" required onchange={handleSelectReason}>
+                                    <option value="" disabled selected>
+                                        Selecione um motivo
+                                    </option>
+                                    <template for:each={lstOptions} for:item="option">
+                                        <option key={option} value={option}>{option}</option>
+                                    </template>
+                                    <div class="invalid-feedback" id="error-01">
+                                        <span>
+                                            Selecione um tipo de registro.
+                                        </span>
+                                    </div>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-text-area">
+                            <div>
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <textarea data-id="descriptionData" placeholder="Observações" required onchange={handleSelectedDescription}></textarea>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-var-p-around_medium">
+                            <span if:false={isCamposObrigatorios} class="waring-message">É necessário preencher todos os campos obrigatórios.</span>
+                        </div>
+                        <div if:true={isLoading} class="slds-grid slds-grid_vertical-align-center slds-var-p-horizontal_medium slds-var-p-top_x-large slds-grid_align-center">
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="cancel-button" onclick={closeCancelModal} disabled title="Cancel">Cancelar</button>
+                        </div>
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="execute-button" onclick={cancelQuoteHandler} disabled title="OK">Cancelar cotação</button>
+                        </div>
+                        <div class="slds-col">
+                            <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+                        </div>
+                    </div>
+                    <div if:false={isLoading} class="slds-grid slds-grid_vertical-align-center slds-var-p-horizontal_medium slds-var-p-top_x-large slds-grid_align-center">
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="cancel-button" onclick={closeCancelModal} title="Cancel">Cancelar</button>
+                        </div>
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="execute-button" onclick={cancelQuoteHandler} title="OK">Cancelar cotação</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <!-- <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeDeleteModal} title="Cancel">Não</button>
+                    <button class="slds-button slds-button_brand submit-delete" onclick={deleteQuoteHandler} title="OK">Sim</button>
+                </footer> -->
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:true={isSend}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeEnviarComercialModal}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <!-- Modal/Popup Box LWC header here -->
+                <!-- <header class="slds-modal__header">
+                    <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Tem certeza que quer excluir a proposta?</h2>
+                </header> -->
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-3">
+                    <p class="modal-title"><b>Tem certeza que deseja enviar ao comercial?
+                    </b></p>
+                    <p class="erro-envio slds-var-p-around_small" if:true={errorEnvio}>Preencha a data de recebimento da seguradora para poder enviar ao comercial.</p>
+                    <div class="slds-grid slds-grid_vertical-align-center slds-var-p-horizontal_medium slds-var-p-top_x-large slds-grid_align-center">
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="cancel-button" onclick={closeEnviarComercialModal} title="Cancel">Voltar</button>
+                        </div>
+                        <div class="slds-col slds-var-p-horizontal_medium">
+                            <button class="execute-button" onclick={enviarComercialHandler} title="OK">Enviar cotação</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <!-- <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeDeleteModal} title="Cancel">Não</button>
+                    <button class="slds-button slds-button_brand submit-delete" onclick={deleteQuoteHandler} title="OK">Sim</button>
+                </footer> -->
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <!-- <div if:true={loading} class="slds-grid slds-wrap">
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </div> -->
+</template>

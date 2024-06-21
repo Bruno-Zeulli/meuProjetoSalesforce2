@@ -1,0 +1,63 @@
+<template>
+    <div class="slds-grid">
+        <div onclick={handleAccordionClick} class="slds-col slds-size_11-of-12">
+            <div class="document-header-container">
+                <div>
+                    <span onclick={handleAccordionClick} class="cotacao-icon slds-var-m-horizontal_small" title="Cotações">
+                        <svg width="20" height="16" viewBox="0 0 20 16" fill="#F56C00" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.59 0.59C8.21 0.21 7.7 0 7.17 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V4C20 2.9 19.1 2 18 2H10L8.59 0.59Z"/>
+                        </svg>
+                    </span>
+                    <span class="accordion-item-title slds-var-m-horizontal_small"><b>Documentação</b></span>
+                </div>
+                <div if:true={hasDisapproved} class="status-disapproved">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.47 2 2 6.47 2 12C2 17.53 6.47 22 12 22C17.53 22 22 17.53 22 12C22 6.47 17.53 2 12 2ZM16.3 16.3C15.91 16.69 15.28 16.69 14.89 16.3L12 13.41L9.11 16.3C8.72 16.69 8.09 16.69 7.7 16.3C7.31 15.91 7.31 15.28 7.7 14.89L10.59 12L7.7 9.11C7.31 8.72 7.31 8.09 7.7 7.7C8.09 7.31 8.72 7.31 9.11 7.7L12 10.59L14.89 7.7C15.28 7.31 15.91 7.31 16.3 7.7C16.69 8.09 16.69 8.72 16.3 9.11L13.41 12L16.3 14.89C16.68 15.27 16.68 15.91 16.3 16.3Z"/>
+                    </svg>
+                    <span>
+                        Documento(s) reprovado(s)
+                    </span>
+                </div>
+                <div if:true={isComplete} class="status-complete">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM7.29 14.29L3.7 10.7C3.31 10.31 3.31 9.68 3.7 9.29C4.09 8.9 4.72 8.9 5.11 9.29L8 12.17L14.88 5.29C15.27 4.9 15.9 4.9 16.29 5.29C16.68 5.68 16.68 6.31 16.29 6.7L8.7 14.29C8.32 14.68 7.68 14.68 7.29 14.29Z"/>
+                    </svg>
+                    <span>
+                        Completa
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div onclick={handleAccordionClick} if:false={isOpen} class="slds-col slds-size_1-of-12 slds-col_bump-left">
+            <span class="slds-var-p-left_medium">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.11875 1.29006L5.99875 5.17006L9.87875 1.29006C10.2688 0.900059 10.8988 0.900059 11.2888 1.29006C11.6788 1.68006 11.6788 2.31006 11.2888 2.70006L6.69875 7.29006C6.30875 7.68006 5.67875 7.68006 5.28875 7.29006L0.69875 2.70006C0.30875 2.31006 0.30875 1.68006 0.69875 1.29006C1.08875 0.910059 1.72875 0.900059 2.11875 1.29006Z"/>
+                </svg>
+            </span>
+        </div>
+        <div if:true={isOpen} onclick={handleAccordionClick} class="slds-col slds-size_1-of-12 slds-col_bump-left">
+            <span class="slds-var-p-left_medium">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.11875 6.70998L5.99875 2.82998L9.87875 6.70998C10.2688 7.09998 10.8988 7.09998 11.2888 6.70998C11.6788 6.31998 11.6788 5.68998 11.2888 5.29998L6.69875 0.70998C6.30875 0.31998 5.67875 0.31998 5.28875 0.70998L0.69875 5.29998C0.30875 5.68998 0.30875 6.31998 0.69875 6.70998C1.08875 7.08998 1.72875 7.09998 2.11875 6.70998Z"/>
+                </svg>
+            </span>
+        </div>
+    </div>
+    <div if:true={isOpen}>
+        <hr class="slds-var-m-top_medium">
+        <div class="document-container">
+            <c-connect-wiz-document-checklist
+                record-id={recordId}
+                show-view-files={showViewFiles}
+                ongetfiles={getFiles}
+                show-full-view={showFullView}
+                show-button-disapprove-file={showButtonDisapproveFile}
+                show-button-view-file={showButtonViewFile}
+                show-button-approve-file={showButtonApproveFile}
+                show-not-found-checklist-required={showNotFoundChecklistRequired}
+                show-not-found-checklist-optional={showNotFoundChecklistOptional}
+                onrefresh={handleRefresh}
+            ></c-connect-wiz-document-checklist>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,106 @@
+<template>
+    <div if:true={isLoading}>
+        <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+    </div>
+    <div class="slds-grid">
+        <div onclick={handleAccordionClick} class="slds-col slds-size_11-of-12">
+            <span class="cotacao-icon slds-var-m-horizontal_small" title="Cotações">
+                <svg width="21" height="20" viewBox="0 0 21 20" fill="#F56C00" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 16C4.9 16 4.01 16.9 4.01 18C4.01 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16ZM0 1C0 1.55 0.45 2 1 2H2L5.6 9.59L4.25 12.03C3.52 13.37 4.48 15 6 15H17C17.55 15 18 14.55 18 14C18 13.45 17.55 13 17 13H6L7.1 11H14.55C15.3 11 15.96 10.59 16.3 9.97L19.88 3.48C20.25 2.82 19.77 2 19.01 2H4.21L3.54 0.57C3.38 0.22 3.02 0 2.64 0H1C0.45 0 0 0.45 0 1ZM16 16C14.9 16 14.01 16.9 14.01 18C14.01 19.1 14.9 20 16 20C17.1 20 18 19.1 18 18C18 16.9 17.1 16 16 16Z"/>
+                </svg>
+
+            </span>
+            <span class="accordion-item-title slds-var-m-horizontal_small"><b>Cotações</b></span>
+            <span class="status-quote slds-var-m-left_medium slds-var-p-vertical_xx-small slds-var-p-horizontal_small">
+                {solicitadas}
+            </span>
+            <span class="status-quote slds-var-m-left_medium slds-var-p-vertical_xx-small slds-var-p-horizontal_small">
+                {recebidas}
+            </span>
+        </div>
+        <div onclick={handleAccordionClick} if:false={isOpen} class="slds-col slds-size_1-of-12 slds-col_bump-left">
+            <span class="slds-var-p-left_medium">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.11875 1.29006L5.99875 5.17006L9.87875 1.29006C10.2688 0.900059 10.8988 0.900059 11.2888 1.29006C11.6788 1.68006 11.6788 2.31006 11.2888 2.70006L6.69875 7.29006C6.30875 7.68006 5.67875 7.68006 5.28875 7.29006L0.69875 2.70006C0.30875 2.31006 0.30875 1.68006 0.69875 1.29006C1.08875 0.910059 1.72875 0.900059 2.11875 1.29006Z"/>
+                </svg>
+            </span>
+        </div>
+        <div if:true={isOpen} onclick={handleAccordionClick} class="slds-col slds-size_1-of-12 slds-col_bump-left">
+            <span class="slds-var-p-left_medium">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.11875 6.70998L5.99875 2.82998L9.87875 6.70998C10.2688 7.09998 10.8988 7.09998 11.2888 6.70998C11.6788 6.31998 11.6788 5.68998 11.2888 5.29998L6.69875 0.70998C6.30875 0.31998 5.67875 0.31998 5.28875 0.70998L0.69875 5.29998C0.30875 5.68998 0.30875 6.31998 0.69875 6.70998C1.08875 7.08998 1.72875 7.09998 2.11875 6.70998Z"/>
+                </svg>
+            </span>
+        </div>
+    </div>
+    <div if:true={isOpen} class="content-quote-container slds-col slds-size_12-of-12">
+        <div if:true={isOpen} class="action-quote-container slds-grid slds-wrap">
+            <!-- sldsValidatorIgnoreNextLine -->
+            <button if:true={hasForm} onclick={activeCotacaoDiv} class={cotacao}>
+                <p>
+                    <span>
+                        Formulários para cotação
+                    </span>
+                </p>
+            </button>
+            <!-- sldsValidatorIgnoreNextLine -->
+            <button onclick={activePropostaDiv} class={proposta}>
+                <p>
+                    <span>
+                        Proposta de cotação
+                    </span>
+                </p>
+            </button>
+        </div>
+        <div if:true={isOpen}>
+            <div class="slds-var-m-top_x-large slds-grid slds-wrap proposta-container" if:true={isProposta}>
+                <!-- sldsValidatorIgnoreNextLine -->
+                <button onclick={addPropostaHandler}  class="add-proposta-div slds-col slds-size_4-of-12">
+                    <div class="add-proposta-container ">
+                        <div class="add-proposta-icon">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13 8H8V13C8 13.55 7.55 14 7 14C6.45 14 6 13.55 6 13V8H1C0.45 8 0 7.55 0 7C0 6.45 0.45 6 1 6H6V1C6 0.45 6.45 0 7 0C7.55 0 8 0.45 8 1V6H13C13.55 6 14 6.45 14 7C14 7.55 13.55 8 13 8Z"/>
+                            </svg>
+                        </div>
+                        <div class="">
+                            <span>
+                                Adicionar Propostas
+                            </span>
+                        </div>
+                    </div>
+                </button>
+                <div class="slds-col slds-size_12-of-12" if:true={openForm}>
+                    <c-connect-wiz-proposta-form
+                        onfinishform={handleForm}
+                        onupdateform={handleUpdate}
+                        case-id={caseId}
+                        proposta-edit-form={propostaForm}
+                        is-edit-form={isEditForm}
+                        is-insert-form={isInsertForm}
+                        onrefresh={handleRefresh}
+                    ></c-connect-wiz-proposta-form>
+                </div>
+                <div class="slds-col slds-size_12-of-12" if:false={openForm}>
+                    <c-connect-wiz-propostas-edit
+                        oneditform={handleEditForm}
+                        onupdateform={handleUpdate}
+                        duplicateproposta={handleDuplicate}
+                        opportunity-id={opportunityId}
+                        case-id={caseId}
+                        is-insert-form={isInsertForm}
+                        onrefresh={handleRefresh}
+                    ></c-connect-wiz-propostas-edit>
+                </div>
+                <!-- <div if:true={isDuplicate}>
+                    <c-connect-wiz-proposta-duplicate case-id={caseId} record-type-id={recordTypeId} options={options} onduplicateproposta={handleDuplicate} onduplicatepropostainserted={handleDuplicateInserted}></c-connect-wiz-proposta-duplicate>
+                </div> -->
+            </div>
+            <div if:true={isCotacao}>
+                <c-connect-wiz-quotation-forms
+                    case-id={caseId}
+                    opportunity-id={opportunityId}
+                ></c-connect-wiz-quotation-forms>
+            </div>
+        </div>
+    </div>
+</template>

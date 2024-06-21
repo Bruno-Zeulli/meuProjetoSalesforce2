@@ -1,0 +1,24 @@
+<template>
+    <lightning-layout>
+        <lightning-layout-item>
+            <lightning-button   label="Voltar" 
+                                icon-name="utility:chevronleft"
+                                onclick={previousHandler}
+                                disabled={disablePrevious}
+                                >
+            </lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item flexibility="grow">
+            <p class="slds-text-align_center"> {currentPage} de {totalPage} Páginas</p>
+        </lightning-layout-item>
+        <lightning-layout-item>
+            <lightning-button   label="Próxima" 
+                                icon-name="utility:chevronright"
+                                icon-position="right"
+                                onclick={nextHandler}
+                                disabled={disableNext}
+            >
+            </lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

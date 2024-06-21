@@ -1,0 +1,204 @@
+.icon-color{
+    --slds-c-icon-color-foreground: #FF8200;    
+}
+
+.buttonRefresh{
+    --slds-c-button-color-background: #FF8200;
+    --slds-c-button-color-border: #FF8200;
+    --slds-c-icon-color-foreground: #FFFFFF;
+    --slds-c-button-color-background-hover: #FFFFFF;
+    --slds-c-button-color-border-hover: #FF8200;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-text-color-active: #FF8200;
+    --slds-c-button-color-background-active: #FFFFFF;
+    --slds-c-button-color-border-active: #FF8200;
+    --slds-c-button-inverse-shadow-focus: 0 0 6px #FF8200;
+    --slds-c-button-shadow-focus: 0 0 6px #FF8200;
+
+}
+
+.buttonExport{
+    --slds-c-button-neutral-color-border: #FF8200;
+    --slds-c-button-text-color: #FF8200;
+    --slds-c-icon-color-foreground: #FF8200;
+    --slds-c-button-neutral-color-background-hover: #FF8200;
+    --slds-c-button-neutral-color-background-active: #FF8200;
+    --slds-c-button-neutral-color-border-hover: #FF8200;
+    --slds-c-button-neutral-color-border-active: #FF8200;
+    --slds-c-button-text-color-hover: #FFFFFF;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-inverse-shadow-focus: 0 0 6px #FF8200;
+    --slds-c-button-shadow-focus: 0 0 6px #FF8200;
+}
+
+.buttonFilter{
+    --slds-c-button-neutral-color-border: #FFFFFF;
+    --slds-c-button-text-color: #FF8200;
+    --slds-c-icon-color-foreground: #FF8200;
+    --slds-c-button-neutral-color-background-hover: #FF8200;
+    --slds-c-button-neutral-color-background-active: #FF8200;
+    --slds-c-button-neutral-color-border-hover: #FF8200;
+    --slds-c-button-neutral-color-border-active: #FF8200;
+    --slds-c-button-text-color-hover: #FFFFFF;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-inverse-shadow-focus: 0 0 6px #FF8200;
+    --slds-c-button-shadow-focus: 0 0 6px #FF8200;
+}
+
+.filtrar-btn{
+    --slds-c-button-brand-color-border: #FF8200;
+    --slds-c-button-brand-color-border-hover: #FF8200;
+    --slds-c-button-color-border-active: #FF8200;
+    --slds-c-button-brand-color-background: #FF8200;
+    --slds-c-button-brand-color-background-hover: #FFFFFF;
+    --slds-c-button-brand-color-background-active: #FFFFFF;
+    --slds-c-button-text-color: #FFFFFF;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-text-color-active: #FF8200;
+    --slds-c-button-inverse-shadow-focus: 0 0 6px #FF8200;
+    --slds-c-button-shadow-focus: 0 0 6px #FF8200;
+    
+    min-width: 13.25rem;
+}
+
+.assign-btn{
+    --slds-c-button-brand-color-border: #FF8200;
+    --slds-c-button-brand-color-border-hover: #FF8200;
+    --slds-c-button-color-border-active: #FF8200;
+    --slds-c-button-brand-color-background: #FF8200;
+    --slds-c-button-brand-color-background-hover: #FFFFFF;
+    --slds-c-button-brand-color-background-active: #FFFFFF;
+    --slds-c-button-text-color: #FFFFFF;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-text-color-active: #FF8200;
+    --slds-c-button-inverse-shadow-focus: 0 0 6px #FF8200;
+    --slds-c-button-shadow-focus: 0 0 6px #FF8200;
+    min-width: 7rem;
+}
+
+.close-btn{
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-text-color-active: #FF8200;
+    --slds-c-button-color-border-active: #FFFFFF;
+    --slds-c-button-inverse-shadow-focus: 0 0 0px #FF8200;
+    --slds-c-button-shadow-focus: 0 0 0px #FF8200;
+}
+
+.fechar-btn{
+    --slds-c-icon-color-foreground: #FF8200;
+    --slds-c-button-text-color-hover: #FF8200;
+    --slds-c-button-text-color-active: #FF8200;
+    --slds-c-button-color-border-active: #FFFFFF;
+    --slds-c-button-inverse-shadow-focus: 0 0 6px #FFFFFF;
+    --slds-c-button-shadow-focus: 0 0 6px #FFFFFF;
+    --slds-c-button-sizing-border: 0px;
+}
+
+.limpar-btn{
+    --slds-c-button-neutral-color-border: #FF8200;
+    --slds-c-button-text-color: #FF8200;
+    --slds-c-icon-color-foreground: #FF8200;
+    --slds-c-button-neutral-color-background-hover: #FF8200;
+    --slds-c-button-neutral-color-background-active: #FF8200;
+    --slds-c-button-neutral-color-border-hover: #FF8200;
+    --slds-c-button-neutral-color-border-active: #FF8200;
+    --slds-c-button-text-color-hover: #FFFFFF;
+    --slds-c-button-text-color-active: #FFFFFF;
+    --slds-c-button-inverse-shadow-focus: 0 0 6px #FF8200;
+    --slds-c-button-shadow-focus: 0 0 6px #FF8200;
+    
+    min-width: 13.25rem;
+}
+
+.cardTable{
+    --slds-c-card-color-background: #F5F5F5;
+    --slds-c-card-text-color: #50555A;
+    
+}
+
+.div-date{
+    padding-bottom: 1.0rem;
+}
+
+.modal-date{
+    --slds-c-input-color-border: #FFFFFF;
+    --slds-c-input-color-border-focus: #FFFFFF;
+    appearance: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+}
+
+.modal-date-inputs{
+    width: 80%;
+}
+
+.slds-modal__header{
+    --slds-c-modal-color-border: white;
+}
+
+.slds-modal__footer{
+    --slds-c-modal-color-border: white;
+}
+
+.modal-footer-btns{
+    width: 100%;
+}
+
+.slds-accordion{
+    --slds-c-accordion-section-spacing-inline-start: 0;
+}
+
+@media (min-width: 1em) and (max-width:  48em) {
+    .limpar-btn {
+        min-width: 13rem;
+    }
+    .filtrar-btn {
+        min-width: 13rem;
+    }
+}
+
+@media (min-width: 48em) and (max-width:  64em) {
+    .slds-modal__container {
+        right: var(--slds-spacing-none);
+        width: 100%;
+        max-width: 30rem;
+        min-width: 20rem;
+        margin-right: 2rem;
+    }
+}
+
+@media (min-width: 64em){
+    .slds-modal__container {
+        right: var(--slds-spacing-none);
+        width: 100%;
+        max-width: 30rem;
+        min-width: 20rem;
+        margin-right: 2rem;
+    }
+}
+
+@media (min-width:  120em) {
+    .slds-modal__container {
+        right: var(--slds-spacing-none);
+        width: 100%;
+        max-width: 30rem;
+        min-width: 15rem;
+        margin-right: 17rem;
+    }
+}
+
+@media (min-width:  160em) {
+    .slds-modal__container {
+        right: var(--slds-spacing-none);
+        width: 100%;
+        max-width: 30rem;
+        min-width: 20rem;
+        margin-right: 37rem;
+    }
+}

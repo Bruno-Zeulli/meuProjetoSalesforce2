@@ -1,0 +1,95 @@
+<!-- /**
+ * @description       :
+ * @author            : Samuel Sirkis
+ * @group             :
+ * @last modified on  : 02-02-2021
+ * @last modified by  : Samuel Sirkis
+ * Modifications Log
+ * Ver   Date         Author       Modification
+ * 1.0   02-02-2021   Samuel Sirkis   Initial Version
+ **/ -->
+<template>
+    <div class="prechatUI embeddedServiceLiveAgentStatePrechatDefaultUI slds-form-element" if:true={hasFields}>
+        <div class="formContent embeddedServiceSidebarForm">
+            <div class="fieldList">
+                <div class="slds-var-p-around_medium inputSplitName embeddedServiceSidebarFormField">
+                    <span class="split-field-container">
+                        <div class="uiInput">
+                            <div class="split-field-container">
+                                <label class="slds-var-p-bottom_small split-field-container uiLabel-left form-element__label uiLabel">
+                                    <span class="slds-form-element__label slds-no-flex slds-float_left">
+                                        <span class="required slds-text-color_destructive slds-var-p-right_xxx-small" title="Obrigatório">*</span>
+                                        <span class="">Assunto:</span>
+                                    </span>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-input_container">
+                                            <input
+                                                name="assunto"
+                                                id="Subject"
+                                                onchange={selectionChangeHandler}
+                                                value={assunto}
+                                                placeholder="..."
+                                                type="slds-style-inputtext"
+                                                class={tabClass}
+                                                maxlength="121"
+                                                data-aura-rendered-by="325:0"
+                                                data-interactive-lib-uid="3"
+                                                aria-required="true"
+                                            />
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="split-field-container">
+                                <label class="slds-var-p-bottom_small split-field-container uiLabel-left form-element__label uiLabel">
+                                    <span class="slds-form-element__label slds-no-flex slds-float_left">
+                                        <template if:true={isAttributeRequired}>
+                                            <abbr title="required">*</abbr>
+                                        </template>
+                                        <span class="">Motivo do chat</span>
+                                    </span>
+
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <select
+                                                class="ChatReason__c slds-style-select select"
+                                                size="1"
+                                                aria-describedby=""
+                                                id="ChatReason__c"
+                                                data-aura-rendered-by="411:0"
+                                                data-interactive-lib-uid="4"
+                                                name="motivoChat"
+                                                onchange={selectionChangeHandler}
+                                                disabled={isPicklistDisabled}
+                                                required={isAttributeRequired}
+                                                aria-required="true"
+                                            >
+                                                <option value="">--Nenhum--</option>
+                                                <option value="Acompanhamento de Prospostas">Acompanhamento de Prospostas</option>
+                                                <option value="Comissão">Comissão</option>
+                                                <option value="Credenciamento">Credenciamento</option>
+                                                <option value="PPW">PPW</option>
+                                                <option value="Outros">Outros</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="buttonWrapper embeddedServiceSidebarForm">
+            <button
+                disabled={enableButtonStartChat}
+                type="button"
+                onclick={handleStartChat}
+                class="slds-button slds-button--neutral startButton uiButton--default uiButton embeddedServiceSidebarButton"
+            >
+                <span class="label bBody">{startChatLabel}</span>
+            </button>
+        </div>
+    </div>
+</template>

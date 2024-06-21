@@ -1,0 +1,8 @@
+/* 
+.spacing-top {
+    padding-top: var(--spacing, 8px);
+} */
+
+.slds-float_right{
+    padding-right: var(--spacing, 24px);
+}

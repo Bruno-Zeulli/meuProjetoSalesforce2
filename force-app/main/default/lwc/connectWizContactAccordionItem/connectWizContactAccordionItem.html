@@ -1,0 +1,101 @@
+<template>
+    <div class="slds-grid">
+        <div onclick={handleAccordionClick} class="slds-col slds-size_11-of-12">
+            <span  onclick={handleAccordionClick} class="slds-var-m-horizontal_small" title="Contatos">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.001 0H10.001C9.45102 0 9.00102 0.45 9.00102 1V10L12.001 7H17.001C17.551 7 18.001 6.55 18.001 6V1C18.001 0.45 17.551 0 17.001 0ZM16.231 12.26L13.691 11.97C13.081 11.9 12.481 12.11 12.051 12.54L10.211 14.38C7.38102 12.94 5.06102 10.63 3.62102 7.79L5.47102 5.94C5.90102 5.51 6.11102 4.91 6.04102 4.3L5.75102 1.78C5.63102 0.77 4.78102 0.00999999 3.76102 0.00999999H2.03102C0.901018 0.00999999 -0.0389828 0.95 0.0310172 2.08C0.561017 10.62 7.39102 17.44 15.921 17.97C17.051 18.04 17.991 17.1 17.991 15.97V14.24C18.001 13.23 17.241 12.38 16.231 12.26Z" fill="#F56C00"/>
+                </svg>
+            </span>
+            <span class="accordion-item-title slds-var-m-horizontal_small">
+                <b>Contatos</b>
+            </span>
+        </div>
+        <div onclick={handleAccordionClick} if:false={isOpen} class="slds-col slds-size_1-of-12">
+            <span class="slds-var-p-left_medium">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.11875 1.29006L5.99875 5.17006L9.87875 1.29006C10.2688 0.900059 10.8988 0.900059 11.2888 1.29006C11.6788 1.68006 11.6788 2.31006 11.2888 2.70006L6.69875 7.29006C6.30875 7.68006 5.67875 7.68006 5.28875 7.29006L0.69875 2.70006C0.30875 2.31006 0.30875 1.68006 0.69875 1.29006C1.08875 0.910059 1.72875 0.900059 2.11875 1.29006Z" fill="#BF5600"/>
+                </svg>
+            </span>
+        </div>
+        <div if:true={isOpen} onclick={handleAccordionClick} class="slds-col slds-size_1-of-12">
+            <span class="slds-var-p-left_medium">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.11875 6.70998L5.99875 2.82998L9.87875 6.70998C10.2688 7.09998 10.8988 7.09998 11.2888 6.70998C11.6788 6.31998 11.6788 5.68998 11.2888 5.29998L6.69875 0.70998C6.30875 0.31998 5.67875 0.31998 5.28875 0.70998L0.69875 5.29998C0.30875 5.68998 0.30875 6.31998 0.69875 6.70998C1.08875 7.08998 1.72875 7.09998 2.11875 6.70998Z" fill="#BF5600"/>
+                </svg>
+            </span>
+        </div>
+    </div>
+    <div if:true={isOpen}>
+        <hr class="slds-var-m-top_medium">
+        <template for:each={contatos} for:item="contato">
+            <div data-id={contato.ordem} class="slds-wrap form-container slds-var-m-around_x-small slds-var-p-around_medium slds-grid" key={contato.ordem}>
+                <div onclick={handleContatoInformation} data-id={contato.ordem} class="slds-col slds-size_11-of-12 contato-item">
+                    Contato {contato.ordem} | {contato.nome}
+                </div>
+                <div data-id={contato.ordem} onclick={handleContatoInformation} class="slds-col_bump-left slds-size_1-of-12">
+                    <!-- sldsValidatorIgnoreNextLine -->
+                    <lightning-button-icon if:false={contato.showDetails} variant="bare" size="medium" icon-name="utility:chevrondown" class="button-accordion slds-p-horizontal_medium"
+                    title="Vizualizar detalhes da proposta">
+                    </lightning-button-icon>
+                    <!-- sldsValidatorIgnoreNextLine -->
+                    <lightning-button-icon if:true={contato.showDetails} variant="bare" size="medium" icon-name="utility:chevronup" class="button-accordion slds-p-horizontal_medium"
+                    title="Fechar detalhes da proposta">
+                    </lightning-button-icon>
+                </div>
+                <div if:true={contato.showDetails} data-id={contato.ordem} class="slds-col slds-size_12-of-12">
+                <hr>
+                    <div class="content_form">
+                        <div class="form-element slds-var-p-vertical_small">
+                            <label class="form-element__label" for="stacked-input-id-01">NOME DO CONTATO</label>
+                            <div class="form-element__control">
+                                <span><p><strong>{contato.nome}</strong></p></span>
+                            </div>
+                        </div>
+                        <div class="form-element slds-var-p-vertical_small form-element_stacked">
+                            <label class="form-element__label" for="stacked-input-id-01">TELEFONE DE CONTATO</label>
+                            <div class="form-element__control">
+                                <span><p><strong>{contato.telefone}</strong></p></span>
+                            </div>
+                        </div>
+                        <div class="form-element slds-var-p-vertical_small form-element_stacked">
+                            <label class="form-element__label" for="stacked-input-id-01">CELULAR</label>
+                            <div class="form-element__control">
+                                <span><p><strong>{contato.celular}</strong></p></span>
+                            </div>
+                        </div>
+                        <div class="form-element slds-var-p-vertical_small form-element_stacked">
+                            <label class="form-element__label" for="stacked-input-id-01">EMAIL</label>
+                            <div class="form-element__control">
+                                <span><p><strong>{contato.email}</strong></p></span>
+                            </div>
+                        </div>
+                        <div class="form-element slds-var-p-vertical_small form-element_stacked">
+                            <label class="form-element__label" for="stacked-input-id-01">CARGO</label>
+                            <div class="form-element__control">
+                                <span><p><strong>{contato.cargo}</strong></p></span>
+                            </div>
+                        </div>
+                        <div class="form-element slds-var-p-vertical_small form-element_stacked">
+                            <label class="form-element__label" for="stacked-input-id-01">DATA DE NASCIMENTO</label>
+                            <div class="form-element__control">
+                                <span><p><strong>{contato.dataDeNascimento}</strong></p></span>
+                            </div>
+                        </div>
+                        <div class="form-element slds-var-p-vertical_small form-element_stacked">
+                            <label class="form-element__label" for="stacked-input-id-01">TIME DO CORAÇÃO</label>
+                            <div class="form-element__control">
+                                <span><p><strong>{contato.timeDoCoracao}</strong></p></span>
+                            </div>
+                        </div>
+                        <!-- <div class="form-element slds-var-p-vertical_small form-element_stacked">
+                            <label class="form-element__label" for="stacked-input-id-01">DESEJA LIBERAR ACESSO AO MÓDULO CLIENTE</label>
+                            <div class="form-element__control">
+                                <span><p><strong>{contato.moduloCliente}</strong></p></span>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

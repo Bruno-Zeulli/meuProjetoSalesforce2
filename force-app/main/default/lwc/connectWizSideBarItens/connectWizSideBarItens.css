@@ -1,0 +1,71 @@
+@font-face {
+   font-family: "Inter";
+   src: url('/resource/InterRobotoFamily/static/Inter-Regular.ttf') format('TrueType');
+}
+
+.divider {
+    height: 3rem;
+}
+
+.divider hr{
+    width: 72px;
+    height: 2px;
+    background-color: #D6D7D8 !important;
+}
+
+.nav-item div{
+    height: 0.8rem;
+}
+
+.nav-container{
+    height: 1.5rem;
+}
+
+.sidebar-button{
+    position: relative;
+    display: inline;
+}
+
+button{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25rem;
+    gap: 2px;
+
+    width: 4.5rem;
+    height: auto;
+    background-color: transparent;
+    border-radius: 4px;
+    border-style: none;
+    flex: none;
+    /* order: 1; */
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+button:hover svg,button:hover span, a:hover{
+    fill: #934100;
+    color: #934100;
+}
+
+.nav-item-text{
+    font-family: var(--font-family, 'Inter', sans-serif);
+    font-style: bold;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0px;
+    line-height: 170%;
+    color: #F56C00;
+}
+
+.btn-active, .btn-active span, .btn-active svg {
+    background-color: #FFE1CA !important;
+    color: #934100;
+    fill: #934100;
+}
+
+svg {
+    vertical-align: baseline !important;
+}

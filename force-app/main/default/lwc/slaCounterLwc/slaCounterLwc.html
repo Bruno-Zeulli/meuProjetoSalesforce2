@@ -1,0 +1,51 @@
+<template>
+    <lightning-card title="Marcos" icon-name="standard:entity_milestone">
+        <div if:true={showSpinner}>
+            <lightning-spinner></lightning-spinner>
+        </div>
+        <div if:true={showEtapa} class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12">
+            <p style="text-align: left; font-size: 14px; padding: 5px; margin-left: 10px;"> <b
+                    style="vertical-align: -2px">{nomeEtapa}</b>
+            </p>
+        </div>
+        <div class="slds-grid slds-wrap">
+            <div style="text-align: center;"
+                class="slds-col slds-large-size_8-of-12 slds-medium-size_8-of-12 slds-size_8-of-12">
+                <p style="text-align: left; font-size: 14px; padding: 5px; margin-left: 10px; margin-top: -6px;"> <i
+                        style="vertical-align: -2px">{returnToShow}</i>
+                </p>
+            </div>
+            <div if:true={showButton}
+                class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_4-of-12"
+                style="text-align: right; margin-top: -73px; margin-left: -7px;">
+                <lightning-button-icon icon-name="utility:refresh" variant="border-filled" alternative-text="Atualizar"
+                    class="slds-m-left_xxx-small" title="Atualizar" onclick={updateMilestone}></lightning-button-icon>
+            </div>
+        </div>
+        <lightning-accordion if:true={showCompletedMilestones} allow-multiple-sections-open
+            onsectiontoggle={handleSectionToggle} active-section-name={activeSections}>
+            <lightning-accordion-section name="A" label="Concluídos">
+                <template for:each={completedMS} for:item="entit">
+                    <div key={entit.Id} class="slds-grid slds-wrap slds-border_top">
+                        <div key={entit.Id} style="text-align: left; padding: 10px 0px 10px 0px;"
+                            class="slds-col slds-large-size_8-of-12 slds-medium-size_8-of-12 slds-size_8-of-12">
+                            <p key={entit.Id}><b>{entit.MilestoneType.Name}</b></p>
+                            <p if:true={entit.IsViolated} key={entit.Id}>Violado</p>
+                            <p if:false={entit.IsViolated} key={entit.Id}>Concluído</p>
+
+                        </div>
+                        <div key={entit.Id} style="text-align: right; margin-top: 19px;"
+                            class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_4-of-12">
+                            <lightning-icon key={entit.Id} if:true={entit.IsViolated} icon-name="utility:error"
+                                alternative-text="Violado" size="x-small" title="Violado"></lightning-icon>
+                            <lightning-icon key={entit.Id} if:false={entit.IsViolated} icon-name="utility:check"
+                                alternative-text="Concluído" size="x-small" title="Concluído"></lightning-icon>
+                        </div>
+                    </div>
+                </template>
+                <div class="slds-border_top"></div>
+            </lightning-accordion-section>
+        </lightning-accordion>
+
+    </lightning-card>
+</template>

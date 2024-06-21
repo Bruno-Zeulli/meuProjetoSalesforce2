@@ -1,0 +1,78 @@
+@font-face {
+    font-family: "myFontInter";
+    src: url('/resource/InterRobotoFamily/static/Inter-Regular.ttf') format('TrueType');
+}
+
+/* .container-fluid{
+    margin: 0 !important;
+} */
+
+.header-container {
+    margin: 1% 0;
+}
+.item-header {
+    background-color: #FCFCFC;
+    border-radius: 4px;
+    padding: 12px 6px;
+
+}
+
+.slds-size_3-of-12, .slds-size--3-of-12 {
+    width: 30%;
+}
+
+/*
+.button {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+
+    padding: var(--spacing, 6px),  var(--spacing, 8px);
+    width: 131px;
+    height: 48px;
+
+    border: 2px solid var(--color-border-customer ,#004E87);
+    border-radius: 4px;
+    background-color: var(--color-background-customer, #F9F7F7);
+    color: var(--color-text-customer,#004E87);
+
+}
+
+button:hover{
+    background-color: var(--color-background-customer, #DAEFFF);
+}
+
+.box-align{
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+.register-style{
+    font-weight: var(--font-weight-regular, 600);
+    font-size: var(--font-size, 14px);
+    color: var(--color-text-customer,#F9F7F7);
+    background-color: var(--color-background-customer, #175296);
+}
+
+.text-export{
+    padding-top: var(--spacing, 12px);
+    padding-bottom: var(--spacing, 12px);
+}
+
+.icon-export{
+    padding: var(--spacing, 16px)  var(--spacing, 16px)  var(--spacing, 16px)  var(--spacing, 8px)  ;
+}
+
+.icon-export img{
+    width: 24px;
+    height: 16px;
+} */

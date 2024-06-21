@@ -1,0 +1,70 @@
+<template>
+    
+     <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            </header>
+            <div if:true={isLoading}>
+            <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <div if:true={loading}>
+                    <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+                </div>
+                <div class="slds-grid modal-title">
+                    <div class="slds-col slds-size_12-of-12 slds-p-around_small">
+                        <span class="title-modal">Duplicar Cotação</span>
+                    </div>
+                </div>
+                <div class="slds-p-around_small">
+                    <c-connect-wiz-multipicklist
+                    name="options"
+                    required="true"
+                    placeholder ="Selecione as segurdoras"
+                    options={options}
+                    onchange={handleChange}></c-connect-wiz-multipicklist>
+                </div>
+                <div class="slds-p-around_small">
+                    <lightning-input onchange={handlePremio} type="number" placeholder="Prêmio" formatter="currency"></lightning-input>
+                </div>
+                <div class="slds-p-around_small">
+                    <lightning-input onchange={handleImportania} type="number" placeholder="Importância segurada" formatter="currency"></lightning-input>
+                </div>
+                <div class="slds-p-around_small">
+                    <lightning-input onchange={handleDataEnvio} type="date" placeholder="Data de envio para a seguradora" ></lightning-input>
+                </div>
+                <div class="slds-p-around_small">
+                    <lightning-input onchange={handleDataRecebimento} type="date" placeholder="Data de recebimento da seguradora" ></lightning-input>
+                </div>
+                <div style="display: flex; justify-content: flex-end" class="slds-p-around_small">
+                    <lightning-button variant="brand" label="Duplicar" title="Primary action" onclick={handleClickDuplicate} class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    <section if:true={isLoading} role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            </header>
+                <div if:true={isLoading}>
+                <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+                </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

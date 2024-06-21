@@ -1,0 +1,79 @@
+.pagination-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    gap: 16px;
+
+    height: 52px;
+
+    background: #FCFCFC;
+    border-radius: 0px 0px 4px 4px;
+}
+
+/* .btn-arrow {
+
+
+    background: #FCFCFC;
+    border: none;
+} */
+
+
+.btn-arrow button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8px;
+    gap: 10px;
+
+    width: 36px;
+    height: 36px;
+
+    background: #FCFCFC;
+    border-radius: 40px;
+    border: none;
+}
+
+.btn-arrow button:hover{
+    background: #FFF0E4
+}
+
+.btn-arrow button:focus{
+    background: #FFB578
+}
+
+.btn-arrow button:disabled{
+    background: #FCFCFC
+}
+
+.btn-arrow svg {
+    fill:#BF5600;
+}
+
+.btn-arrow svg:hover {
+    fill:#8F4100;
+}
+
+.btn-arrow svg:focus {
+    fill:#602B00;
+}
+
+.btn-arrow button:disabled > div >svg {
+    fill:#50555A;
+}
+
+p{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+
+    display: flex;
+    align-items: flex-end;
+    letter-spacing: 0.01em;
+
+    color: #080809;
+
+}

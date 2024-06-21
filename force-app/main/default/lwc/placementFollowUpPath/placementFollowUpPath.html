@@ -1,0 +1,27 @@
+<template>
+    <template if:true={loaded}>
+        <lightning-card class='custom-progress-indicator'>
+            <div class='content'>
+            
+                <lightning-progress-indicator current-step={selectedStep} type="path" variant="brand">
+                    <template for:each={stepList} for:item="step">
+                        <lightning-progress-step label={step} value={step} key={step}>
+                        </lightning-progress-step>
+                    </template>
+                    <template if:true={showCompleteStep}>
+                        <lightning-button variant="brand" label="Concluir Etapa" 
+                            title="Mark Step As Complete" onclick={handleComplete} class="slds-m-left_x-small">
+                        </lightning-button>
+                    </template>
+                </lightning-progress-indicator>
+
+            </div> 
+        </lightning-card>
+    </template>
+
+    <template if:false={loaded}>
+        <div class = 'custom-path-spinner'>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </div>
+    </template>
+</template>

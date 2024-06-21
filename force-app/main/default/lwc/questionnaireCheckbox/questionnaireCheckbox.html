@@ -1,0 +1,12 @@
+<template>
+    <div>
+        <div class="slds-p-around_medium">
+            <lightning-checkbox-group label={label} options={_options} value={_initialOptions} disabled={readOnly}
+                onchange={handleSelectionChange}></lightning-checkbox-group>
+            <template lwc:if={allowComment}>
+                <lightning-textarea label="Comentários" value={comment} disabled={readOnly}
+                    onchange={handleCommentChange}></lightning-textarea>
+            </template>
+        </div>
+    </div>
+</template>

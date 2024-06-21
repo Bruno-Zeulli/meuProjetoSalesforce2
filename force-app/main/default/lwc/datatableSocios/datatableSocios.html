@@ -1,0 +1,22 @@
+<template>
+    <template if:true={rtOperacoesEstruturadas}>
+        <lightning-card variant="narrow" icon-name="standard:avatar">
+            <h1 slot="title">Sócios</h1>
+
+            <div class="div-datatable">
+
+                <lightning-datatable key-field="Id" data={records} columns={sociosColumns}
+                    sorted-direction={sortedDirection} sorted-by={sortedBy} onsort={doSorting}
+                    hide-checkbox-column="true" column-widths-mode="fixed" onrowaction={callRowAction}>
+                </lightning-datatable>
+
+            </div>
+            <!-- <div slot="actions">
+                <lightning-button label="New" slot="actions"></lightning-button>
+            </div> -->
+            <div slot="footer">
+            </div>
+        </lightning-card>
+    </template>
+
+</template>

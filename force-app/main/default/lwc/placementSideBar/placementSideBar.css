@@ -1,0 +1,90 @@
+.card{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #D4D4D4;
+    border-bottom: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 97vh;
+    padding: 24px 8px;
+}
+
+.menu-list{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.menu-item{
+    width: 100%;
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+}
+
+.active-menu-item{
+    width: 100%;
+    background-color: #FFF3E6;
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+}
+
+.card-inside{
+    --slds-c-card-color-border: white;
+}
+
+.quote-button{
+    --slds-c-button-text-color: #50555A;
+    --slds-c-button-text-color-hover: #FE8202;
+    --slds-c-button-text-color-active: #FE8202;
+    --slds-c-button-neutral-color-background-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background-active: #FFFFFF;
+    --slds-c-button-sizing-border: 0px;
+    --slds-c-button-shadow: 0;
+    --slds-c-button-shadow-focus: 0;
+
+}
+
+.client-button{
+    --slds-c-button-text-color: #50555A;
+    --slds-c-button-text-color-hover: #FE8202;
+    --slds-c-button-text-color-active: #FE8202;
+    --slds-c-button-neutral-color-background-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background-active: #FFFFFF;
+    --slds-c-button-sizing-border: 0px;
+    --slds-c-button-shadow: 0;
+    --slds-c-button-shadow-focus: 0;
+}
+
+.complete-button{
+    --slds-c-button-text-color: #50555A;
+    --slds-c-button-text-color-hover: #FE8202;
+    --slds-c-button-text-color-active: #FE8202;
+    --slds-c-button-neutral-color-background-hover: #FFFFFF;
+    --slds-c-button-neutral-color-background-active: #FFFFFF;
+    --slds-c-button-sizing-border: 0px;
+    --slds-c-button-shadow: 0;
+    --slds-c-button-shadow-focus: 0;
+}
+
+.exit-button{
+    --slds-c-button-text-color: #50555A;
+    --slds-c-button-text-color-hover: #FE8202;
+    --slds-c-button-text-color-active: #FE8202;
+    --slds-c-button-sizing-border: 0px;
+    --slds-c-button-shadow: 0;
+    --slds-c-button-shadow-focus: 0;
+}
+
+.active-button{
+    --slds-c-button-text-color: #FE8202;
+    --slds-c-button-text-color-hover: #FE8202;
+    --slds-c-button-text-color-active: #FE8202;
+    --slds-c-button-neutral-color-background: #FFF3E6;
+    --slds-c-button-neutral-color-background-hover: #FFF3E6;
+    --slds-c-button-neutral-color-background-active: #FFF3E6;
+    --slds-c-button-sizing-border: 0px;
+    --slds-c-button-shadow: 0;
+    --slds-c-button-shadow-focus: 0;
+}

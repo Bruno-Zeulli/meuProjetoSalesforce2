@@ -1,0 +1,119 @@
+.task-item_content {
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+
+    /* width: 319px; */
+    /* height: 40px; */
+    min-height: 40px;
+
+    background: #EAEBEB;
+    border-radius: 4px;
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 6px;
+}
+
+.task_item {
+    width: 49px;
+    height: 24px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 170%;
+
+    color: #212223;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0
+}
+
+.content_details {
+    margin: 8px;
+}
+
+.content_docs_container {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+
+    /* width: 319px; */
+    height: 42px;
+    border: 1px solid #B7BBBF;
+    border-radius: 4px;
+    margin: 6px;
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.task_docs_txt {
+    width: 103px;
+    height: 24px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 170%;
+    padding: inherit;
+    /* display: flex; */
+    align-items: center;
+    text-align: center;
+
+    color: #080809;
+    margin-left: 6px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.btn_doc_look {
+    box-sizing: border-box;
+
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 8px;
+    gap: 8px;
+
+    width: 75px;
+    height: 32px;
+    border: 2px solid #EF6C00;
+    border-radius: 4px;
+
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+}
+
+.btn_txt {
+    width: 27px;
+    height: 24px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+
+    display: flex-end;
+    align-items: center;
+    text-align: center;
+
+    color: #8F4100;
+}

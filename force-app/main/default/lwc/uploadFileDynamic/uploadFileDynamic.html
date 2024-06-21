@@ -1,0 +1,15 @@
+<template>
+    <div>
+        <div if:true={loader}>
+            <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+        </div>
+        <lightning-file-upload
+                        name="fileUploader"
+                        accept={acceptedFormats}
+                        record-id={recordid}
+                        onuploadfinished={handleUploadFinished}
+                        multiple>
+        </lightning-file-upload>
+    </div>
+    
+</template>

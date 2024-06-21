@@ -1,0 +1,121 @@
+<template>
+    <template if:true={rtConsorcio}>
+        <lightning-card variant="narrow" icon-name="standard:file">
+            <h1 slot="title">Arquivos ({docCount})</h1>
+            <div if:true={loader}>
+                <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+            </div>
+
+
+            <div class="div-datatable">
+                <template if:false={hasFile}>
+                    <p><i>Não há arquivos para exibir nesta oportunidade</i></p>
+                </template>
+                <template for:each={docs} for:item="doc">
+                    <div class="row" key={doc.id}>
+                        <div class="docInfo">
+                            <p>Nome: {doc.name}</p>
+                            <p>Status: <b class={doc.class}>{doc.status}</b></p>
+                            <template lwc:if={doc.reasonVisible}>
+                                <p>Motivo da recusa: <b>{doc.reason}</b></p>
+                            </template>
+                        </div>
+                        <div class="docLink">
+                            <button class="downloadLink" data-name={doc.url} onclick={downloadFile}>Baixar</button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <template if:true={hasFile}>
+                <div slot="footer">
+                    <button aria-live="off" type="button" class="slds-button slds-button--neutral uiButton"
+                        aria-label="" data-aura-rendered-by="1265:0" data-aura-class="uiButton" onclick={openModal}>
+                        Gerenciar arquivos
+                    </button>
+                </div>
+            </template>
+        </lightning-card>
+
+        <template if:true={isModalOpen}>
+
+            <!-- Modal/Popup Box LWC starts here -->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="spinner">
+                    <template if:true={isLoading}>
+                        <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+                        </lightning-spinner>
+                    </template>
+                </div>
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                                size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Gerenciamento de
+                            Arquivos
+                        </h2>
+                    </header>
+
+                    <!-- Modal/Popup Box LWC body starts here -->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning-card><lightning-button label="Baixar em lote" onclick={downloadAllFiles}
+                                slot="actions"></lightning-button>
+                            <div>
+
+                                <template for:each={docs} for:item="doc">
+                                    <div class="row-modal" data-row-id={doc.id} key={doc.id}>
+                                        <div>
+                                            <div class="docInfo">
+                                                <p>Nome: {doc.name}</p>
+                                                <p>Status: <b class={doc.class}
+                                                        data-row-status={doc.id}>{doc.status}</b>
+                                                </p>
+                                            </div>
+                                            <div class="docActions">
+                                                <button class="actionButton" data-id={doc.id} onclick={accepted}>
+                                                    <lightning-icon icon-name='utility:check' alternative-text='Aprovar'
+                                                        variant='success' size='small' title='Aprovar'
+                                                        class=""></lightning-icon>
+                                                </button>
+                                                <button class="actionButton" data-id={doc.id} onclick={refused}>
+                                                    <lightning-icon icon-name='utility:close'
+                                                        alternative-text='Reprovar' variant='error' size='small'
+                                                        title='Reprovar' class=""></lightning-icon>
+                                                </button>
+                                                <button class="actionButton" data-name={doc.url} onclick={downloadFile}>
+                                                    <lightning-icon icon-name='utility:download'
+                                                        alternative-text='Download' variant='warning' size='small'
+                                                        title='Download'></lightning-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="docReason">
+                                            <span data-id={doc.id}>Motivo da recusa: </span>
+                                            <input type="text" value={doc.reason} data-reason={doc.id} onblur={refused}>
+                                        </div>
+                                    </div>
+                                </template>
+
+                            </div>
+                        </lightning-card>
+                    </div>
+
+                    <!-- Modal/Popup Box LWC footer starts here -->
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_brand" onclick={saveStatus}
+                            title="Salvar">Salvar</button>
+                        <button class="slds-button slds-button_neutral" onclick={closeModal}
+                            title="Cancelar">Cancelar</button>
+                    </footer>
+
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </template>
+</template>

@@ -1,0 +1,134 @@
+<template>
+    <div class="header-container">
+        <div class="header-conteiner-item">
+            <div class="">
+                <span class="main-text"><b>{accountName}</b></span>
+                <div class="slds-var-p-top_x-small">
+                    <div class="slds-col">
+                        <span if:true={origin} class="subtext slds-var-m-right_medium"><b>{origin}</b></span>
+                        <span if:true={origin} class="subtext-pipe slds-var-m-right_medium"><b>|</b></span>
+                        <span if:true={productName} class="subtext slds-var-m-right_medium"><b>{productName}</b></span>
+                        <span if:true={productName} class="subtext-pipe slds-var-m-right_medium"><b>|</b></span>
+                        <span if:true={opportunityNumber} class="subtext slds-var-m-right_medium"><b>Nº {opportunityNumber}</b></span>
+                        <span if:true={opportunityNumber} class="subtext-pipe slds-var-m-right_medium"><b>|</b></span>
+                    </div>
+                </div>
+                <div class="slds-var-m-top_medium">
+                    <div class="">
+                        <div class="spacing-content-td">
+                            <div class="card-product">
+                                <div class="card-product-padding"><span>Responsável Atual: <b> {userName}</b></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="identification-number">
+                    <c-copy-to-clipboard-util></c-copy-to-clipboard-util>
+                    <span class="main-text"><b>CNPJ: {identificationNumber}</b></span>
+
+                    <!-- sldsValidatorIgnoreNextLine -->
+                    <button class="btn-copy" onclick={copyText}>
+                        <span class="icon-copy slds-var-m-left_medium">
+                            <svg width="17" height="20" viewBox="0 0 15 18" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.5 15.6665H2.16667V4.83317C2.16667 4.37484 1.79167 3.99984 1.33333 3.99984C0.875 3.99984 0.5 4.37484 0.5 4.83317V15.6665C0.5 16.5832 1.25 17.3332 2.16667 17.3332H10.5C10.9583 17.3332 11.3333 16.9582 11.3333 16.4998C11.3333 16.0415 10.9583 15.6665 10.5 15.6665ZM14.6667 12.3332V2.33317C14.6667 1.4165 13.9167 0.666504 13 0.666504H5.5C4.58333 0.666504 3.83333 1.4165 3.83333 2.33317V12.3332C3.83333 13.2498 4.58333 13.9998 5.5 13.9998H13C13.9167 13.9998 14.6667 13.2498 14.6667 12.3332ZM13 12.3332H5.5V2.33317H13V12.3332Z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <!-- <lightning-button-icon class="icon-copy slds-m-left_medium" variant="bare" size="large" icon-name="utility:copy" alternative-text="Copiar CNPJ" title="CopiarCNPJ"></lightning-button-icon > -->
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="slds-grid">
+            <div class="slds-col slds-size_5-of-5 ">
+                <div class="slds-col flex-container">
+                    <!-- sldsValidatorIgnoreNextLine -->
+                    <button class="slds-button slds-button_neutral btn_history-registration"
+                        onclick={showRegisterHistory}
+                    >
+                        <span class="btn_history-label">
+                            Registrar Histórico
+                        </span>
+                    </button>
+                    <template if:true={showRegisterHistoryModal}>
+                        <c-connect-wiz-register-history-modal
+                            onsendclosemodaltoparent={closeModalRegisterHistory}
+                            onrefresh={handleRefresh}
+                            onrecordsaved={refreshData}
+                        ></c-connect-wiz-register-history-modal>
+                    </template>
+
+                    <!-- sldsValidatorIgnoreNextLine -->
+                    <button class="slds-button slds-button_neutral btn_other-actions"
+                        onclick={showOthersOptions}
+                    >
+                        <span class="btn_actions-label">
+                            Outras Ações
+                        </span>
+                        <span class="icon-item">
+                            <svg width="4" height="16" viewBox="0 0 4 16" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 4C3.1 4 4 3.1 4 2C4 0.9 3.1 0 2 0C0.9 0 0 0.9 0 2C0 3.1 0.9 4 2 4ZM2 6C0.9 6 0 6.9 0 8C0 9.1 0.9 10 2 10C3.1 10 4 9.1 4 8C4 6.9 3.1 6 2 6ZM2 12C0.9 12 0 12.9 0 14C0 15.1 0.9 16 2 16C3.1 16 4 15.1 4 14C4 12.9 3.1 12 2 12Z"/>
+                            </svg>
+
+                        </span>
+
+                    </button>
+                    <!-- lightning button for open modal window -->
+                    <template if:true={showOthersOptionsPopover}>
+                        <section aria-describedby="popover-body-id" class="popover" role="dialog">
+                            <div class="slds-p-around_none" id="dialog-body-id-8">
+                                <div class="slds-media">
+                                    <div id="popover-body-id" class="popover__body">
+                                        <!-- sldsValidatorIgnoreNextLine -->
+                                        <div class="list_item">
+                                            <div class="media__body">
+                                                <!-- sldsValidatorIgnoreNextLine -->
+                                                <button class="slds-text-link_reset btn_popover" onclick={showReassign}>
+                                                    <h3 class="slds-truncate" title="Reassing Opportunity">
+                                                        Reatribuir oportunidade
+                                                    </h3>
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                        <div class="list_item">
+                                            <div class="slds-media__body">
+                                                <!-- sldsValidatorIgnoreNextLine -->
+                                                <button class="slds-text-link_reset btn_popover" onclick={showMarkAsLost}>
+                                                    <h3 class="slds-truncate" title="Mark as lost">
+                                                        Marcar como perdido
+                                                    </h3>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+
+                    <!-- <c-connect-wiz-others-options-popover
+                        sendclosepopovertoparent={closeOthersOptionsPopover}
+                        onrefresh={handleRefresh}
+                    ></c-connect-wiz-others-options-popover> -->
+                </template>
+                <template if:true={showReassignModal}>
+                        <c-connect-wiz-reassign-opportunity-modal
+                            onsendclosemodaltoparent={closeModalOthersOptions}
+                            onsendclosepopovertoparent={handleSelectClosePopover}
+                            onrefresh={closeModalOthersOptions}
+                            onselecteduser={selectedUserHandler}
+                        ></c-connect-wiz-reassign-opportunity-modal>
+                    </template>
+                    <template if:true={showMarkAsLostModal}>
+                        <c-connect-wiz-mark-as-lost-modal
+                            onsendclosemodaltoparent={closeModalOthersOptions}
+                            onsendclosepopovertoparent={handleSelectClosePopover}
+                            onrefresh={closeModalOthersOptions}
+                        ></c-connect-wiz-mark-as-lost-modal>
+                    </template>
+                </div>
+            </div>
+        </div>
+</template>

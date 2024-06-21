@@ -1,0 +1,233 @@
+<template>
+    <template lwc:if={isPending}>
+        <div class="slds-grid slds-gutters slds-m-bottom_small slds-m-top_large">
+            <div class="slds-col slds-m-left_small customSearchInputClass">
+                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                    <lightning-icon size="x-small"
+                        class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                        icon-name="utility:search"></lightning-icon>
+                    <input type="text" placeholder="Pesquisar" class="slds-input" oninput={handleOnChange} />
+                </div>
+            </div>
+            <div class="slds-col slds-clearfix slds-m-right_small pending-btn">
+                <div class="slds-float_right slds-p-right_x-small">
+                    <lightning-button-icon class="buttonRefresh" icon-name="utility:refresh"
+                        alternative-text="Recarregar" onclick={handleRefresh} disable-animation></lightning-button-icon>
+                </div>
+                <div class="slds-float_right slds-p-right_small">
+                    <lightning-button class="buttonExport " label="Exportar" icon-name="utility:offline_cached"
+                        icon-position="right" onclick={exportCsv} disable-animation></lightning-button>
+                </div>
+                <div class="slds-float_right slds-p-right_small">
+                    <lightning-button class="buttonFilter" label="Filtros" icon-name="utility:filterList" icon-position="right"
+                        onclick={openModal} disable-animation></lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template lwc:if={isQuotes}>
+        <div class="slds-grid slds-gutters slds-m-bottom_small slds-m-top_large">
+            <div class="slds-col">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-m-left_small slds-size_3-of-12 cardTable">
+                        <lightning-card onclick={handleCardClick}>
+                            <p class="slds-p-left_small textCard">Total de oportunidades</p>
+                            <p class="slds-text-heading_large slds-p-left_small">{oppTotal}</p>
+                        </lightning-card>
+                    </div>
+                    <div class="slds-col slds-m-left_x-small slds-size_3-of-12 cardTable">
+                        <lightning-card onclick={handleCardClick}>
+                            <p class="slds-p-left_small">Dentro da SLA</p>
+                            <p class="slds-text-heading_large slds-p-left_small">15</p>
+                        </lightning-card>
+                    </div>
+                    <div class="slds-col slds-m-left_x-small slds-size_3-of-12 cardTable">
+                        <lightning-card onclick={handleCardClick}>
+                            <p class="slds-p-left_small">Fora da SLA</p>
+                            <p class="slds-text-heading_large slds-p-left_small">0</p>
+                        </lightning-card>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col">
+                <div class="slds-clearfix slds-p-bottom_small slds-p-top_x-small">
+                    <div class="slds-float_right slds-p-right_small">
+                        <lightning-button-icon class="buttonRefresh" icon-name="utility:refresh"
+                            alternative-text="Recarregar" onclick={handleRefresh} disable-animation></lightning-button-icon>
+                    </div>
+                    <div class="slds-float_right slds-p-right_small">
+                        <lightning-button class="buttonExport " label="Exportar" icon-name="utility:offline_cached"
+                            icon-position="right" onclick={exportCsv} disable-animation></lightning-button>
+                    </div>
+                    <div class="slds-float_right slds-p-right_small">
+                        <lightning-button class="buttonFilter" label="Filtros" icon-name="utility:filterList"
+                            icon-position="right" onclick={openModal} disable-animation></lightning-button>
+                    </div>
+                    
+                </div>
+                <div class="slds-clearfix slds-p-right_small">
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right slds-float_right  slds-size_8-of-12">
+                        <lightning-icon size="x-small"
+                            class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                            icon-name="utility:search"></lightning-icon>
+                        <input type="text" placeholder="Pesquisar" class="slds-input" oninput={handleOnChange} />
+                    </div>
+                    <lightning-helptext content="Para usar mais de um parâmetro utilize ponto e virgula
+                    Ex.: novo; vida" class="slds-float_right"></lightning-helptext>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <div class="slds-m-left_small slds-m-right_x-small">
+        <c-extended-data-table oncustombuttonclick={openAssignModal} key-field="caseId" data={displayData} columns={columns} hide-default-actions="true"
+            hide-checkbox-column="true" onbuttonclick={handleButtonClick} onrowaction={handleRowAction} onsave={handleSave}></c-extended-data-table>
+    </div>
+    <div class="slds-align_absolute-center slds-p-top_small">
+        <span class="slds-p-left_x-small">
+            <lightning-button-icon icon-name="utility:jump_to_left" variant="bare" onclick={handleFirstPage}
+                disabled={isFirst}></lightning-button-icon>
+            <lightning-button-icon icon-name="utility:chevronleft" variant="bare" label="anterior"
+                onclick={handlePrevPage} disabled={isFirst}></lightning-button-icon>
+        </span>
+        <span class="slds-p-left_x-small"> <b>{currentPage} de {lastPage}</b></span>
+        <span class="slds-p-left_x-small">
+            <lightning-button-icon class="icon-color" icon-name="utility:chevronright" variant="bare"
+                onclick={handleNextPage} disabled={isLast} ></lightning-button-icon>
+            <lightning-button-icon class="icon-color" icon-name="utility:jump_to_right" variant="bare"
+                onclick={handleLastPage} disabled={isLast}></lightning-button-icon>
+        </span>
+    </div>
+    
+    <!-- Modal Filtros starts here -->
+    <template if:true={isModalOpen}>
+        <template if:false={loaded}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+        <template if:true={loaded}>
+            <!-- Modal/Popup Box LWC starts here -->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_small">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box LWC header here -->
+                    <header class="slds-modal__header">
+                        <div class="slds-grid slds-gutters slds-clearfix">
+                            <div class="slds-col slds-clearfix">
+                                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate slds-float_left ">
+                                    Filtrar
+                                </h2>
+                            </div>
+                            <div class="slds-col slds-float_right slds-clearfix">
+                                <lightning-button-icon onclick={closeModal} icon-name="utility:close"
+                                    alternative-text="Fechar" variant="bare"
+                                    class="slds-float_right slds-p-right_small fechar-btn"></lightning-button-icon>
+                            </div>
+                        </div>
+                    </header>
+                    <!-- Modal/Popup Box LWC body starts here -->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <div class="slds-text-heading_medium">Escolha o período</div>
+                        <div class="slds-grid slds-gutters modal-date-inputs">
+                            <div class="slds-col">
+                                <lightning-input type="date" name="startdate" class="modal-date" label-hidden
+                                    value={startDate} onchange={handleDateChange}></lightning-input>
+                            </div>
+                            <div class="slds-align_absolute-center">-</div>
+                            <div class="slds-col slds-m-right_large div-date">
+                                <lightning-input type="date" name="enddate" class="modal-date" value={endDate}
+                                    onchange={handleDateChange}></lightning-input>
+                            </div>
+                        </div>
+                        <div>
+                            <lightning-accordion allow-multiple-sections-open onsectiontoggle={handleSectionToggle}
+                                active-section-name={activeSections}>
+                                <lightning-accordion-section name="Status" label="Selecione o status da oportunidade">
+                                    <div class="checkbox-group">
+                                        <c-custom-checkbox options={statusFields} onselectionchange={handleCheckboxChange}></c-custom-checkbox>
+                                    </div>
+    
+                                </lightning-accordion-section>
+                                <template lwc:if={isAllQuotes}>
+                                    <lightning-accordion-section name="Responsavel" label="Selecione o responsável">
+                                        <c-custom-checkbox options={ownerNames} onselectionchange={handleCheckboxOwnerChange}></c-custom-checkbox>
+                                    </lightning-accordion-section>
+                                </template>
+    
+                            </lightning-accordion>
+                        </div>
+                    </div>
+                    <!-- Modal/Popup Box LWC footer starts here -->
+                    <footer class="slds-modal__footer">
+                        <div class="slds-grid slds-gutters slds-clearfix modal-footer-btns">
+                            <div class="slds-col">
+                                <button class="slds-button slds-align_absolute-center slds-button_neutral limpar-btn"
+                                    onclick={clearData}><b>Limpar Filtros</b></button>
+                            </div>
+                            <div class="slds-col slds-float_right">
+                                <button class="slds-button slds-button_brand filtrar-btn"
+                                    onclick={submitDetails}><b>Filtrar</b></button>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </template>
+
+    <!-- Modal Atribuir starts here -->
+    
+    <template if:true={isAssignModalOpen}>
+        <template if:true={loadedAssign}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_small">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box LWC header here -->
+                    <header class="slds-modal__header">
+                        <div class="slds-grid slds-gutters slds-clearfix slds-p-horizontal_x-small">
+                            <div class="slds-col slds-clearfix">
+                                <h3 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate slds-float_left ">
+                                    Atribuir oportunidade
+                                </h3>
+                            </div>
+                            <div class="slds-col slds-float_right slds-clearfix">
+                                <lightning-button-icon onclick={closeAssignModal} icon-name="utility:close" alternative-text="Fechar"
+                                    variant="bare" class="slds-float_right slds-p-right_small close-btn"></lightning-button-icon>
+                            </div>
+                        </div>
+                    </header>
+                    <!-- Modal/Popup Box LWC body starts here -->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                        <div class="slds-p-horizontal_x-small"> <b>NOME DO PROPONENTE</b> </div>
+                        <div class="slds-p-bottom_small slds-p-horizontal_x-small">{accountName}</div>
+                        <div class="slds-p-horizontal_x-small"> <b>PRODUTO</b> </div>
+                        <div class="slds-p-bottom_large slds-p-horizontal_x-small">{product}</div>
+                        <div class="slds-clearfix slds-p-horizontal_x-small slds-p-bottom_large">
+                            <div class=""><b>NOME DO RESPONSÁVEL</b></div>
+                            <div class="assign-picklist">
+                                <lightning-combobox name="assignName" value={valueAssignName} options={optionsAssignName}
+                                    onchange={handleChangeAssignName}></lightning-combobox>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                    <!-- Modal/Popup Box LWC footer starts here -->
+                    <footer class="slds-modal__footer ">
+                        <div class="slds-grid slds-p-horizontal_x-small">
+                            <div class="slds-col slds-clearfix">
+                                <button class="slds-button slds-button_brand assign-btn slds-float_left"
+                                    onclick={updateOwnerCaseFromPlacement} disabled={assignLoading}><b>Atribuir</b></button>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <template if:false={loadedAssign}>
+            <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+        </template>
+    </template>
+</template>

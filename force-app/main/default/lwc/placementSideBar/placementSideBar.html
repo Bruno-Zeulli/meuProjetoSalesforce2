@@ -1,0 +1,30 @@
+<template>
+
+    
+    <div class="card">
+        <div class="menu-list">
+            <div class={menuItemQuote}>
+                <lightning-button label="Cotações" icon-name="utility:cart" class={quoteButtonClass} onclick={handleButtonClick} disable-animation></lightning-button>
+            </div>
+                
+            <div class={menuItemClient}>
+                <lightning-button label="Clientes" icon-name="utility:groups" class={clientButtonClass} onclick={handleButtonClick} disable-animation></lightning-button>
+            </div>
+
+            <div class={menuItemComplete}>
+                <lightning-button label="Concluídas" icon-name="utility:archive" class={completeButtonClass} onclick={handleButtonClick} disable-animation></lightning-button>
+            </div>
+
+        </div>
+        <div class="menu-list">
+            <div class="menu-item">
+                <lightning-button label="Sair" icon-name="utility:logout" class="exit-button" onclick={handleLogout} disable-animation></lightning-button>
+            </div>
+
+        </div>
+         
+    </div>
+            
+
+
+</template>

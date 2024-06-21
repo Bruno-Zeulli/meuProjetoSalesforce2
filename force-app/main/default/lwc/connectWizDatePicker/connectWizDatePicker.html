@@ -1,0 +1,156 @@
+<template>
+    <div class="div-action slds-grid slds-wrap slds-size_5-of-12 ">
+        <div class="dropdown slds-col slds-size_5-of-12">
+            <button class="action-button ">
+                <div>
+                    <span>
+                        {labelButton}
+                    </span>                    
+                </div>
+                <div class="btn-icon">
+                    <svg width="7" height="5" viewBox="0 0 8 5" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.709563 1.71L3.29956 4.3C3.68956 4.69 4.31956 4.69 4.70956 4.3L7.29956 1.71C7.92956 1.08 7.47956 0 6.58956 0H1.40956C0.519563 0 0.0795632 1.08 0.709563 1.71Z"/>
+                    </svg>
+                </div>
+            </button>
+            <div class="dropdown-container">
+                <div class="dropdown-section">
+                    <div class="dropdown-content">
+                        <div class="dropdown-item">
+                            <input type="radio" id="last24hours" name="selectDate" value="1" onclick={handleSelectedPreSet}>
+                            <label for="last24hours">Últimas 24 horas</label>
+                        </div>
+                        <div class="dropdown-item">
+                            <input type="radio" id="last7days" name="selectDate" value="7" onclick={handleSelectedPreSet}>
+                            <label for="last7days">Últimos 7 dias</label>
+                        </div>
+                        <div class="dropdown-item">
+                            <input type="radio" id="last15days" name="selectDate" value="15" onclick={handleSelectedPreSet}>
+                            <label for="last15days">Últimos 15 dias</label>
+                        </div>
+                        <div class="dropdown-item">
+                            <input type="radio" id="last30days" name="selectDate" value="30" onclick={handleSelectedPreSet}>
+                            <label for="last30days">Últimos 30 dias</label>
+                        </div>
+                        <div class="dropdown-item">
+                            <input type="radio" id="last3months" name="selectDate" value="90" checked onclick={handleSelectedPreSet}>
+                            <label for="last3months">Últimos 3 meses</label>
+                        </div>
+                        <div class="dropdown-item">
+                            <input type="radio" id="last6months" name="selectDate" value="180" onclick={handleSelectedPreSet}>
+                            <label for="last6months">Últimos 6 meses</label>
+                        </div>
+                        <div class="dropdown-item">
+                            <input type="radio" id="last12months" name="selectDate" value="365" onclick={handleSelectedPreSet}>
+                            <label for="last12months">Últimos 12 meses</label>
+                        </div>
+                        <div class="dropdown-item">
+                            <input type="radio" id="customDays" name="selectDate" value="custom" onclick={handleSelectedCustomDate}>
+                            <label for="customDays">Personalizado</label>
+                        </div>
+                    </div>
+                    <div if:true={isCustomDateFilter} class="picker-container">
+                        <div>
+                            <div class="picker-header">
+                                <p>
+                                    <span>
+                                        Personalizado
+                                    </span>
+                                </p>
+                            </div>   
+                            <div class="picker-content">
+                                <div class="picker-item slds-col slds-size_6-of-12">
+                                    <lightning-input    type="date" 
+                                                        name="startDate" 
+                                                        placeholder="Selecione a data inicial" 
+                                                        value={selectedDateStartValue}
+                                                        onchange={handleChangeDateStartValue}
+                                    >
+                                    </lightning-input> 
+                                    <div if:true={isEmptyStartDate} class="waring-message">
+                                        <div class="waring-content_svg">
+                                            <svg width="16" height="16" viewBox="0 0 20 20" fill="#E00707" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 11C9.45 11 9 10.55 9 10V6C9 5.45 9.45 5 10 5C10.55 5 11 5.45 11 6V10C11 10.55 10.55 11 10 11ZM11 15H9V13H11V15Z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="waring-content_item">
+                                            <span>
+                                                Preencha a data inicial
+                                            </span>
+                                        </div>                                        
+                                    </div>
+                                    <div if:true={isStartDateGreaterThanCurrentDate} class="waring-message">
+                                        <div class="waring-content_svg">
+                                            <svg width="16" height="16" viewBox="0 0 20 20" fill="#E00707" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 11C9.45 11 9 10.55 9 10V6C9 5.45 9.45 5 10 5C10.55 5 11 5.45 11 6V10C11 10.55 10.55 11 10 11ZM11 15H9V13H11V15Z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="waring-content_item">
+                                            <span>
+                                                A data selecionada não pode ser superior a data atual
+                                            </span>
+                                        </div>                                        
+                                    </div>
+                                    <div if:true={isStartDateGreaterThanEndDate} class="waring-message">
+                                        <div class="waring-content_svg">
+                                            <svg width="16" height="16" viewBox="0 0 20 20" fill="#E00707" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 11C9.45 11 9 10.55 9 10V6C9 5.45 9.45 5 10 5C10.55 5 11 5.45 11 6V10C11 10.55 10.55 11 10 11ZM11 15H9V13H11V15Z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="waring-content_item">
+                                            <span>
+                                                A data inicial não pode ser maior que a data final
+                                            </span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="picker-item slds-col slds-size_6-of-12" >
+                                    <lightning-input    type="date" 
+                                                        name="endDate" 
+                                                        data-id="inputEndDate"
+                                                        placeholder="Selecione a data final" 
+                                                        value={selectedDateEndValue}
+                                                        onchange={handleChangeDateEndValue}
+                                    >   
+                                    </lightning-input> 
+                                    <div if:true={isEmptyEndDate} class="waring-message">
+                                        <div class="waring-content_svg">
+                                            <svg width="16" height="16" viewBox="0 0 20 20" fill="#E00707" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 11C9.45 11 9 10.55 9 10V6C9 5.45 9.45 5 10 5C10.55 5 11 5.45 11 6V10C11 10.55 10.55 11 10 11ZM11 15H9V13H11V15Z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="waring-content_item">
+                                            <span>
+                                                Preencha a data final
+                                            </span>
+                                        </div>                                        
+                                    </div>
+                                    <div if:true={isEndDateGreaterThanCurrentDate} class="waring-message">
+                                        <div class="waring-content_svg">
+                                            <svg width="16" height="16" viewBox="0 0 20 20" fill="#E00707" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 11C9.45 11 9 10.55 9 10V6C9 5.45 9.45 5 10 5C10.55 5 11 5.45 11 6V10C11 10.55 10.55 11 10 11ZM11 15H9V13H11V15Z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="waring-content_item">
+                                            <span>
+                                                A data selecionada não pode ser superior a data atual
+                                            </span>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>                            
+                            <div class="btn-apply">
+                                <button onclick={handleApplyCustomDate}>
+                                    <span>
+                                        Aplicar
+                                    </span>
+                                </button>
+                            </div>                            
+                        </div>                        
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</template>

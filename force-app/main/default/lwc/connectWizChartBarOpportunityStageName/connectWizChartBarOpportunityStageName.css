@@ -1,0 +1,19 @@
+.chat-container{
+  background-color:  var(--color-background-customer, #FCFCFC);
+    position: relative;
+    margin: auto;
+    padding-left: 24px;
+    height: 16.89989235737352vh;
+    width: auto;
+    padding-left: var(--lwc-varSpacingHorizontalLarge, spacingLarge);
+}
+
+.chat-container div{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 0px;
+  gap: 1px;
+  height: 285px;
+}

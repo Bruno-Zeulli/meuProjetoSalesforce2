@@ -1,0 +1,100 @@
+<template>
+
+    <div class="slds-grid">
+        <div onclick={handleAccordionClick} class="slds-col slds-size_11-of-12">
+            <span onclick={handleAccordionClick} class="questionnaire-icon slds-var-m-horizontal_small" size="small"
+                alternative-text="Questionário" title="Questionário">
+                <svg width="22" height="18" viewBox="0 0 22 18" fill="#F56C00" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M 15.37,6.78 C 15.37,6.78 11.49,6.78 11.49,6.78 10.58,6.78 9.83,6.04 9.83,5.12 9.83,5.12 9.83,1.25 9.83,1.25 9.83,0.94 9.58,0.69 9.28,0.69 9.28,0.69 9.28,0.69 9.28,0.69 9.28,0.69 3.74,0.69 3.74,0.69 2.82,0.69 2.08,1.44 2.08,2.35 2.08,2.35 2.08,15.65 2.08,15.65 2.08,16.56 2.82,17.31 3.74,17.31 3.74,17.31 14.26,17.31 14.26,17.31 15.18,17.31 15.92,16.56 15.92,15.65 15.92,15.65 15.92,7.34 15.92,7.34 15.92,7.34 15.92,7.34 15.92,7.34 15.92,7.03 15.68,6.78 15.37,6.78 15.37,6.78 15.37,6.78 15.37,6.78 15.37,6.78 15.37,6.78 15.37,6.78 Z M 4.29,6.23 C 4.30,5.93 4.55,5.70 4.85,5.69 4.85,5.69 7.11,5.69 7.11,5.69 7.11,5.69 7.12,5.69 7.12,5.69 7.41,5.69 7.66,5.93 7.66,6.23 7.66,6.23 7.66,6.78 7.66,6.78 7.65,7.08 7.41,7.32 7.11,7.33 7.11,7.33 4.85,7.33 4.85,7.33 4.84,7.33 4.84,7.33 4.84,7.33 4.54,7.33 4.30,7.09 4.30,6.79 4.30,6.79 4.30,6.78 4.30,6.78 4.30,6.78 4.29,6.23 4.29,6.23 Z M 12.61,13.97 C 12.61,13.97 12.61,13.97 12.61,13.97 12.61,14.28 12.36,14.52 12.05,14.52 12.05,14.52 12.05,14.52 12.05,14.52 12.05,14.52 4.85,14.52 4.85,14.52 4.55,14.52 4.30,14.28 4.30,13.97 4.30,13.97 4.30,13.97 4.30,13.97 4.30,13.97 4.30,13.43 4.30,13.43 4.30,13.43 4.30,13.43 4.30,13.43 4.30,13.12 4.55,12.87 4.85,12.87 4.85,12.87 12.05,12.87 12.05,12.87 12.05,12.87 12.05,12.87 12.05,12.87 12.36,12.87 12.61,13.12 12.61,13.43 12.61,13.43 12.61,13.43 12.61,13.43 12.61,13.43 12.61,13.97 12.61,13.97 Z M 13.71,10.10 C 13.71,10.11 13.71,10.11 13.71,10.11 13.71,10.42 13.47,10.67 13.16,10.67 13.16,10.67 13.16,10.67 13.16,10.67 13.16,10.67 4.85,10.67 4.85,10.67 4.55,10.67 4.30,10.42 4.30,10.11 4.30,10.11 4.30,10.11 4.30,10.11 4.30,10.11 4.30,9.56 4.30,9.56 4.30,9.56 4.30,9.56 4.30,9.56 4.30,9.25 4.55,9.01 4.85,9.01 4.85,9.01 13.16,9.01 13.16,9.01 13.16,9.01 13.16,9.01 13.16,9.01 13.47,9.01 13.71,9.25 13.71,9.56 13.71,9.56 13.71,9.56 13.71,9.56 13.71,9.56 13.71,10.10 13.71,10.10 Z M 12.60,5.12 C 12.60,5.12 15.54,5.12 15.54,5.12 15.54,5.12 15.54,5.12 15.55,5.12 15.75,5.12 15.92,4.95 15.92,4.75 15.92,4.74 15.92,4.74 15.92,4.74 15.92,4.73 15.92,4.72 15.92,4.71 15.92,4.61 15.88,4.52 15.81,4.46 15.81,4.46 12.16,0.80 12.16,0.80 12.09,0.73 12.00,0.69 11.90,0.69 11.89,0.69 11.89,0.69 11.88,0.69 11.88,0.69 11.87,0.69 11.87,0.69 11.66,0.69 11.49,0.86 11.49,1.07 11.49,1.07 11.49,1.08 11.49,1.08 11.49,1.08 11.49,4.02 11.49,4.02 11.49,4.63 11.99,5.12 12.60,5.12 12.60,5.12 12.60,5.12 12.60,5.12 Z M 12.05,12.32 C 12.05,12.32 12.05,12.32 12.05,12.32 12.35,12.32 12.60,12.57 12.60,12.88 12.60,12.88 12.60,12.88 12.60,12.88 12.60,12.88 12.60,13.43 12.60,13.43 12.60,13.43 12.60,13.43 12.60,13.43 12.60,13.74 12.35,13.98 12.05,13.98 12.05,13.98 12.05,13.98 12.05,13.98 12.05,13.98 4.85,13.98 4.85,13.98 4.54,13.98 4.29,13.74 4.29,13.43 4.29,13.43 4.29,13.43 4.29,13.43 4.29,13.43 4.29,12.88 4.29,12.88 4.29,12.88 4.29,12.88 4.29,12.88 4.29,12.57 4.54,12.32 4.85,12.32 4.85,12.32 12.05,12.32 12.05,12.32 Z M 13.15,9.00 C 13.15,9.00 13.15,9.00 13.15,9.00 13.46,9.00 13.71,9.25 13.71,9.55 13.71,9.55 13.71,9.55 13.71,9.55 13.71,9.55 13.71,10.11 13.71,10.11 13.71,10.11 13.71,10.11 13.71,10.11 13.71,10.41 13.46,10.66 13.15,10.66 13.15,10.66 13.15,10.66 13.15,10.66 13.15,10.66 4.85,10.66 4.85,10.66 4.54,10.66 4.29,10.41 4.29,10.11 4.29,10.11 4.29,10.11 4.29,10.11 4.29,10.11 4.29,9.55 4.29,9.55 4.29,9.55 4.29,9.55 4.29,9.55 4.29,9.25 4.54,9.00 4.85,9.00 4.85,9.00 13.15,9.00 13.15,9.00 Z" />
+                </svg>
+            </span>
+            <span class="accordion-item-title slds-var-m-horizontal_small">
+                Questionário
+            </span>
+        </div>
+        <div onclick={handleAccordionClick} if:false={isOpen} class="slds-col slds-size_1-of-12 slds-col_bump-left">
+            <span class="slds-var-p-left_medium">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M2.11875 1.29006L5.99875 5.17006L9.87875 1.29006C10.2688 0.900059 10.8988 0.900059 11.2888 1.29006C11.6788 1.68006 11.6788 2.31006 11.2888 2.70006L6.69875 7.29006C6.30875 7.68006 5.67875 7.68006 5.28875 7.29006L0.69875 2.70006C0.30875 2.31006 0.30875 1.68006 0.69875 1.29006C1.08875 0.910059 1.72875 0.900059 2.11875 1.29006Z" />
+                </svg>
+            </span>
+        </div>
+        <div if:true={isOpen} onclick={handleAccordionClick} class="slds-col slds-size_1-of-12 slds-col_bump-left">
+            <span class="slds-var-p-left_medium">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M2.11875 6.70998L5.99875 2.82998L9.87875 6.70998C10.2688 7.09998 10.8988 7.09998 11.2888 6.70998C11.6788 6.31998 11.6788 5.68998 11.2888 5.29998L6.69875 0.70998C6.30875 0.31998 5.67875 0.31998 5.28875 0.70998L0.69875 5.29998C0.30875 5.68998 0.30875 6.31998 0.69875 6.70998C1.08875 7.08998 1.72875 7.09998 2.11875 6.70998Z" />
+                </svg>
+            </span>
+        </div>
+    </div>
+    <div if:true={isOpen}>
+        <hr class="slds-var-m-top_medium">
+    </div>
+    <div if:true={isOpen} class="slds-grid" role="list">
+        <div class="slds-col slds-size_4-of-4 slds-var-p-around_x-small">
+            <div if:true={isLoading} class="slds-is-relative" style="position:relative">
+                <div class="slds-modal__container">
+                    <div class="modal__spinner-container"
+                        style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                        <div class="spinner-border" style="width: 2rem; height: 2rem; color: #BF5600;" role="status">
+                        </div>
+                        <div style="color: #BF5600;">
+                            <p>
+                                <span> &nbsp;<b>Carregando...</b></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div if:false={isLoading}>
+                <template for:each={questionnaires} for:item="form">
+                    <div data-id={form.id}
+                        class="slds-wrap form-container slds-var-m-around_x-small slds-var-p-around_medium slds-grid"
+                        key={form.id}>
+                        <div onclick={handleQuestionnaireInformation} data-id={form.id}
+                            class="slds-col slds-size_11-of-12 questionnaire-item">
+                            Questionário | {form.name}
+                        </div>
+                        <div data-id={form.id} onclick={handleQuestionnaireInformation}
+                            class="slds-col_bump-left slds-size_1-of-12">
+                            <!-- sldsValidatorIgnoreNextLine -->
+                            <lightning-button-icon if:false={form.showDetails} variant="bare" size="medium"
+                                icon-name="utility:chevrondown" class="button-accordion slds-p-horizontal_medium"
+                                title="Vizualizar detalhes do questionário">
+                            </lightning-button-icon>
+                            <!-- sldsValidatorIgnoreNextLine -->
+                            <lightning-button-icon if:true={form.showDetails} variant="bare" size="medium"
+                                icon-name="utility:chevronup" class="button-accordion slds-p-horizontal_medium"
+                                title="Fechar detalhes do questionário">
+                            </lightning-button-icon>
+                        </div>
+                        <div if:true={form.showDetails} data-id={form.id} class="slds-col slds-size_12-of-12">
+                            <hr>
+                            <lightning-datatable 
+                                key-field="id" 
+                                data={form.answers} 
+                                columns={columns}
+                                hide-checkbox-column onsave={handleSave} 
+                                draft-values={draftValues}
+                                column-widths-mode="auto">
+                            </lightning-datatable>
+                        </div>
+                    </div>
+                </template>
+                <div if:false={hasData} class="alert-notfound-container">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11 7.25H11.25V7V5V4.75H11H9H8.75V5V7V7.25H9H11ZM0.25 10C0.25 4.61807 4.61807 0.25 10 0.25C15.3819 0.25 19.75 4.61807 19.75 10C19.75 15.3819 15.3819 19.75 10 19.75C4.61807 19.75 0.25 15.3819 0.25 10ZM8.75 14C8.75 14.6881 9.31193 15.25 10 15.25C10.6881 15.25 11.25 14.6881 11.25 14V10C11.25 9.31193 10.6881 8.75 10 8.75C9.31193 8.75 8.75 9.31193 8.75 10V14Z"
+                            fill="#2175D6" stroke="#080809" stroke-width="0.5" />
+                    </svg>
+                    <span>
+                        Não há questionários a serem exibidos.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

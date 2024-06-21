@@ -1,0 +1,31 @@
+/* CSS */
+.boxSelected{
+  background-color:#EF6C00;
+  color: white;
+}
+
+
+.stretchButton{
+  min-width: 100%;
+}
+
+.stretchTextButton{
+  min-width: 90%;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5rem;
+    padding: 1rem;
+}
+
+
+.iconNewMensageSelected{
+  --slds-c-icon-color-foreground-default: white;
+}
+
+
+.iconNewMensageNotSelected{
+  --slds-c-icon-color-foreground-default: blue;
+}

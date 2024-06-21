@@ -1,0 +1,19 @@
+<template>
+    <template if:true={loaded}>
+        <div class="slds-m-bottom_large">
+            <c-composite-data-table 
+            onrefresh={refresh} 
+            is-pending={isPending} 
+            is-quotes={isQuotes} 
+            columns={columns}
+            received-data={allQuotesRequest} headers={headers}>
+            </c-composite-data-table>
+        </div>
+        <div class="container slds-m-top_medium">
+            <c-placement-bar-chart values-chart={valuesChart}></c-placement-bar-chart>
+        </div>
+    </template>
+    <template if:false={loaded}>
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+</template>

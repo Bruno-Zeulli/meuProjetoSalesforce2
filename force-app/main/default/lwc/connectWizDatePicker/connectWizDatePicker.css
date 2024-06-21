@@ -1,0 +1,245 @@
+.dropdown button{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 12px 12px 16px;
+  gap: 8px;
+  height: 48px;
+
+  background: #FCFCFC;
+
+  border: 1px solid #B7BBBF;
+  border-radius: 4px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-container {
+  display: none;
+  position: absolute;
+  width: 750px;
+  height: 328px;
+
+  z-index: 1;
+  color:#bd875c;
+
+  background: #FCFCFC;
+
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+  
+.dropdown:hover .dropdown-container {
+  display: block;
+}
+
+.picker-container{
+  padding-top: 12px;
+  padding-left: 60px;
+}
+
+.picker-header{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #080809;
+}
+
+.picker-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.picker-item{
+  padding-right: 14px;
+}
+
+.dropdown-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.dropdown-content{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px;
+  gap: 16px;
+
+  width: 157px;
+  height: 304px;
+}
+
+.dropdown-item input[type='radio']{
+  width: 16px;
+  height: 16px;  
+  background-color: #FCFCFC;
+
+  border: 1px solid #B7BBBF;
+  border-radius: 100px;
+}
+
+.dropdown-item>input:checked{
+  background-color: #BF5600;
+   border: 1px solid #BF5600;
+  border-radius: 20px;
+}
+
+.dropdown-item input[type='radio']:hover + label:before{
+  background-color: #BF5600;
+  color: #BF5600;
+  border-radius: 20px;
+}
+
+.dropdown-item label{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  padding-left: 8px;
+
+  color: #080809;
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  
+}
+
+.div-action{
+    display: flex; 
+    justify-content: flex-start;
+}
+
+.action-button span{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+
+  display: flex;
+  align-items: center;
+
+  color: #8F4100;
+}
+
+.btn-icon{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+
+  width: 24px;
+  height: 24px;
+}
+
+.btn-apply button{
+
+  cursor: pointer;
+
+  font-family: var(--font-family, 'Inter', sans-serif);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 8px;
+
+  width: 100px;
+  height: 32px;
+
+  background-color: var(--color-background-customer, #FCFCFC);
+  color: var(--color-text-customer,#BF5600);
+
+  border-bottom: 2px solid #BF5600;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  
+
+  flex: none;
+  flex-grow: 0;
+
+}
+
+.btn-apply{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 14px;
+  padding-top: 24px;
+}
+
+
+.btn-apply button:hover{
+  background-color: var(--color-background-customer, #FFF0E4);
+  border-radius: 4px;
+  color: var(--color-text-customer,#8F4100);
+
+  border-bottom: 2px solid #8F4100;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.btn-apply button:focus{
+  background-color: var(--color-background-customer, #FFB578);
+  border-radius: 4px;
+  color: var(--color-text-customer,#602B00);
+
+  border-bottom: 2px solid #602B00;
+  border-top: none;
+  border-left: none;
+  border-right: none
+}
+
+.waring-message{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.waring-content_svg{
+  padding: 2px 10px 2px 12px;
+}
+
+.waring-content_item{
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 170%;
+
+  display: flex;
+  align-items: center;
+  padding-top: 3px;
+  color: var(--color-text-customer,#080809);
+
+}
+
+.waring-content_svg>svg{
+  fill: #E00707;
+}

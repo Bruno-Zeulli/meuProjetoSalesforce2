@@ -1,0 +1,230 @@
+/**
+ * @description       :
+ * @author            : Samuel Sirkis
+ * @group             :
+ * @last modified on  : 02-02-2021
+ * @last modified by  : Samuel Sirkis
+ * Modifications Log
+ * Ver   Date         Author       Modification
+ * 1.0   02-02-2021   Samuel Sirkis   Initial Version
+ **/
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+lightning-button {
+    padding-top: 05em;
+}
+
+.alert-customizado {
+    background-color: rgb(253, 21, 67);
+    margin: 1px solid black;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.embeddedServiceSidebarForm.buttonWrapper {
+    text-align: center;
+    padding: 30px 24px 24px;
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    box-sizing: border-box;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) calc(100% - 77px), rgba(255, 255, 255, 1) 100%);
+}
+
+.embeddedServiceSidebarForm.formContent {
+    text-align: left;
+    width: 100%;
+    height: calc(100% - 81px);
+    overflow-y: auto;
+    position: relative;
+    background-color: var(--lwc-esColorBackgroundInverse, #fff);
+    margin-bottom: 110px;
+    margin-top: 28px;
+    border-radius: 0 0 8px 8px;
+}
+
+.embeddedServiceSidebarForm .fieldList {
+    margin: 32px 24px 0 12px;
+    padding: 0 0 15px;
+}
+
+.embeddedServiceSidebarFormField .split-field-container,
+.embeddedServiceSidebarFormField .uiInput--input,
+.embeddedServiceSidebarFormField .uiInput--select {
+    margin-bottom: -7px;
+}
+
+.embeddedServiceSidebarFormField.inputSplitName {
+    /* width: calc(50% - 12px); */
+    display: inline-block;
+    vertical-align: top;
+}
+
+.embeddedServiceSidebarFormField .slds-style-inputtext,
+.embeddedServiceSidebarFormField .slds-style-select {
+    font-size: 12px !important;
+}
+
+.embeddedServiceSidebarFormField .split-field-container,
+.embeddedServiceSidebarFormField .uiInput--input,
+.embeddedServiceSidebarFormField .uiInput--select {
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+div .uiInput {
+    width: 16.5rem !important;
+}
+/*
+.slds-style-select .slds-select_container{
+    position: relative;
+    font-size: var(--lwc-esFontSizeTextXSmall, 0.75em);
+    line-height: 1.5;
+    margin-right: 0.75 em;
+    margin-left: 0.5 em;
+    margin-bottom: 2 px;
+    color: var(--lwc-colorTextDefault, #333333);
+    background-color: var(--lwc-esColorBackgroundInverse,#fff);
+    border: 1px solid var(--lwc-esColorBorderSeparator,#949494);
+    border-radius: 4px;
+    width: 100%;
+    height: 44px;
+    padding: 0 12px;
+    color: var(--lwc-colorTextDefault,#333333);
+    font-size: var(--lwc-esFontSizeSmall,0.875em);
+    font-family: var(--lwc-fontFamily,"Salesforce Sans"),sans-serif;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: var(--lwc-colorTextDefault,#333333);
+    font-family: var(--lwc-fontFamily,"Salesforce Sans"),sans-serif;
+    appearance: none;
+} */
+
+.embeddedServiceSidebar.layout-docked .dockableContainer,
+.embeddedServiceSidebar.layout-float .dockableContainer {
+    text-align: left !important;
+}
+.embeddedServiceSidebarForm[c-botPreChatForm_Wimo_botPreChatForm_Wimo] .fieldList[c-botPreChatForm_botPreChatForm] {
+    text-align: left !important;
+}
+.embeddedServiceSidebarFormField .uiInput {
+    text-align: left;
+}
+.embeddedServiceSidebarFormField .uiInput .uiLabel-left {
+    color: var(--lwc-colorTextDefault, #333333);
+}
+.embeddedServiceSidebarFormField .uiInput .uiLabel-left {
+    width: 100%;
+    position: relative;
+    font-size: var(--lwc-esFontSizeTextXSmall, 0.75em);
+    line-height: 1.5;
+    margin-right: 0.75 em;
+    margin-left: 0.5 em;
+    margin-bottom: 2 px;
+    color: var(--lwc-colorTextDefault, #333333);
+}
+
+.embeddedServiceSidebarForm .embeddedServiceSidebarFormField {
+    margin-left: 12 px;
+}
+.embeddedServiceSidebarFormField.inputSplitName {
+    /* width: calc(50% - 12 px); */
+    display: inline-block;
+    vertical-align: top;
+}
+
+.embeddedServiceSidebarFormField {
+    list-style: none;
+}
+.embeddedServiceSidebarFormField .uiInput {
+    text-align: left;
+}
+
+.embeddedServiceSidebarFormField .uiInput .uiLabel-left {
+    color: var(--lwc-colorTextDefault, #333333);
+}
+.embeddedServiceSidebarFormField .uiInput .uiLabel-left {
+    position: relative;
+    font-size: var(--lwc-esFontSizeTextXSmall, 0.75em);
+    line-height: 1.5;
+    margin-right: 0.75 em;
+    margin-left: 0.5 em;
+    margin-bottom: 2 px;
+    color: var(--lwc-colorTextDefault, #333333);
+}
+
+.embeddedServiceSidebarFormField .slds-style-inputtext,
+.embeddedServiceSidebarFormField .slds-style-select {
+    color: var(--lwc-colorTextDefault, #333333);
+    font-family: var(--lwc-fontFamily, 'Salesforce Sans'), sans-serif;
+}
+
+/*
+.embeddedServiceSidebarForm.formContent {
+    width: 100%;
+    height: 350px;
+    overflow-y: auto;
+    position: relative;
+    background-color: var(--lwc-esColorBackgroundInverse,#fff);
+    border-radius: 0 0 8px 8px;
+    margin: 12px 24px 0 12px;
+    padding: 0 0 15px;
+}
+
+.embeddedServiceSidebarForm.buttonWrapper {
+    text-align: center;
+    padding: 30px 24px 24px;
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    box-sizing: border-box;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) calc(100% - 77px), rgba(255, 255, 255, 1) 100%);
+}
+
+.embeddedServiceSidebarButton {
+    position: relative;
+    border: none;
+    background: var(--lwc-colorBrand,#2574A9);
+    text-shadow: none;
+    box-shadow: none;
+    border-radius: 4px;
+    transition: background .4s ease;
+    color: var(--lwc-colorTextInverse,#FFFFFF);
+    font-size: var(--lwc-esFontSizeMedium,1em);
+    font-weight: var(--lwc-fontWeightRegular,400);
+    font-family: var(--lwc-fontFamily,Lato),sans-serif;
+    width: 100%;
+    margin: 0;
+    height: 44px;
+
+}
+
+.slds-text-color_destructive {
+    position: absolute;
+    color: var(--lwc-colorTextError,rgb(234, 0, 30));
+    left: -6px;
+    top: 0;
+
+}
+.embeddedServiceSidebarFormField .uiInput .required {
+    position: absolute;
+    color: var(--lwc-colorTextError,rgb(234, 0, 30));
+    left: -6px;
+    top: 0;
+}
+
+.slds-form-element__label {
+    color: var(--lwc-colorTextDefault,#333333);
+    text-align: left !important;
+    position: relative;
+    font-size: var(--lwc-esFontSizeTextXSmall,0.75em);
+    line-height: 1.5;
+    margin-right: .75em;
+    margin-left: .5em;
+    margin-bottom: 2px;
+    color: var(--lwc-colorTextDefault,#333333);
+} */

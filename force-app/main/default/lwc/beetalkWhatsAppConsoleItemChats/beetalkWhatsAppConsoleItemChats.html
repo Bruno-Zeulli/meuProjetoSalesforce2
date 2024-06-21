@@ -1,0 +1,70 @@
+<!--
+  @description       :
+  @author            : samuelsirkis@wiz.co
+  @group             :
+  @last modified on  : 11-03-2023
+  @last modified by  : samuelsirkis@wiz.co
+-->
+<template>
+    <article class="slds-card" if:true={mycase}>
+        <div class="slds-float_left slds-button slds-button_neutral stretchButton" if:false={selectedcase} onclick={changeSelectedTab}>
+            <div class="slds-size_7-of-8">
+                <article class="slds-float_left">
+                    <div class="slds-text-align_left container">
+                        <h1><span><strong>Protocolo: {casenumber}</strong></span></h1>
+                        <p><span class="slds-text-body_small">Cliente: {casecontactdetailname} - {casecontactdetailnumber}</span></p>
+                        <p><span class="slds-text-body_small">{casesubject}</span></p>
+                        <p><span class="slds-text-body_small">Produto: {caseproduct}</span></p>
+                        <!-- <p><span class="slds-text-body_small">Numero Canal: {casephoneorigin}</span></p> -->
+                    </div>
+                </article>
+            </div>
+            <div class="slds-size_1-of-8 slds-align_absolute-center slds-var-p-right_small">
+                <div>
+                    <lightning-icon if:true={messagenotanswered} class="slds-icon-text-success iconNewMensageNotSelected" icon-name="utility:chat" size="x-small" alternative-text="Mensagem não respondida"></lightning-icon>
+                </div>
+            </div>
+        </div>
+        <div class="slds-float_left slds-button slds-button_neutral stretchButton {selectedcase ? 'boxSelected' : ''}"
+            if:true={selectedcase} onclick={changeSelectedTab}>
+            <div class="slds-size_7-of-8">
+                <article class="slds-float_left">
+                    <div class="slds-text-align_left container">
+                        <h1><span><strong>Protocolo: {casenumber}</strong></span></h1>
+                        <p><span class="slds-text-body_small">Cliente: {casecontactdetailname} - {casecontactdetailnumber}</span></p>
+                        <p><span class="slds-text-body_small">{casesubject}</span></p>
+                        <p><span class="slds-text-body_small">Produto: {caseproduct}</span></p>
+                        <!-- <p><span class="slds-text-body_small">Numero Canal: {casephoneorigin}</span></p> -->
+                    </div>
+                </article>
+            </div>
+            <div class="slds-size_1-of-8 slds-align_absolute-center slds-var-p-right_small">
+                <div>
+                    <lightning-icon if:true={messagenotanswered} class="slds-icon-text-success iconNewMensageSelected" icon-name="utility:chat" size="x-small" alternative-text="Mensagem não respondida"></lightning-icon>
+                </div>
+            </div>
+        </div>
+    </article>
+    <article class="slds-card" if:true={queued}>
+        <div class="slds-float_left slds-button slds-button_neutral stretchButton">
+            <div class="slds-size_3-of-4">
+                <article class="slds-float_left">
+                    <div class="slds-text-align_left container">
+                        <h1><span><strong>Protocolo: {casenumber}</strong></span></h1>
+                        <p><span>Cliente: {casecontactdetailname} - {casecontactdetailnumber}</span></p>
+                        <p><span>{casesubject}</span></p>
+                        <p><span>Produto: {caseproduct}</span></p>
+                        <!-- <p><span>Numero Canal: {casephoneorigin}</span></p> -->
+                        <!-- <span>Assunto: {casesubject}</span> -->
+                    </div>
+                </article>
+            </div>
+            <div class="slds-size_1-of-4 slds-align_absolute-center slds-var-p-right_small">
+                <div>
+                    <!-- sldsValidatorIgnoreNextLine -->
+                    <button class="slds-button slds-button_success" onclick={buttonAccept} >Aceitar</button>
+                </div>
+            </div>
+        </div>
+    </article>
+</template>

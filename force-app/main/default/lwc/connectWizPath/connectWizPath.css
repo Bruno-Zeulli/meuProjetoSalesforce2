@@ -1,0 +1,58 @@
+@font-face {
+   font-family: "Inter";
+   /* src: url('/resource/InterRobotoFamily/static/Inter-Regular.ttf') format('TrueType'); */
+}
+
+.navbar{
+    padding: 1.5rem 0;
+}
+
+.nv-path__item a{
+    font-family: 'Inter', sans-serif;
+    font-style: bold;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 100%;
+    align-items: center;
+
+    display: flex;
+    color: #BF5600 !important;
+
+}
+
+.text-decoration-none  .active_link-text{
+    text-decoration: none !important;
+}
+
+.active_link-text{
+    text-decoration: none !important;
+}
+
+.nav-link {
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
+}
+
+.nav-icon {
+    margin-right: 0.625rem;
+}
+
+.home-icon{
+    vertical-align: baseline !important;
+}
+
+.color-text-default{
+    color: #003833 !important;;
+}
+
+.color-text-selected{
+    color: #BF5600 !important;;
+}
+
+.separator-icon-default{
+    fill: #003833 !important;;
+}
+
+.separator-icon-selected{
+    fill: #BF5600 !important;;
+}

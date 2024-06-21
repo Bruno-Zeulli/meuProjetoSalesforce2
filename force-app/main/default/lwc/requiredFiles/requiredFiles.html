@@ -1,0 +1,42 @@
+<template>
+    <lightning-card>
+        <div if:true={loader}>
+            <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+        </div>
+        <template for:each={filesChecklistList} for:item="file" if:true={showDocuments}>
+          <div key={file.id} class="slds-box">
+              <div class="slds-grid slds-wrap">
+                  <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 espacamento">
+                    <p>Tipo de Arquivo: <strong>{file.documentType}</strong></p>
+                  </div>
+                  <div class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_12-of-12 espacamento">
+                    <p>Obrigatório: <strong>{file.required}</strong></p>
+                  </div>
+                  <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 espacamento" if:true={isOnline}>
+                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 espacamento">
+                        <input type="file"  name={file.documentType}  onchange={handleChangeFile} multiple class="slds-input"/>
+                    </div>
+                  </div>
+
+                     <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 espacamento" if:false={isOnline}>
+                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 espacamento">
+                           <lightning-file-upload
+                            name={file.documentType}
+                            accept={acceptedFormats}
+                            record-id={recordid}
+                            onclick={getValueType}
+                            onuploadfinished={handleUploadFinished}
+                            multiple>
+                    </lightning-file-upload>
+                    </div>
+                  </div>
+
+                
+                </div>
+          </div>
+      </template>
+          <div class="slds-notify slds-notify_alert" role="alert" if:false={showDocuments}>
+              <span>Não possui checklist de documentos definido ou documentos já anexados!</span>
+          </div>
+      </lightning-card>
+</template>

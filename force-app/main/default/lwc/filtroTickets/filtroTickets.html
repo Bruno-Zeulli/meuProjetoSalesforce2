@@ -1,0 +1,156 @@
+<template>
+  <lightning-card  title="Filtros">
+    <div class="">
+      <div class="slds-form-element slds-form-element_stacked">
+        <lightning-record-edit-form   object-api-name="Case" 
+                                      record-type-id={recordTypeIdSelected}
+          >
+          <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_12-of-12">
+              <c-multi-select-status-tickets label="Status" status-items={status} status-options={statusLista} onstatusvaluechange={handleStatusChange}></c-multi-select-status-tickets>
+            </div>
+          </div>
+          <div class="slds-grid slds-gutters">
+            <!--<div class="slds-col slds-size_6-of-12">
+              <lightning-input-field  field-name="Status" 
+                                      name="status" 
+                                      value={status} 
+                                      onchange={genericOnChange}
+              ></lightning-input-field>
+            </div> -->
+            <div class="slds-col slds-size_12-of-12">
+              <lightning-input-field  field-name="Priority" 
+                                      name="prioridade"
+                                      value={prioridade} 
+                                      onchange={genericOnChange}
+              ></lightning-input-field>  
+            </div>
+          </div>
+          <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_6-of-12">
+              <lightning-combobox name="proprietario" 
+                                  label="Proprietário" 
+                                  value={selectedOwnerValue} 
+                                  placeholder="Selecione o Propietário" 
+                                  options={ownerOptions} 
+                                  onchange={ownerHandleChange} 
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_6-of-12">
+              <lightning-input-field  field-name="Procedente_Tkt__c" 
+                                      name="procedente" 
+                                      value={selectedProcedenteValue} 
+                                      onchange={procedenteChange}
+              ></lightning-input-field>                         
+            </div>
+          </div>           
+          <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_6-of-12">
+              <lightning-input  type="date" 
+                                name="createdDateInitial"  
+                                label="Data de criação inicial" 
+                                placeholder="Selecione a data inicio" 
+                                value={selectedCreatedDateInitialValue} 
+                                onchange={createDateInitialHandleChange}
+              >
+              </lightning-input> 
+            </div>
+            <div class="slds-col slds-size_6-of-12">
+              <lightning-input  type="date" 
+                                  name="createdDateEnd"  
+                                  label="Data de criação final" 
+                                  placeholder="Selecione a data final" 
+                                  value={selectedCreatedDateEndValue} 
+                                  onchange={createDateEndHandleChange}
+                >
+                </lightning-input>            
+            </div>
+          </div>
+          <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_6-of-12">
+              <lightning-combobox name="produto" 
+                                  label="Produto" 
+                                  value={selectedProdutoValue} 
+                                  placeholder="Selecione o Produto" 
+                                  options={produtoOptions} 
+                                  onchange={produtoHandleChange}  
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_6-of-12">
+              <lightning-combobox name="bandeira" 
+                                  label="Bandeira" 
+                                  value={selectedBandeiraValue} 
+                                  placeholder="Selecione a Bandeira" 
+                                  options={bandeiraOptions} 
+                                  onchange={bandeiraHandleChange} 
+                                  disabled={produtoNotSelected}
+              ></lightning-combobox>            
+            </div>
+          </div>
+          <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_6-of-12">
+              <lightning-combobox name="grupo" 
+                                  label="Grupo" 
+                                  value={selectedGrupoValue} 
+                                  placeholder="Selecione o Grupo" 
+                                  options={groupOptions} 
+                                  onchange={groupHandleChange}
+                                  disabled={bandeiraNotSelected} 
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_6-of-12">
+              <lightning-combobox name="motivo" 
+                                  label="Motivo" 
+                                  value={selectedMotivoValue} 
+                                  placeholder="Selecione o Motivo" 
+                                  options={motivoOptions} 
+                                  onchange={motivoHandleChange} 
+                                  disabled={groupNotSelected}
+              ></lightning-combobox>            
+            </div>
+          </div>
+          <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_6-of-12">
+              <lightning-combobox name="tipo" 
+                                  label="Tipo" 
+                                  value={selectedTipoValue} 
+                                  placeholder="Selecione o Tipo" 
+                                  options={tipoOptions} 
+                                  onchange={tipoHandleChange} 
+                                  disabled={motivoNotSelected}
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_6-of-12">
+              <lightning-combobox name="subtipo" 
+                                  label="Subtipo" 
+                                  value={selectedSubtipoValue} 
+                                  placeholder="Selecione o Subtipo" 
+                                  options={subtipoOptions} 
+                                  onchange={subtipoHandleChange} 
+                                  disabled={tipoNotSelected}
+              ></lightning-combobox>            
+            </div>
+          </div>
+        </lightning-record-edit-form> 
+      </div>
+    </div>
+    <div slot="footer">
+      <div class="slds-clearfix">
+          <lightning-button-group>
+            <lightning-button variant="brand" 
+                              label="Limpar" 
+                              onclick={limparFiltro} 
+                              title="Primary action" 
+                              class="slds-m-left_x-small"
+            ></lightning-button>
+            <lightning-button variant="brand" 
+                              label="Filtrar" 
+                              onclick={filtrarCasos} 
+                              title="Primary action" 
+                              class="slds-m-left_x-small"
+            ></lightning-button>
+          </lightning-button-group>
+      </div>
+    </div>        
+  </lightning-card>
+</template>

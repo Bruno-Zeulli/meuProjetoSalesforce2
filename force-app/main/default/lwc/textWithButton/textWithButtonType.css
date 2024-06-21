@@ -1,0 +1,7 @@
+.button {
+    display: var(--slds-spacing-none);
+}
+
+.container:hover .button {
+    display: flex;
+}

@@ -1,0 +1,49 @@
+<template>
+    <div class={historyClass}>
+        <div class="slds-text-heading_small slds-text-align_left slds-m-around_large slds-p-left_small"><b>Histórico da Venda</b></div>
+        <ul class="slds-timeline" style="max-height: 350px; overflow-y: auto;">
+            <template for:each={activities} for:item="activity">
+                <li key={activity.id}>
+                    <div class="slds-timeline__item_expandable slds-timeline__item_task slds-is-open">
+                        <div class="slds-media">
+                            <div class="slds-media__figure">
+                                <button class="slds-button slds-button_icon"
+                                    title="Toggle details for Review proposals for EBC deck with larger team and have marketing review this"
+                                    aria-controls="task-item-expanded-173" aria-expanded="true" disabled>
+                                    <lightning-icon icon-name="standard:switch" size="small" alternative-text="Task"></lightning-icon>
+                                </button>
+                                <div class="slds-icon_container slds-timeline__icon">
+                                    <lightning-icon icon-name="standard:task" size="small" class="task-icon"></lightning-icon>
+                                </div>
+                            </div>
+                            <div class="slds-media__body">
+                                <div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
+                                    <div class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
+                                        <h3 class="slds-truncate">
+                                            <strong>{activity.subject}</strong>
+                                        </h3>
+                                    </div>
+                                    <div class="slds-timeline__actions slds-timeline__actions_inline">
+                                        <p class="slds-timeline__date">{activity.dateTimeValue}</p>
+                                    </div>
+                                </div>
+                                <p class="slds-m-horizontal_xx-small">
+                                    {activity.personName}
+                                </p>
+                                <article
+                                    class="slds-timeline__item_details slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium"
+                                    id="task-item-expanded-173">
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-box slds-box_xx-small slds-col slds-size_3-of-4">
+                                            <p class="slds-p-left_xx-small">{activity.description}</p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </template>
+        </ul>
+    </div>
+</template>

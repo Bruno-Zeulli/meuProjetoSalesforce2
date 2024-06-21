@@ -1,0 +1,1466 @@
+<template>
+    <div class="slds-grid slds-wrap none-margin">
+        <div class="form-container col slds-size_12-of-12">
+            <div class="form-header-container col slds-size_12-of-12">
+                <div class="form-header slds-col slds-size_10-of-12">
+                    <h3>
+                        <span>
+                            {quotationForm.type}
+                        </span>
+                    </h3>
+                </div>
+                <div class="slds">
+                    <div class="dropdown">
+                    <!-- sldsValidatorIgnoreNextLine -->
+                    <button class="action-button" title="Ações">Ações<lightning-icon class="action-icon" icon-name="utility:threedots_vertical" alternative-text="Success!" size="x-small" title="default style"></lightning-icon></button>
+                    <div class="dropdown-content">
+                    <div onclick={exportAsCSV} class="dropdown-item"><a><lightning-icon class="export-icon" icon-name="utility:offline_cached" size="small" alternative-text="exportCSV" title="exportCSV"></lightning-icon>&nbsp; Exportar csv</a></div>
+                    <div onclick={exportAsPDF} class="dropdown-item"><a><lightning-icon class="export-icon" icon-name="utility:offline_cached" size="small" alternative-text="exportPDF" title="exportPDF"></lightning-icon>&nbsp; Exportar pdf</a></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- TODO reativar após implementação das ações de exportação de dados -->
+                <!-- <div class="btn-form-container">
+                    <div>
+                        <button class="btn-edit-form" onclick={handleEditForm}>
+                            <div>
+                                <span>
+                                    Editar Formulário
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn-actions">
+                            <div>
+                                <span>
+                                    Ações
+                                </span>
+                            </div>
+                            <div class="btn-action_icon">
+                                <svg width="4" height="16" viewBox="0 0 4 16" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4C3.1 4 4 3.1 4 2C4 0.9 3.1 0 2 0C0.9 0 0 0.9 0 2C0 3.1 0.9 4 2 4ZM2 6C0.9 6 0 6.9 0 8C0 9.1 0.9 10 2 10C3.1 10 4 9.1 4 8C4 6.9 3.1 6 2 6ZM2 12C0.9 12 0 12.9 0 14C0 15.1 0.9 16 2 16C3.1 16 4 15.1 4 14C4 12.9 3.1 12 2 12Z"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>-->
+            </div>
+            <!-- Seção de dados usada em benefícios -->
+            <div if:true={isBenefits}>
+                 <!-- Seção de dados da Operadora atual usada em benefícios -->
+                <div class="col slds-size_12-of-12">
+                    <template for:each={quotationForm.InsuranceInformations} for:item="InsuranceInformation">
+                        <div key={InsuranceInformation.insuranceInformationId}>
+                            <div class="form-section-container">
+                                <div class="form-section-header">
+                                    <h4>
+                                        <span>
+                                            Operadora Atual - {InsuranceInformation.countPosition}
+                                        </span>
+                                    </h4>
+                                </div>
+                                <div class="slds-grid slds-wrap" >
+                                    <div class="form-item col slds-size_6-of-12">
+                                        <div class="form-item-title">
+                                            <span>
+                                                OPERADORA
+                                            </span>
+                                        </div>
+                                        <div class="form-value">
+                                            {InsuranceInformation.company}
+                                        </div>
+                                    </div>
+                                    <div class="col slds-size_6-of-12">
+                                        <div class="form-item-title">
+                                            <span>
+                                                NÚMERO TOTAL DE VIDAS
+                                            </span>
+                                        </div>
+                                        <div class="form-value">
+                                            {InsuranceInformation.numberOfLives}
+                                        </div>
+                                    </div>
+                                    <div class="col slds-size_6-of-12">
+                                        <div class="form-item-title">
+                                            <span>
+                                                VIGÊNCIA CONTRATUAL
+                                            </span>
+                                        </div>
+                                        <div class="form-value">
+                                            {InsuranceInformation.termOfContractStr}
+                                        </div>
+                                    </div>
+                                    <div class="col slds-size_6-of-12">
+                                        <div class="form-item-title">
+                                            <span>
+                                                MODELO DE CONTRATAÇÃO
+                                            </span>
+                                        </div>
+                                        <div class="form-value">
+                                            {InsuranceInformation.hiringModel}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="container-line-divider">
+                                    <div class="line-divider"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                </div>
+                <!-- Seção de dados da Informações complementares usada em benefícios -->
+                <div class="col slds-size_12-of-12">
+                    <div if:true={isHealth} class="form-section-container">
+                        <div class="form-section-header">
+                            <h4>
+                                <span>
+                                    Informações complementares
+                                </span>
+                            </h4>
+                        </div>
+                        <div class="slds-grid slds-wrap" >
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        POSSUI RELATÓRIO DE SINISTRO
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.hasAClaimReport}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        AFASTADOS
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.retired}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        DEMITIDOS POR LEI
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.dismissedByLaw}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        APOSENTADOS POR INVALIDEZ
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.disabilityRetirees}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        INTERNAÇÕES EM ANDAMENTO
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.hospitalizationsInProgress}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        FILHOS COM MAIS DE 24 ANOS
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.childrenOver24YearsOfAge}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        HOMECARE
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.homecare}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        GESTANTES
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.pregnants}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        PRESTADORES DE SERVIÇO
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.serviceProviders}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        LIMINARES
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.injunctions}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        CASOS CRÔNICOS
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.chronicCases}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        REMIDOS
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.redeemed}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        AGREGADOS
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.aggregated}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div if:false={isHealth} class="form-section-container">
+                        <div class="form-section-header">
+                            <h4>
+                                <span>
+                                    Informações complementares
+                                </span>
+                            </h4>
+                        </div>
+                        <div class="slds-grid slds-wrap" >
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        AFASTADOS
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.retired}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        DEMITIDOS/APOSENTADOS
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                   {quotationForm.dismissedRetired}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        PRESTADORES DE SERVIÇO
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.serviceProviders}
+                                </div>
+                            </div>
+                            <div class="col slds-size_6-of-12">
+                                <div class="form-item-title">
+                                    <span>
+                                        AGREGADOS
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {quotationForm.aggregated}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Seção de dados da Tablela de planos usada em benefícios para Saúde e Odonto-->
+                <div if:true={isHealthOrDental} class=" form-section-container slds-grid slds-wrap col slds-size_12-of-12">
+                    <div class="form-section-header">
+                        <h4>
+                            <span>
+                                Tabela de planos
+                            </span>
+                        </h4>
+                    </div>
+                    <div class="col slds-size_12-of-12 gap">
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    PREVISÃO DE FATURA
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                R$ {quotationForm.invoiceForecast}
+                            </div>
+                        </div>
+                        <template for:each={quotationForm.InsuranceInformations} for:item="InsuranceInformation">
+                            <div key={InsuranceInformation.insuranceInformationId}>
+                                <template for:each={InsuranceInformation.CurrentPlans} for:item="CurrentPlan">
+                                    <div class="section-plans-container" key={CurrentPlan.currentPlanId}>
+                                        <div class="section-plans-header">
+                                            <h4>
+                                                <span>
+                                                    Plano {CurrentPlan.company} - {CurrentPlan.countPosition}
+                                                </span>
+                                            </h4>
+                                        </div>
+                                        <div class="slds-grid slds-wrap">
+                                            <div class="section-plans-item slds-size_4-of-12">
+                                                <div class="section-plans-item-title">
+                                                    <span>
+                                                        NOME DO PLANO
+                                                    </span>
+                                                </div>
+                                                <div class="section-plans-item-value">
+                                                    {CurrentPlan.currentPlanName}
+                                                </div>
+                                            </div>
+                                            <div class="section-plans-item slds-size_4-of-12">
+                                                <div class="section-plans-item-title">
+                                                    <span>
+                                                        OPERADORA
+                                                    </span>
+                                                </div>
+                                                <div class="section-plans-item-value">
+                                                    {CurrentPlan.company}
+                                                </div>
+                                            </div>
+                                            <div class="section-plans-item col slds-size_4-of-12">
+                                                <div class="section-plans-item-title">
+                                                    <span>
+                                                        CARGO E/OU ELEGIBILIDADE
+                                                    </span>
+                                                </div>
+                                                <div class="section-plans-item-value">
+                                                    {CurrentPlan.positionEligibility}
+                                                </div>
+                                            </div>
+                                            <div class="section-plans-item col slds-size_4-of-12">
+                                                <div class="section-plans-item-title">
+                                                    <span>
+                                                        QUANTIDADE DE VIDAS
+                                                    </span>
+                                                </div>
+                                                <div class="section-plans-item-value">
+                                                    {CurrentPlan.numberOfLives}
+                                                </div>
+                                            </div>
+                                            <div class="section-plans-item col slds-size_4-of-12">
+                                                <div class="section-plans-item-title">
+                                                    <span>
+                                                        CUSTO R$
+                                                    </span>
+                                                </div>
+                                                <div class="section-plans-item-value">
+                                                    R$ {CurrentPlan.cost}
+                                                </div>
+                                            </div>
+                                            <div class="section-plans-item col slds-size_4-of-12">
+                                                <div class="section-plans-item-title">
+                                                    <span>
+                                                        REEMBOLSO
+                                                    </span>
+                                                </div>
+                                                <div class="section-plans-item-value">
+                                                     {CurrentPlan.reimbursement}%
+                                                </div>
+                                            </div>
+                                            <div class="section-plans-item col slds-size_4-of-12">
+                                                <div class="section-plans-item-title">
+                                                    <span>
+                                                        CONTRIBUIÇÃO TITULAR
+                                                    </span>
+                                                </div>
+                                                <div class="section-plans-item-value">
+                                                     {CurrentPlan.contributionHolder}%
+                                                </div>
+                                            </div>
+                                            <div class="section-plans-item col slds-size_4-of-12">
+                                                <div class="section-plans-item-title">
+                                                    <span>
+                                                        CONTRIBUIÇÃO DEPENDENTE
+                                                    </span>
+                                                </div>
+                                                <div class="section-plans-item-value">
+                                                    R$ {CurrentPlan.contributionDependent}
+                                                </div>
+                                            </div>
+                                            <div class="section-plans-item col slds-size_4-of-12">
+                                                <div class="section-plans-item-title">
+                                                    <span>
+                                                        COPARTICIPAÇÃO
+                                                    </span>
+                                                </div>
+                                                <div class="section-plans-item-value">
+                                                     {CurrentPlan.coparticipation}%
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                        <div class="">
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Seção de dados da Estratégia de vendas usada em benefícios para Saúde-->
+                <div if:true={isHealth} class="col slds-size_12-of-12">
+                    <div class="form-section-container">
+                        <div class="form-section-header">
+                            <h4>
+                                <span>
+                                    Estratégia de vendas
+                                </span>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="section-sales-strategy-container">
+                        <template for:each={quotationForm.InsuranceInformations} for:item="InsuranceInformation">
+                            <div key={InsuranceInformation.insuranceInformationId}>
+                                <template for:each={InsuranceInformation.CurrentPlans} for:item="CurrentPlan">
+                                    <div class="section-suggestion-container slds-grid slds-wrap" key={CurrentPlan.currentPlanId}>
+                                        <div class="slds-grid slds-wrap col slds-size_12-of-12">
+                                            <div class="section-suggestion-current-plans col slds-size_6-of-12">
+                                                <div class="section-plans-item-title ">
+                                                    <span>
+                                                        OPERADORA ATUAL
+                                                    </span>
+                                                </div>
+                                                <div class="section-plans-item-value">
+                                                    {CurrentPlan.company}
+                                                </div>
+                                            </div>
+                                            <div class="section-suggestion-current-plans col slds-size_6-of-12">
+                                                <div class="section-plans-item-title">
+                                                    <span>
+                                                        PLANO ATUAL
+                                                    </span>
+                                                </div>
+                                                <div class="section-plans-item-value">
+                                                    {CurrentPlan.currentPlanName}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <template for:each={CurrentPlan.InsuranceSuggestions} for:item="InsuranceSuggestion">
+                                            <div class="slds-grid slds-wrap col slds-size_12-of-12" key={InsuranceSuggestion.insuranceSuggestionId}>
+                                                <div class="section-suggestion col slds-size_6-of-12">
+                                                    <div class="section-plans-item-title">
+                                                        <span>
+                                                            OPERADORA SUGERIDA {InsuranceSuggestion.countPosition}
+                                                        </span>
+                                                    </div>
+                                                    <div class="section-plans-item-value">
+                                                        {InsuranceSuggestion.suggestionCompany}
+                                                    </div>
+                                                </div>
+                                                <div class="section-suggestion col slds-size_6-of-12">
+                                                    <div class="section-plans-item-title">
+                                                        <span>
+                                                            PLANO SUGERIDO {InsuranceSuggestion.countPosition}
+                                                        </span>
+                                                    </div>
+                                                    <div class="section-plans-item-value">
+                                                        {InsuranceSuggestion.suggestionPlan}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                        <div class="">
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Seção de dados da Capital e Taxa usada em benefícios para Vida-->
+                <div if:true={isLive} class="col slds-size_12-of-12 form-section-container">
+                    <div class="form-section-header">
+                        <h4>
+                            <span>
+                                Capital e Taxa
+                            </span>
+                        </h4>
+                    </div>
+                    <div class="slds-grid slds-wrap" >
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    MODELO DE CAPITAL
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.CapitalModel}
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    MONTANTE DO CAPITAL
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                R$ {quotationForm.capitalAmount}
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    TAXA POR MIL (%)
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.ratePerThousand}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    ESTIMATIVA DE FATURA
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                R$ {quotationForm.InvoiceEstimate}
+                            </div>
+                        </div>
+                        <div class="col slds-size_12-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    DESCRIÇÃO DO CAPITAL
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.descriptionOfCapital}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="container-line-divider">
+                            <div class="line-divider"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Seção de dados da Coberturas e Taxa usada em benefícios para Vida-->
+                <div if:true={isLive} class="col slds-size_12-of-12 form-section-container">
+                    <div class="form-section-header">
+                        <h4>
+                            <span>
+                                Coberturas
+                            </span>
+                        </h4>
+                    </div>
+                    <div class="slds-grid slds-wrap" >
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    MORTE NATURAL (QUALQUER CAUSA)
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.naturalDeathPercent}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    MORTE ACIDENTAL (COBERTURA CUMULATIVA COM A MORTE NATURAL)
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.accidentalDeathPercent}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    IPA - INVALIDEZ TOTAL OU PARCIAL POR ACIDENTE
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.ipaTotalOrPartialDisabilityByAccPercent}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    IFPD - INVALIDEZ FUNCIONAL TOTAL OU PARCIAL POR DOENÇA
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.ifpdTotalPartialDisabilityDiseasePercent}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    IAC - INCLUSÃO AUTOMÁTICA DE CÔNJUGE
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.iacAutomaticInclusionOfSpousePercent}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    IAF - INCLUSÃO AUTOMÁTICA DE FILHOS
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.iafAutomaticInclusionOfChildrenPercent}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    DIT - DIÁRIA DE INCAPACIDADE TEMPORÁRIA
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.ditTemporaryDisabilityDailyPercent}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    DMH - DESPESAS MÉDICO HOSPITALARES
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.dmhHospitalDoctorExpensesPercent}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    DOENÇAS GRAVES
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.seriousDiseasesPercent}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    AFF - ASSISTÊNCIA FUNERAL FAMILIAR
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.affFamilyFuneralAssistancePercent}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    AFI - ASSISTÊNCIA FUNERAL INDIVIDUAL
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.afiIndividualFuneralAssistancePercent}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    AUXÍLIO FUNERAL
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.funeralAidPercent}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    CESTA BÁSICA
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.basketBasicPercent}%
+                            </div>
+                        </div>
+                        <div class="col slds-size_6-of-12">
+                            <div class="form-item-title">
+                                <span>
+                                    COBERTURA PARA EMBRIAGUEZ
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.coverageForDrunkennessPercent}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="container-line-divider">
+                            <div class="line-divider"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Seção de dados usada em D&O -->
+            <div if:true={isDeO}>
+                <div class="col slds-size_12-of-12">
+                    <div class="form-section-container">
+                        <div class="form-section-header">
+                            <h4>
+                                <span>
+                                    Composição do capital social
+                                </span>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col slds-size_12-of-12">
+                    <template for:each={quotationForm.Shareholders} for:item="Shareholder">
+                        <div class="form-section-container" key={Shareholder.shareholderId}>
+                            <div class="form-section-header">
+                                <h4>
+                                    <span>
+                                        {Shareholder.countPosition}º Acionista
+                                    </span>
+                                </h4>
+                            </div>
+                            <div class="form-item">
+                                <div class="form-item-title">
+                                    <span>
+                                        NOME DO ACIONISTA/SÓCIO
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {Shareholder.nameOfShareholderPartner}
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <div class="form-item-title">
+                                    <span>
+                                        PAIS DE ORIGEM
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {Shareholder.countryOfOrigin}
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <div class="form-item-title">
+                                    <span>
+                                        PORCENTAGEM DAS AÇÕES ORDINÁRIAS
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {Shareholder.percentageOfTotalShares}%
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <div class="form-item-title">
+                                    <span>
+                                        PORCENTAGEM DAS AÇÕES PREFERENCIAIS
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {Shareholder.percentageOfPreferredShares}%
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <div class="form-item-title">
+                                    <span>
+                                        PORCENTAGEM DO TOTAL DAS AÇÕES
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {Shareholder.percentageOfCommonShares}%
+                                </div>
+                            </div>
+                            <div >
+                                <div class="container-line-divider">
+                                    <div class="line-divider"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div class="col slds-size_12-of-12">
+                    <template for:each={quotationForm.ControlledCompanies} for:item="ControlledCompany">
+                        <div class="form-section-container" key={ControlledCompany.controlledCompanyId}>
+                            <div class="form-section-header">
+                                <h4>
+                                    <span>
+                                        {ControlledCompany.countPosition}ª Sociedade Controlada
+                                    </span>
+                                </h4>
+                            </div>
+                            <div class="form-item">
+                                <div class="form-item-title">
+                                    <span>
+                                        NOME DA SOCIEDADE CONTROLADA
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {ControlledCompany.controlledCompanyName}
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <div class="form-item-title">
+                                    <span>
+                                        ATIVIDADE
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {ControlledCompany.activity}
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <div class="form-item-title">
+                                    <span>
+                                        PAIS DE ORIGEM
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {ControlledCompany.countryOfOrigin}
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <div class="form-item-title">
+                                    <span>
+                                        PORCENTAGEM DE PARTICIPAÇÃO
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {ControlledCompany.participationPercentage}%
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <div class="form-item-title">
+                                    <span>
+                                        É CONTROLADA?
+                                    </span>
+                                </div>
+                                <div class="form-value">
+                                    {ControlledCompany.isControlled}
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="container-line-divider">
+                                    <div class="line-divider"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div class="col slds-size_12-of-12">
+                    <div class="form-section-container">
+                        <div class="form-section-header">
+                            <h4>
+                                <span>
+                                    Governança corporativa
+                                </span>
+                            </h4>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    A COMPANHIA OBTÉM ALGUM NÍVEL DE GOVERNANÇA CARPORATIVA?
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.theCompanyGetSomeLevelOfGovernanca}
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    DESCREVA
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.descriptionGoverLevel}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col slds-size_12-of-12">
+                    <div class="form-section-container">
+                        <div class="form-section-header">
+                            <h4>
+                                <span>
+                                    Comitê de investimento
+                                </span>
+                            </h4>
+                        </div>
+                        <div class="form-item-section-deo">
+                            <div class="form-item-title">
+                                <span>
+                                    NÚMERO DE MEMBROS DA DIRETORIA
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.numberOfMembersOnTheBoardOfDirectors}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider-deo">
+                                <div class="line-divider-deo"></div>
+                            </div>
+                        </div>
+                        <div class="form-item-section-deo">
+                            <div class="form-item-title">
+                                <span>
+                                    NÚMERO DE CONSELHEIROS
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.numberOfDirectors}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider-deor">
+                                <div class="line-divider-deo"></div>
+                            </div>
+                        </div>
+                        <div class="form-item-section-deo">
+                            <div class="form-item-title">
+                                <span>
+                                    NÚMERO DE CONSELHEIROS FISCAIS
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.numberOfFiscalCouncilors}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider-deor">
+                                <div class="line-divider-deo"></div>
+                            </div>
+                        </div>
+                        <div class="form-item-section-deo">
+                            <div class="form-item-title">
+                                <span>
+                                    NÚMERO DE RENIÕES DO CONSELHO FICAIS NO ANO ANTERIOR
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.numberOfAuditBoardMeetings}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider-deor">
+                                <div class="line-divider-deo"></div>
+                            </div>
+                        </div>
+                        <div class="form-item-section-deo">
+                            <div class="form-item-title">
+                                <span>
+                                    NÚMERO DE ASSEMBLEIAS ACIONISTAS DURANTE O ANO ANTERIOR
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.noOfShareholdersMeetings}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col slds-size_12-of-12">
+                    <div class="form-section-container">
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    A EMPRESA POSSUI ALGUMA POLITÍCA FORMAL PARA NEGOCIAÇÃO DE AÇÕES DA PRÓPRIA EMPRESA POR PARTE DOS CONSELHEIROS, DIRETORES OU GERENTES?
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.formalPolicyForTradingShares}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col slds-size_12-of-12">
+                    <div class="form-section-container">
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    AS AÇÕES SÃO NEGOCIADAS FORA DO MERCADO BRASILEIRO ATRAVÉS DE ADRS?
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.sharesTradedOutsideTheBrMarket}
+                            </div>
+                        </div>
+                        <div class="form-section-header">
+                            <h4>
+                                <span>
+                                    Sobre o nível das ADRS
+                                </span>
+                            </h4>
+                        </div>
+                        <div class="form-item-section-deo">
+                            <div class="form-item-title">
+                                <span>
+                                    CÓDIGO DE NEGOCIAÇÃO
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.tradingCode}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider-deor">
+                                <div class="line-divider-deo"></div>
+                            </div>
+                        </div>
+                        <div class="form-item-section-deo">
+                            <div class="form-item-title">
+                                <span>
+                                    DATA DA 1º OFERTA
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.dateOf1stOffer}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider-deor">
+                                <div class="line-divider-deo"></div>
+                            </div>
+                        </div>
+                        <div class="form-item-section-deo">
+                            <div class="form-item-title">
+                                <span>
+                                    PREÇO DA 1ª OFERTA
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                R$ {quotationForm.firstOfferPrice}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider-deor">
+                                <div class="line-divider-deo"></div>
+                            </div>
+                        </div>
+                        <div class="form-item-section-deo">
+                            <div class="form-item-title">
+                                <span>
+                                    PREÇO NA DATA DE PREENCHIMENTO DO QUESTIONÁRIO
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                R$ {quotationForm.priceWhenFillingInTheQuestionnaire}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider-deor">
+                                <div class="line-divider-deo"></div>
+                            </div>
+                        </div>
+                        <div class="form-item-section-deo">
+                            <div class="form-item-title">
+                                <span>
+                                    MENOR PREÇO EM 1 ANO
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                R$ {quotationForm.lowestPriceIn1Year}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider-deor">
+                                <div class="line-divider-deo"></div>
+                            </div>
+                        </div>
+                        <div class="form-item-section-deo">
+                            <div class="form-item-title">
+                                <span>
+                                    MARKETCAP
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                R$ {quotationForm.marketcap}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider-deor">
+                                <div class="line-divider-deo"></div>
+                            </div>
+                        </div>
+                        <div class="form-item-section-deo">
+                            <div class="form-item-title">
+                                <span>
+                                    LUCRO OU PREJUÍZO POR AÇÃO
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                R$ {quotationForm.profitLossPerShare}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider-deor">
+                                <div class="line-divider-deo"></div>
+                            </div>
+                        </div>
+                        <div class="form-item-section-deo">
+                            <div class="form-item-title">
+                                <span>
+                                    VOLUME MÉDIO NEGOCIADO POR DIA
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.averageTradedVolumePerDay}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col slds-size_12-of-12">
+                    <div class="form-section-container">
+                        <div class="form-section-header">
+                            <h4>
+                                <span>
+                                    Informar se, nos últimos 5 anos, ocorreram os fatos abaixo
+                                </span>
+                            </h4>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    MUDANÇA NA RAZÃO SOCIAL
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.changeInCorporateName}
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    MUDANÇA NO SÓCIO MAJORITÁRIO
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.changeInMajorityPartner}
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    FUSÃO, AQUISIÇÃO OU COMPRA DE PARTICIPAÇÃO EM OUTRA SOCIEDADE
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.mergerAcquisitionOrPurchase}
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    DEMANDAS JUDICIAIS OU EXTRAJUDICIAIS, INCLUSIVE INQUÉRITOS ADMINISTRATIVOS, CONRA OS ADMINISTRADORES ATUAIS E/OU CONTRA OS ADMINISTRADORES DE GESTÃO ANTERIORES
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.judicialOrExtrajudicialClaims}
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    INFORMA SE HÁ EXPECTATIVA QUANTO A OCORRÊNCIA DE DEMANDA JUDICIAL OU EXTRAJUDICIAL CONTRA OS ADMINISTRADORES, RELACIONADA AOS SEUS ATOS DE GESTÃO
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.expectationRegardingJudicialDemands}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col slds-size_12-of-12">
+                    <div class="form-section-container">
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    PROPONENTE E/OU SUAS SOCIEDADES CONTROLADAS JÁ FORAM, OU ATUALMENTE SÃO, CONTRATANTES DO SEGURO DE RESPONSABILIDADE CIVEL DE ADMINISTRADORES?
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.contractingProponentOfInsurance}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col slds-size_12-of-12">
+                    <template for:each={quotationForm.InsuranceInformations} for:item="InsuranceInformation">
+                        <div class="form-section-container" key={InsuranceInformation.insuranceInformationId}>
+                            <div class="form-section-header">
+                                <h4>
+                                    <span>
+                                        Informações do Seguro - {InsuranceInformation.countPosition}
+                                    </span>
+                                </h4>
+                            </div>
+                            <div class="slds-grid slds-wrap">
+                                <div class="form-item col slds-size_6-of-12">
+                                    <div class="form-item-title">
+                                        <span>
+                                            NOME DA SEGURADORA
+                                        </span>
+                                    </div>
+                                    <div class="form-value">
+                                        {InsuranceInformation.company}
+                                    </div>
+                                </div>
+                                <div class="form-item col slds-size_6-of-12">
+                                    <div class="form-item-title">
+                                        <span>
+                                            LIMITE DE RESPONSABILIDADE
+                                        </span>
+                                    </div>
+                                    <div class="form-value">
+                                        {InsuranceInformation.limitOfLiability}
+                                    </div>
+                                </div>
+                                <div class="form-item col slds-size_6-of-12">
+                                    <div class="form-item-title">
+                                        <span>
+                                            DATA DE VENCIMENTO/CANCELAMENTO
+                                        </span>
+                                    </div>
+                                    <div class="form-value">
+                                        {InsuranceInformation.termOfContractStr}
+                                    </div>
+                                </div>
+                                <div class="form-item col slds-size_6-of-12">
+                                    <div class="form-item-title">
+                                        <span>
+                                            INDENIZAÇÕES PAGAS
+                                        </span>
+                                    </div>
+                                    <div class="form-value">
+                                        {InsuranceInformation.indemnitiesPaid} indenizações
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="container-line-divider">
+                                    <div class="line-divider"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div class="col slds-size_12-of-12">
+                    <div class="form-section-container">
+                        <div class="form-section-header">
+                            <h4>
+                                <span>
+                                    Operações financeiras
+                                </span>
+                            </h4>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    A PROPONENTE E/OU SUAS SOCIEDADES CONTROLADAS POSSUEM ALGUMA POLÍTICA FORMAL DE INVESTIMENTOS?
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.bidderHasFormalPolicy}
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    A PROPONENTE E/OU SUAS SOCIEDADES CONTROLADAS ESTÃO SEGUINDO FIELMENTE A POLÍTICA DE INVESTIMENTOS NOS ÚLTIMOS 5 ANOS?
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.bidderFollowingInvestmentPolicy}
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    A PROPONENTE E/OU SUAS SOCIEDADES CONTROLADAS POSSUEM OPERAÇÕES COM DERIVATIVOS?
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.hasDerivativeOperations}
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    AS OPERAÇÕES COM DERIVATIVOS SÃO EXCLUSIVAMENTE PARA FINS DE PROTEÇÃO DO PATRIMÔNIO DA COMPANHIA (OPERAÇÕES DE HEDGE)?
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.areForHeritageProtectionPurposes}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col slds-size_12-of-12">
+                    <div class="form-section-container">
+                        <div class="form-section-header">
+                            <h4>
+                                <span>
+                                    Garantia
+                                </span>
+                            </h4>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    VALORES SELECIONADOS
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.warrantyLimit}
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    OUTRO VALOR SELECIONADO
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.otherWarrantyLimit}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col slds-size_12-of-12">
+                    <div class="form-section-container">
+                        <div class="form-section-header">
+                            <h4>
+                                <span>
+                                    Questões COVID-19
+                                </span>
+                            </h4>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    QUAIS OS PROCEDIMENTOS ADOTADOS PELA COMPANHIA PARA PROTEGER SEUS FUNCIONÁRIOS DA EXPOSIÇÃO AO COVID-19?
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.covid19AdoptedProcedures}
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    INFORMAR QUAL É O PLANO DE CONTINUIDADE DE NEGÓCIOS DEVIDO AO COVID 19, INCLUINDO O DETALHAMENTO DAS QUAIS AÇÕES QUE ESTÃO SENDO TOMADAS (DESCREVER OS PILARES CHAVES DO PLANO DE RESPOSTA DA COMPANHIA PARA MINIMIZAR O IMPACTO DO COVID-19)
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.covid19BusinessContinuityPlan}
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <div class="form-item-title">
+                                <span>
+                                    HÁ COLABORADORES TRABALHANDO REMOTAMENTE? QUE PROTOCOLOS FORAM IMPLANTADOS PARA ELES? A EMPRESA POSSUI UM PLANO PARA REDUZIR O QUADRO DE COLABORADORES NO CASO DE UM DECLÍNIO ECONÔMICO CONTINUO IMPACTANDO A EMPRESA NEGATIVAMENTE? QUE MEDIDAS A EMPRESA TOMOU PARA CONCILIAR ISSO COM SUAS OBRIGAÇÕES TRABALHISTAS?
+                                </span>
+                            </div>
+                            <div class="form-value">
+                                {quotationForm.covid19Remote}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

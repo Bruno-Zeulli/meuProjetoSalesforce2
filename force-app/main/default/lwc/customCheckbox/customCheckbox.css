@@ -1,0 +1,10 @@
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap:  0.5rem; /* Espaçamento entre as checkboxes */
+}
+
+.checkbox-wrapper {
+    flex:  1;
+    min-width:  9rem;
+}

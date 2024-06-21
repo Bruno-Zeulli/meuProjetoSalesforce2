@@ -1,0 +1,88 @@
+<template>
+   <template for:each={lQuotationForms} for:item="form">
+        <div class="quotation-forms" key={form.formId}>
+            <div class="quotation-forms-container">
+                <div class="quotation-info-container">
+                    <div class="quotation-info-header slds-col slds-size_12-of-12">
+                        <div class="content-info-header">
+                            <div class="content-info">
+                                <span>
+                                    {form.type}
+                                </span>
+                            </div>
+                            <div if:true={hasPending} class="card-container">
+                                <div class="card-icon">
+                                    <svg width="12" height="11" viewBox="0 0 20 18" fill="#754905" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.47012 17.9999H17.5301C19.0701 17.9999 20.0301 16.3299 19.2601 14.9999L11.7301 1.98993C10.9601 0.659932 9.04012 0.659932 8.27012 1.98993L0.740121 14.9999C-0.0298788 16.3299 0.930121 17.9999 2.47012 17.9999V17.9999ZM10.0001 10.9999C9.45012 10.9999 9.00012 10.5499 9.00012 9.99993V7.99993C9.00012 7.44993 9.45012 6.99993 10.0001 6.99993C10.5501 6.99993 11.0001 7.44993 11.0001 7.99993V9.99993C11.0001 10.5499 10.5501 10.9999 10.0001 10.9999ZM11.0001 14.9999H9.00012V12.9999H11.0001V14.9999Z"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <span>
+                                        Dados pendentes
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- TODO reativar após implementação das ações de exportação de dados -->
+                        <!-- sldsValidatorIgnoreNextLine -->
+                        <!-- <button class="btn-actions">
+                            <div>
+                                <span>
+                                    Ações
+                                </span>
+                            </div>
+                            <div class="btn-action_icon">
+                                <svg width="4" height="16" viewBox="0 0 4 16" fill="#BF5600" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4C3.1 4 4 3.1 4 2C4 0.9 3.1 0 2 0C0.9 0 0 0.9 0 2C0 3.1 0.9 4 2 4ZM2 6C0.9 6 0 6.9 0 8C0 9.1 0.9 10 2 10C3.1 10 4 9.1 4 8C4 6.9 3.1 6 2 6ZM2 12C0.9 12 0 12.9 0 14C0 15.1 0.9 16 2 16C3.1 16 4 15.1 4 14C4 12.9 3.1 12 2 12Z"/>
+                                </svg>
+                            </div>
+                        </button> -->
+                    </div>
+                    <template for:each={form.InsuranceInformation} for:item="insuranceInformation">
+                        <div class="slds-col slds-size_12-of-12" key={insuranceInformation.insuranceInformationId}>
+                            <div class="quotation-info-body">
+                                <div class="quotation-info-content-container">
+                                    <div>
+                                        <span>
+                                            Operadora:
+                                        </span>
+                                    </div>
+                                    <div class="quotation-info-content">
+                                        <span>
+                                            {insuranceInformation.company}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="quotation-info-content-container">
+                                    <div>
+                                        <span>
+                                            Virgência de Contrato:
+                                        </span>
+                                    </div>
+                                    <div class="quotation-info-content">
+                                        <span>
+                                            {insuranceInformation.termOfContractStr}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="container-line-divider">
+                                    <div class="line-divider"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <!-- sldsValidatorIgnoreNextLine -->
+                <button class="btn-view-data" onclick={handleOpenQuotationForm} value={form.formId} data-name={form.formId}>
+                    <div>
+                        <span>
+                            Ver dados da cotação
+                        </span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </template>
+</template>

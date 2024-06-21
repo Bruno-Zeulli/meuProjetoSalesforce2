@@ -1,0 +1,21 @@
+<template>
+    <template if:true={loaded}>
+        <div class="slds-m-around_medium content">
+            <template for:each={groupedRecords} for:item="group">
+                <div key={group.sessionName} class="slds-m-bottom_large">
+                    <h3 class="slds-text-heading_small slds-m-vertical_medium h3class">{group.sessionName}</h3>
+                    <template for:each={group.questions} for:item="question">
+                        <c-questionnaire-question key={question.Id} question={question} onupdate={handleAnswerChange} class="questionnaireClass"></c-questionnaire-question>
+                    </template>
+                </div>
+            </template>
+
+            <lightning-button class="exportQuestionnaire" label="Exportar" icon-name="utility:pdf_ext" icon-position="left" onclick={exportQuestionnaireAsPDF}></lightning-button>
+        </div>
+    </template>
+    <template if:false={loaded}>
+        <div class = 'custom-spinner'>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </div>
+    </template>
+</template>

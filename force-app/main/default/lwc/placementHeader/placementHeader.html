@@ -1,0 +1,158 @@
+<template>
+    <lightning-card>
+        <template lwc:if={home}>
+            <div class="slds-text-heading_medium slds-text-color_inverse slds-m-left_x-large slds-p-bottom_x-small">Olá,
+                {currentUserName}</div>
+        </template>
+        <template lwc:if={followUp}>
+            <div class="slds-p-left_large slds-p-right_large slds-p-bottom_x-small">
+
+                <div class="slds-grid slds-p-bottom_medium">
+                    <div class="slds-col slds-size_1-of-2 slds-text-heading_medium slds-text-align_left slds-text-color_inverse">
+                        {oppNumber}
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-text-heading_small slds-text-align_right slds-text-color_inverse">
+                            CNPJ: {CNPJ}
+                            <lightning-button-icon class="button-copy slds-p-left_x-small" size="large" variant="bare" icon-name="utility:copy"
+                                alternative-text="Copiar" onclick={handleCopy} disable-animation></lightning-button-icon>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="slds-text-align_left slds-text-color_inverse slds-p-bottom_medium">
+                    <p>{accountName}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; {oppRecordType} &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;{productName}</p>
+                </div>
+
+                <div class="badge">
+                    <span class="slds-badge">Responsável Atual: {actualOwner}</span> 
+                </div>
+
+                <hr>
+                <template if:false={isLost}>
+                    <div class="slds-p-bottom_medium ">
+                        <lightning-button class="button-history slds-p-right_medium" variant="brand" label="Registrar Histórico" onclick={openModal} disable-animation></lightning-button>
+                        <template if:true={labelAssignBtn}>
+                            <lightning-button-menu class="button-other-actions" label="Outras ações" variant="bare" onselect={handleMenuSelect}>
+                                <lightning-menu-item label="Reatribuir oportunidade" value="Reatribuir oportunidade"> </lightning-menu-item>
+                                <lightning-menu-item label="Marcar como perdido" value="Marcar como perdido"> </lightning-menu-item>
+                            </lightning-button-menu>
+                        </template>
+                        <template if:true={labelAssignBtn2}>
+                            <lightning-button-menu class="button-other-actions" label="Outras ações" variant="bare" onselect={handleMenuSelect}>
+                                <lightning-menu-item label="Atribuir oportunidade" value="Reatribuir oportunidade"> </lightning-menu-item>
+                                <lightning-menu-item label="Marcar como perdido" value="Marcar como perdido"> </lightning-menu-item>
+                            </lightning-button-menu>
+                        </template>
+    
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template lwc:if={loaded}>
+            <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+        </template>
+    </lightning-card>
+
+
+    <!-- Modal Registrar Histórico starts here -->
+    <template if:true={isModalOpen}>
+        <template if:false={loadedHistory}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+        <template if:true={loadedHistory}>
+            <!-- Modal/Popup Box LWC starts here -->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_small">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box LWC header here -->
+                    <header class="slds-modal__header">
+                        <div class="slds-grid slds-gutters slds-clearfix">
+                            <div class="slds-col slds-clearfix">
+                                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate slds-float_left ">
+                                    Registrar Histórico
+                                </h2>
+                            </div>
+                            <div class="slds-col slds-float_right slds-clearfix">
+                                <lightning-button-icon onclick={closeModal} icon-name="utility:close"
+                                    alternative-text="Fechar" variant="bare"
+                                    class="slds-float_right slds-p-right_small fechar-btn" disable-animation></lightning-button-icon>
+                            </div>
+                        </div>
+                    </header>
+                    <!-- Modal/Popup Box LWC body starts here -->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <div class="slds-text-heading_small slds-m-bottom_small">TIPO DE REGISTRO</div>
+                        <div class="slds-grid slds-gutters slds-clearfix slds-m-bottom_large">
+                            <div class="slds-col">
+                                <lightning-button variant="brand" label="Comentário" onclick={activeBtnClassComent}
+                                    class={buttonClassComent} disable-animation></lightning-button>
+                                <lightning-button variant="brand" label="Pendência" onclick={activeBtnClassPendency}
+                                    class={buttonClassPendency} disable-animation></lightning-button>
+                            </div>
+                            
+                        </div>
+                        <div class="slds-m-top_large"><b>OBSERVAÇÕES</b></div>
+                        <div class="slds-m-bottom_large">
+                            <lightning-textarea name="myTextArea" value={textAreaObservation} placeholder="Digite aqui..."
+                                onchange={handleObservation}>
+                            </lightning-textarea>
+                        </div>
+                        <div class="slds-m-top_large">
+                            <button class="slds-button slds-button_brand registrar-btn" onclick={sendHistory}><b>Registrar</b></button>
+                        </div>
+                    </div>
+                    <!-- Modal/Popup Box LWC footer starts here -->
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </template>
+
+    <!-- Modal Atribuir starts here -->
+    <template if:true={isAssignModalOpen}>
+        <template if:true={loadedAssign}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_small">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box LWC header here -->
+                    <header class="slds-modal__header">
+                        <div class="slds-grid slds-gutters slds-clearfix slds-p-horizontal_x-small">
+                            <div class="slds-col slds-clearfix">
+                                <h3 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate slds-float_left ">
+                                    Reatribuir Oportunidade
+                                </h3>
+                            </div>
+                            <div class="slds-col slds-float_right slds-clearfix">
+                                <lightning-button-icon onclick={closeAssignModal} icon-name="utility:close"
+                                    alternative-text="Fechar" variant="bare"
+                                    class="slds-float_right slds-p-right_small fechar-btn"></lightning-button-icon>
+                            </div>
+                        </div>
+                    </header>
+                    <!-- Modal/Popup Box LWC body starts here -->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                        <div class="slds-clearfix slds-p-horizontal_x-small slds-p-bottom_large">
+                            <div class=""><b>NOME DO RESPONSÁVEL</b></div>
+                            <div class="assign-picklist">
+                                <lightning-combobox name="assignName" placeholder="Selecione um responsável" value={valueAssignName} options={optionsAssignName}
+                                    onchange={handleChangeAssignName}></lightning-combobox>
+                            </div>
+                            <div class="slds-m-top_large">
+                                <button class="slds-button slds-button_brand assign-btn" onclick={updateOwnerCaseFromPlacementHeader}
+                                    disabled={assignLoading}><b>Atribuir</b></button>
+                            </div>
+    
+                        </div>
+    
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <template if:false={loadedAssign}>
+            <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+        </template>
+    </template>
+</template>

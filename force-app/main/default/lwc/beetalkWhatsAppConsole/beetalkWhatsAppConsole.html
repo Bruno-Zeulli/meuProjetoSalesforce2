@@ -1,0 +1,315 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 10-31-2023
+  @last modified by  : samuelsirkis@wiz.co
+-->
+<template>
+    <lightning-card variant="Narrow" title="Atendimento WhatsApp - Wiz" icon-name="standard:quick_text">
+        <lightning-button if:true={showButtonImport} label="Disparo Ativo" slot="actions"
+            onclick={openFlowImport}></lightning-button>
+        <lightning-button if:true={showButtonTask} label="Tabulação" slot="actions"
+            onclick={openModal}></lightning-button>
+        <template if:true={showModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- modal header start -->
+                    <header class="slds-modal__header">
+                        <!-- sldsValidatorIgnoreNextLine -->
+                        <button class="slds-button slds-button_icon slds-modal__close
+                            slds-button_icon-inverse" title="Fechar" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                                size="small">
+                            </lightning-icon>
+                            <span class="slds-assistive-text">Fechar</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Tabulação
+                        </h2>
+                    </header>
+                    <!-- modal body start -->
+                    <div class="slds-modal__content slds-var-p-around_medium slds-is-relative" id="modal-content-id-1">
+                        <lightning-flow flow-api-name='BeetalkTabulacao' flow-input-variables={inputVariables}
+                            onstatuschange={handleStatusChange}></lightning-flow>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <template if:true={showFlowImport}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- modal header start -->
+                    <header class="slds-modal__header">
+                        <!-- sldsValidatorIgnoreNextLine -->
+                        <button class="slds-button slds-button_icon slds-modal__close
+                            slds-button_icon-inverse" title="Fechar" onclick={closeFlowImport}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                                size="small">
+                            </lightning-icon>
+                            <span class="slds-assistive-text">Fechar</span>
+                        </button>
+                        <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">
+                            Disparo Ativo
+                        </h2>
+                    </header>
+                    <!-- modal body start -->
+                    <div class="slds-modal__content slds-var-p-around_medium slds-is-relative" id="modal-content-id-2">
+                        <lightning-flow flow-api-name='Beetalk_Disparo_Ativo_WhatsApp'
+                            onstatuschange={handleStatusChange}></lightning-flow>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open">
+
+            </div>
+        </template>
+
+        <div class="slds-form-element">
+            <lightning-combobox style="width: 120px; margin-left: 16px" name="progress" label="  Status:"
+                value={presenceStatus} placeholder={presenceStatusPlace} options={optionsStatus}
+                onchange={handleChangeStatus}></lightning-combobox>
+        </div>
+        <footer class="slds-card__footer">
+            <!--MEUS CHATS -->
+            <div class="slds-box slds-box_x-small">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon" title="Meus Chats">
+                            <lightning-icon class="slds-icon iconColorWiz"
+                                icon-name="standard:feedback"></lightning-icon>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">
+                            <span>Meus Chats</span>
+                        </h2>
+                    </div>
+                    <div class="slds-form-element" style="margin-right: 5px">
+                        <label class="slds-form-element__label" for="inputMyCasesView">Exibição:</label>
+                        <div class="slds-form-element__control">
+                            <input type="text" value={myCasesToViewNumber} id="inputMyCasesView" maxlength="15"
+                                pattern="[0-9]{2}" class="slds-input inputMyCases" onchange={handlerChangeMyCasesToView}
+                                size="2" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="buttonMyCasesNumber">Total:</label>
+                        <div class="slds-form-element__control slds-no-flex">
+                            <button class="slds-button slds-button_neutral buttonCount"
+                                id="buttonMyCasesNumber">{myCasesNumber}</button>
+                            <!-- if:false={checkedOnline}-->
+                        </div>
+                    </div>
+                </header>
+                <article class="slds-card">
+                    <div if:true={checkedOnline}>
+                        <template for:each={visibleMyCases} for:item="visibleMyCases">
+                            <div key={visibleMyCases.id} class="slds-grid slds-grid_vertical">
+                                <div class="slds-col slds-var-p-around_xx-small">
+                                    <c-beetalk-whats-app-console-item-chats mycase="true" recordpageid={recordId}
+                                        casephoneorigin={visibleMyCases.beetalk__SourceIdentification__c}
+                                        caseid={visibleMyCases.Id}
+                                        casecontactdetailname={visibleMyCases.beetalk__NameFormula__c}
+                                        casecontactdetailnumber={visibleMyCases.PhoneFormula_F2__c}
+                                        casesubject={visibleMyCases.Subject} caseproduct={visibleMyCases.Product__c}
+                                        casenumber={visibleMyCases.CaseNumber} caseorigin={visibleMyCases.Origin}
+                                        selectedcase={visibleMyCases.EmResolucao_Tkt__c}
+                                        messagenotanswered={visibleMyCases.beetalkContactMessageNotAnswered__c}></c-beetalk-whats-app-console-item-chats>
+                                </div>
+                            </div>
+                        </template>
+                        <div>
+                            <div class="pagination-container">
+                                <div class="btn-arrow">
+                                    <!-- sldsValidatorIgnoreNextLine -->
+                                    <button label="" onclick={handleToFirstPageMyCases}
+                                        disabled={disablePreviousMyCases}>
+                                        <div>
+                                            <svg width="12" height="10" viewBox="0 0 12 10" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M11.2432 9.40832C11.5682 9.08332 11.5682 8.55832 11.2432 8.23332L8.01823 4.99998L11.2516 1.76665C11.5766 1.44165 11.5766 0.91665 11.2516 0.59165C10.9266 0.26665 10.4016 0.26665 10.0766 0.59165L6.25156 4.41665C5.92656 4.74165 5.92656 5.26665 6.25156 5.59165L10.0766 9.41665C10.3932 9.73332 10.9182 9.73332 11.2432 9.40832Z" />
+                                                <path
+                                                    d="M5.75104 9.40832C6.07604 9.08332 6.07604 8.55832 5.75104 8.23332L2.52604 4.99998L5.75938 1.76665C6.08438 1.44165 6.08438 0.91665 5.75938 0.59165C5.43438 0.26665 4.90938 0.26665 4.58438 0.59165L0.759375 4.41665C0.434375 4.74165 0.434375 5.26665 0.759375 5.59165L4.58438 9.41665C4.90104 9.73332 5.42604 9.73332 5.75104 9.40832Z" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="btn-arrow">
+                                    <!-- sldsValidatorIgnoreNextLine -->
+                                    <button class="btn-pagination" label="" onclick={previousHandlerMyCases}
+                                        disabled={disablePreviousMyCases}>
+                                        <div>
+                                            <svg width="6" height="10" viewBox="0 0 6 10" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M5.25938 8.23332L2.02604 4.99998L5.25938 1.76665C5.58438 1.44165 5.58438 0.91665 5.25938 0.59165C4.93438 0.26665 4.40938 0.26665 4.08438 0.59165L0.259375 4.41665C-0.065625 4.74165 -0.065625 5.26665 0.259375 5.59165L4.08438 9.41665C4.40938 9.74165 4.93438 9.74165 5.25938 9.41665C5.57604 9.09165 5.58438 8.55832 5.25938 8.23332Z" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div>
+                                    <p>
+                                        <span>
+                                            {currentPageMyCases} de {totalPageMyCases}
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="btn-arrow">
+                                    <!-- sldsValidatorIgnoreNextLine -->
+                                    <button label="" onclick={nextHandlerMyCases} disabled={disableNextMyCases}>
+                                        <div>
+                                            <svg width="6" height="10" viewBox="0 0 6 10" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M0.739844 8.23332L3.97318 4.99998L0.739844 1.76665C0.414844 1.44165 0.414844 0.91665 0.739844 0.59165C1.06484 0.26665 1.58984 0.26665 1.91484 0.59165L5.73984 4.41665C6.06484 4.74165 6.06484 5.26665 5.73984 5.59165L1.91484 9.41665C1.58984 9.74165 1.06484 9.74165 0.739844 9.41665C0.423177 9.09165 0.414844 8.55832 0.739844 8.23332Z" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="btn-arrow">
+                                    <!-- sldsValidatorIgnoreNextLine -->
+                                    <button label="" onclick={handleToLastPageMyCases} disabled={disableNextMyCases}>
+                                        <div>
+                                            <svg width="12" height="10" viewBox="0 0 12 10" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M0.751562 0.591895C0.426563 0.916895 0.426563 1.44189 0.751562 1.76689L3.9849 5.00023L0.751562 8.23356C0.426563 8.55856 0.426563 9.08356 0.751562 9.40856C1.07656 9.73356 1.60156 9.73356 1.92656 9.40856L5.75156 5.58356C6.07656 5.25856 6.07656 4.73356 5.75156 4.40856L1.9349 0.591895C1.6099 0.266895 1.07656 0.266895 0.751562 0.591895Z" />
+                                                <path
+                                                    d="M6.24375 0.591726C5.91875 0.916726 5.91875 1.44173 6.24375 1.76673L9.47708 5.00006L6.24375 8.23339C5.91875 8.55839 5.91875 9.08339 6.24375 9.40839C6.56875 9.73339 7.09375 9.73339 7.41875 9.40839L11.2438 5.58339C11.5688 5.25839 11.5688 4.73339 11.2438 4.40839L7.41875 0.583392C7.10208 0.266726 6.56875 0.266726 6.24375 0.591726Z" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <!--MEUS CHATS-->
+
+            <!--Chats Em Espera -->
+            <div class="slds-box slds-box_x-small" if:false={checkedAutomatic}>
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon" title="Chats em Espera">
+                            <lightning-icon class="slds-icon" icon-name="standard:live_chat"></lightning-icon>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">
+                            <span>Chats em Espera</span>
+                        </h2>
+                    </div>
+                    <div class="slds-form-element" style="margin-right: 5px">
+                        <label class="slds-form-element__label" for="inputAwaitCasesToView">Exibição:</label>
+                        <div class="slds-form-element__control">
+                            <input type="text" value={awaitCasesToViewNumber} id="inputAwaitCasesToView"
+                                pattern="[0-9]{2}" class="slds-input inputAwaitCases"
+                                onchange={handlerChangeAwaitCasesToView} size="2" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="buttonAwaitCasesNumber">Total:</label>
+                        <div class="slds-form-element__control slds-no-flex">
+                            <button class="slds-button slds-button_neutral buttonCount"
+                                id="buttonAwaitCasesNumber">{awaitCasesNumber}</button>
+                            <!-- if:false={checkedAutomatic}-->
+                        </div>
+                    </div>
+                </header>
+                <article class="slds-card">
+                    <div if:true={checkedOnline}>
+                        <template for:each={visibleAwaitCases} for:item="visibleAwaitCases">
+                            <div key={visibleAwaitCases.id} class="slds-grid slds-grid_vertical">
+                                <div class="slds-col slds-var-p-around_xx-small">
+                                    <c-beetalk-whats-app-console-item-chats queued="true" userid={userId}
+                                        casecontactdetailname={visibleAwaitCases.ContactDetail__r.Name}
+                                        casecontactdetailnumber={visibleAwaitCases.PhoneFormula_F2__c}
+                                        recordpageid={recordId} caseid={visibleAwaitCases.Id}
+                                        casephoneorigin={visibleAwaitCases.beetalk__SourceIdentification__c}
+                                        casesubject={visibleAwaitCases.Subject}
+                                        caseproduct={visibleAwaitCases.Product__c}
+                                        casenumber={visibleAwaitCases.CaseNumber}
+                                        caseorigin={visibleAwaitCases.Origin}></c-beetalk-whats-app-console-item-chats>
+                                </div>
+                            </div>
+                        </template>
+                        <div>
+                            <div class="pagination-container">
+                                <div class="btn-arrow">
+                                    <!-- sldsValidatorIgnoreNextLine -->
+                                    <button label="" onclick={handleToFirstPageAwaitCases}
+                                        disabled={disablePreviousAwaitCases}>
+                                        <div>
+                                            <svg width="12" height="10" viewBox="0 0 12 10" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M11.2432 9.40832C11.5682 9.08332 11.5682 8.55832 11.2432 8.23332L8.01823 4.99998L11.2516 1.76665C11.5766 1.44165 11.5766 0.91665 11.2516 0.59165C10.9266 0.26665 10.4016 0.26665 10.0766 0.59165L6.25156 4.41665C5.92656 4.74165 5.92656 5.26665 6.25156 5.59165L10.0766 9.41665C10.3932 9.73332 10.9182 9.73332 11.2432 9.40832Z" />
+                                                <path
+                                                    d="M5.75104 9.40832C6.07604 9.08332 6.07604 8.55832 5.75104 8.23332L2.52604 4.99998L5.75938 1.76665C6.08438 1.44165 6.08438 0.91665 5.75938 0.59165C5.43438 0.26665 4.90938 0.26665 4.58438 0.59165L0.759375 4.41665C0.434375 4.74165 0.434375 5.26665 0.759375 5.59165L4.58438 9.41665C4.90104 9.73332 5.42604 9.73332 5.75104 9.40832Z" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="btn-arrow">
+                                    <!-- sldsValidatorIgnoreNextLine -->
+                                    <button class="btn-pagination" label="" onclick={previousHandlerAwaitCases}
+                                        disabled={disablePreviousAwaitCases}>
+                                        <div>
+                                            <svg width="6" height="10" viewBox="0 0 6 10" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M5.25938 8.23332L2.02604 4.99998L5.25938 1.76665C5.58438 1.44165 5.58438 0.91665 5.25938 0.59165C4.93438 0.26665 4.40938 0.26665 4.08438 0.59165L0.259375 4.41665C-0.065625 4.74165 -0.065625 5.26665 0.259375 5.59165L4.08438 9.41665C4.40938 9.74165 4.93438 9.74165 5.25938 9.41665C5.57604 9.09165 5.58438 8.55832 5.25938 8.23332Z" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div>
+                                    <p>
+                                        <span>
+                                            {currentPageAwaitCases} de {totalPageAwaitCases}
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="btn-arrow">
+                                    <!-- sldsValidatorIgnoreNextLine -->
+                                    <button label="" onclick={nextHandlerAwaitCases} disabled={disableNextAwaitCases}>
+                                        <div>
+                                            <svg width="6" height="10" viewBox="0 0 6 10" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M0.739844 8.23332L3.97318 4.99998L0.739844 1.76665C0.414844 1.44165 0.414844 0.91665 0.739844 0.59165C1.06484 0.26665 1.58984 0.26665 1.91484 0.59165L5.73984 4.41665C6.06484 4.74165 6.06484 5.26665 5.73984 5.59165L1.91484 9.41665C1.58984 9.74165 1.06484 9.74165 0.739844 9.41665C0.423177 9.09165 0.414844 8.55832 0.739844 8.23332Z" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="btn-arrow">
+                                    <!-- sldsValidatorIgnoreNextLine -->
+                                    <button label="" onclick={handleToLastPageAwaitCases}
+                                        disabled={disableNextAwaitCases}>
+                                        <div>
+                                            <svg width="12" height="10" viewBox="0 0 12 10" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M0.751562 0.591895C0.426563 0.916895 0.426563 1.44189 0.751562 1.76689L3.9849 5.00023L0.751562 8.23356C0.426563 8.55856 0.426563 9.08356 0.751562 9.40856C1.07656 9.73356 1.60156 9.73356 1.92656 9.40856L5.75156 5.58356C6.07656 5.25856 6.07656 4.73356 5.75156 4.40856L1.9349 0.591895C1.6099 0.266895 1.07656 0.266895 0.751562 0.591895Z" />
+                                                <path
+                                                    d="M6.24375 0.591726C5.91875 0.916726 5.91875 1.44173 6.24375 1.76673L9.47708 5.00006L6.24375 8.23339C5.91875 8.55839 5.91875 9.08339 6.24375 9.40839C6.56875 9.73339 7.09375 9.73339 7.41875 9.40839L11.2438 5.58339C11.5688 5.25839 11.5688 4.73339 11.2438 4.40839L7.41875 0.583392C7.10208 0.266726 6.56875 0.266726 6.24375 0.591726Z" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <!--Chats Em Espera -->
+        </footer>
+    </lightning-card>
+</template>

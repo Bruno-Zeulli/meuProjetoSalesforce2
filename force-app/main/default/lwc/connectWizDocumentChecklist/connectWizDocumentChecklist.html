@@ -1,0 +1,96 @@
+<template>
+    <div if:true={isLoading}>
+        <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+    </div>
+    <div class="checklist-container">
+        <div class="checklist-required-container">
+            <div class="checklist-header">
+                <span>
+                    Documentos obrigatórios
+                </span>
+            </div>
+            <div>
+                <div class="container-line-divider">
+                    <div class="line-divider"></div>
+                </div>
+            </div>
+            <div>
+                <div if:true={showNotFoundChecklistRequired} class="alert-notfound-container">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 7.25H11.25V7V5V4.75H11H9H8.75V5V7V7.25H9H11ZM0.25 10C0.25 4.61807 4.61807 0.25 10 0.25C15.3819 0.25 19.75 4.61807 19.75 10C19.75 15.3819 15.3819 19.75 10 19.75C4.61807 19.75 0.25 15.3819 0.25 10ZM8.75 14C8.75 14.6881 9.31193 15.25 10 15.25C10.6881 15.25 11.25 14.6881 11.25 14V10C11.25 9.31193 10.6881 8.75 10 8.75C9.31193 8.75 8.75 9.31193 8.75 10V14Z" fill="#2175D6" stroke="#080809" stroke-width="0.5"/>
+                    </svg>
+                    <span>
+                        Não há documentos obrigatórios há serem exibidos.
+                    </span>
+                </div>
+                <template for:each={lDocChecklistRequired} for:item="docChecklist">
+                    <div key={docChecklist.documentType}>
+                        <c-connect-wiz-file-view
+                            record-id={recordId}
+                            show-title={showTitle}
+                            document-type-name={docChecklist.documentType}
+                            show-button-disapprove-file={showButtonDisapproveFile}
+                            show-button-view-file="true"
+                            show-button-delete-file={showButtonDeleteFile}
+                            show-button-approve-file={showButtonApproveFile}
+                            show-full-view={showFullView}
+                            onhandleshowviewfile={handleControlShowViewFile}
+                            onchangestatusfile={changeStatusEvent}
+                            onrefresh={handleRefresh}
+                        ></c-connect-wiz-file-view>
+                        <div>
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div class="checklist-optional-container">
+            <div class="checklist-header">
+                <span>
+                    Documentos adicionais
+                </span>
+            </div>
+            <div>
+                <div class="container-line-divider">
+                    <div class="line-divider"></div>
+                </div>
+            </div>
+            <div>
+                <div if:true={showNotFoundChecklistOptional} class="alert-notfound-container">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 7.25H11.25V7V5V4.75H11H9H8.75V5V7V7.25H9H11ZM0.25 10C0.25 4.61807 4.61807 0.25 10 0.25C15.3819 0.25 19.75 4.61807 19.75 10C19.75 15.3819 15.3819 19.75 10 19.75C4.61807 19.75 0.25 15.3819 0.25 10ZM8.75 14C8.75 14.6881 9.31193 15.25 10 15.25C10.6881 15.25 11.25 14.6881 11.25 14V10C11.25 9.31193 10.6881 8.75 10 8.75C9.31193 8.75 8.75 9.31193 8.75 10V14Z" fill="#2175D6" stroke="#080809" stroke-width="0.5"/>
+                    </svg>
+                    <span>
+                        Não há documentos adicionais há serem exibidos.
+                    </span>
+                </div>
+                <template for:each={lDocChecklistOptional} for:item="docChecklist">
+                    <div key={docChecklist.documentType}>
+                        <c-connect-wiz-file-view
+                            record-id={recordId}
+                            show-title={showTitle}
+                            document-type-name={docChecklist.documentType}
+                            show-button-disapprove-file={showButtonDisapproveFile}
+                            show-button-view-file="true"
+                            show-button-delete-file={showButtonDeleteFile}
+                            show-full-view={showFullView}
+                            show-button-approve-file={showButtonApproveFile}
+                            onhandleshowviewfile={handleControlShowViewFile}
+                            onchangestatusfile={changeStatusEvent}
+                            onrefresh={handleRefresh}
+                        ></c-connect-wiz-file-view>
+                        <div>
+                            <div class="container-line-divider">
+                                <div class="line-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+</template>

@@ -1,0 +1,61 @@
+button {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+
+  padding: var(--spacing, 6px),  var(--spacing, 8px);
+  width: 131px;
+  height: 48px;
+
+  border: 2px solid var(--color-border-customer ,#BF5600);
+  border-radius: 4px;
+  background-color: var(--color-background-customer, #FBFBFB);
+  color: var(--color-text-customer,#BF5600);
+
+}
+
+button:hover{
+  border: 2px solid var(--color-border-customer ,#8F4100);
+  border-radius: 4px;
+  background-color: var(--color-background-customer, #FFF0E4);
+  color: var(--color-text-customer, #8F4100);
+}
+
+button:focus{
+  border: 2px solid var(--color-border-customer ,#602B00);
+  border-radius: 4px;
+  background-color: var(--color-background-customer, #FFB578);
+  color: var(--color-text-customer,#602B00)
+}
+
+button:focus svg{
+  fill: #602B00
+}
+
+button:hover svg{
+  fill: #8F4100
+}
+
+
+.text-export{
+  padding-left: var(--spacing, 16px);
+  padding-top: var(--spacing, 12px);
+  padding-bottom: var(--spacing, 12px);
+}
+
+.icon-export{
+  padding: var(--spacing, 16px)  var(--spacing, 16px)  var(--spacing, 16px)  var(--spacing, 8px)  ;
+}
+
+.icon-export img{
+  width: 24px;
+  height: 16px;
+}

@@ -1,0 +1,31 @@
+<template>
+
+    <lightning-card title="Resumo do Ticket" icon-name="standard:lead_list">
+        <div if:true={spinner}>
+            <lightning-spinner alternative-text="Salvando..."></lightning-spinner>
+        </div>
+        <lightning-record-edit-form object-api-name="Case" record-id={recordId} record-type-id={recordTypeIdSelected} onsubmit={handleSubmit}>
+            <div style="padding: 11px">
+                <lightning-input-field field-name="Status">Status</lightning-input-field>
+            </div>
+            <lightning-accordion class="example-accordion" allow-multiple-sections-open>
+                <lightning-accordion-section name="GrupoMotivoTipo" label="Produto / Bandeira / Grupo / Motivo / Tipo / Subtipo">
+                    <lightning-combobox name="produto" label="Produto" value={produtoSelected} placeholder="Selecione o Produto" options={produtoOptions} onchange={produtoHandleChange} ></lightning-combobox>
+                    <lightning-combobox name="bandeira" label="Bandeira" value={bandeiraSelected} placeholder="Selecione a Bandeira" options={bandeiraOptions} onchange={bandeiraHandleChange} disabled={produtoNotSelected}></lightning-combobox>
+                    <lightning-combobox name="grupo" label="Grupo" value={groupSelected} placeholder="Selecione o Grupo" options={groupOptions} onchange={groupHandleChange} disabled={bandeiraNotSelected}></lightning-combobox>
+                    <lightning-combobox name="motivo" label="Motivo" value={motivoSelected} placeholder="Selecione o Motivo" options={motivoOptions} onchange={motivoHandleChange} disabled={groupNotSelected}></lightning-combobox>
+                    <lightning-combobox name="tipo" label="Tipo" value={tipoSelected} placeholder="Selecione o Tipo" options={tipoOptions} onchange={tipoHandleChange} disabled={motivoNotSelected}></lightning-combobox>
+                    <lightning-combobox name="subtipo" label="Subtipo" value={subtipoSelected} placeholder="Selecione o Subtipo" options={subtipoOptions} onchange={subtipoHandleChange} disabled={tipoNotSelected}></lightning-combobox>
+                </lightning-accordion-section>
+                <lightning-accordion-section name="Descricoes" label="Descrições">
+                    <lightning-input-field field-name="Description">Descrição</lightning-input-field>
+                    <lightning-input-field field-name="Description_Tkt__c">Descrição PPW</lightning-input-field>
+                </lightning-accordion-section>
+            </lightning-accordion>
+            <div style="text-align: center; padding: 11px">
+                <lightning-button variant="brand" type="submit" name="Salvar" label="Salvar Informações"></lightning-button>
+            </div>
+        </lightning-record-edit-form>
+    </lightning-card>
+    
+</template>

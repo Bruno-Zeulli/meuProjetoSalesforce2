@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <description>Dependent Picklist Filtered by RecordType</description>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="objectName" type="String" label="Object API Name" description="Object API name for which dependent picklists to be displayed" role="inputOnly"/>
+            <property name="recordTypeName" type="String" label="Record Type Name/Label" description="Name or Label of the record type" role="inputOnly"/>
+            <property name="fieldNameOne" type="String" label="Picklist Field API Name 1" description="Top most picklist in the dependent picklists" role="inputOnly"/>
+            <property name="fieldNameTwo" type="String" label="Picklist Field API Name 2" description="Second piicklist in the depedent picklists" role="inputOnly"/>
+            <property name="fieldNameThree" type="String" label="Picklist Field API Name 3" description="Third piicklist in the depedent picklists" role="inputOnly"/>
+            <property name="fieldNameFour" type="String" label="Picklist Field API Name 4" description="Fourth piicklist in the depedent picklists" role="inputOnly"/>
+            <property name="fieldNameFive" type="String" label="Picklist Field API Name 5" description="Fifth piicklist in the depedent picklists" role="inputOnly"/>
+            <property name="picklistValueOne" type="String" label="Picklist Value Selected for Picklist 1" description="Value selected by user for Picklist 1" role="outputOnly"/>
+            <property name="picklistValueTwo" type="String" label="Picklist Value Selected for Picklist 2" description="Value selected by user for Picklist 2" role="outputOnly"/>
+            <property name="picklistValueThree" type="String" label="Picklist Value Selected for Picklist 3" description="Value selected by user for Picklist 3" role="outputOnly"/>
+            <property name="picklistValueFour" type="String" label="Picklist Value Selected for Picklist 4" description="Value selected by user for Picklist 4" role="outputOnly"/>
+            <property name="picklistValueFive" type="String" label="Picklist Value Selected for Picklist 5" description="Value selected by user for Picklist 5" role="outputOnly"/>
+        </targetConfig>
+    </targetConfigs>
+    <masterLabel>Depdendent Picklist by RecordType</masterLabel>
+</LightningComponentBundle>

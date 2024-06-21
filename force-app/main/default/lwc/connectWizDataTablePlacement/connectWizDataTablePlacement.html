@@ -1,0 +1,31 @@
+<template>
+    <div if:true={isLoading}>
+        <c-connect-wiz-loader-spinner></c-connect-wiz-loader-spinner>
+    </div>
+    <!-- <div if:true={isScreenQuoteRequest} class="container-Datatable">
+        <c-connect-wiz-custom-data-type-buttons
+            key-field="id"
+            data={dataNew}
+            columns={columns}
+            onrowselection={getCaseId}
+            hide-checkbox-column
+            ondataselect={handleRowSelection}
+            sorted-direction={sortDirection}
+            sorted-by={sortedBy}
+            onsort={onHandleSort}
+            wraptextmaxlines="3"
+            ontoassigncase={getCaseIdToAssign}
+            >
+        </c-connect-wiz-custom-data-type-buttons>
+    </div> -->
+    <div class="container-Datatable">
+        <c-connect-wiz-custom-data-type-buttons key-field="id" data={data} columns={columns} onrowselection={getCaseId}
+            hide-checkbox-column ondataselect={handleRowSelection} sorted-direction={sortDirection} sorted-by={sortedBy}
+            onsort={onHandleSort} wraptextmaxlines="3" ontoassigncase={getCaseIdToAssign}>
+        </c-connect-wiz-custom-data-type-buttons>
+    </div>
+    <div>
+        <c-connect-wiz-pagination records={lQuotesRequest} record-size="6"
+            onupdate={updatePaginationCaseHandler}></c-connect-wiz-pagination>
+    </div>
+</template>

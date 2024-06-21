@@ -1,0 +1,10 @@
+.stretchButton{
+    display:block;
+    min-width: 100%;
+}
+.card-external{
+    margin-top: 10px;
+}
+.card-inner{
+    padding: 10px;
+}

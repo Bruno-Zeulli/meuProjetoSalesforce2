@@ -1,0 +1,211 @@
+<template>
+    <!-- <div class="slds-card"> -->
+        <!-- Default/basic -->
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">      
+                <lightning-input type="text" class="slds-m-bottom_small" label="CNPJ" name='cnpj' value={searchKey} disabled={disableText}></lightning-input>
+                <lightning-button title="search" label="Buscar" variant="brand" onclick={handleClick} disabled={disableButton}></lightning-button>  
+                <div if:true={loading}>
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </div> 
+            </div>
+            <div class="slds-col">
+            </div>
+            <div class="slds-col">
+            </div>
+            <div class="slds-col">
+            </div>
+        </div>
+    <!-- </div> -->
+
+        <template if:true={dadosEmpresa}>
+            <div class="slds-card card-external">
+                <lightning-tabset>
+                    <lightning-tab label="Dados Gerais">
+                        <div class="slds-card card-inner">
+                            <!-- Default/basic -->
+                            <div class="slds-grid slds-gutters slds-m-top_xx-small">
+                                <div class="slds-col">
+                                    <lightning-input type="text" label="Razão Social" placeholder={dadosEmpresa.RAZAO} disabled ></lightning-input>
+                                </div>
+                                <div class="slds-col">
+                                    <lightning-input type="text" label="CNPJ"  placeholder={dadosEmpresa.CNPJOK} disabled ></lightning-input>
+                                </div>
+                            </div>
+
+                            <div class="slds-grid slds-gutters slds-m-top_xx-small">
+                                <div class="slds-col">
+                                    <lightning-input type="currecy" label="Faturamento Anual do CNPJ" placeholder={annualRevenuelabel} disabled ></lightning-input>
+                                </div>
+                                <div class="slds-col">
+                                    <lightning-input type="text" label="Setor"  placeholder={dadosEmpresa.SETOR} disabled ></lightning-input>
+                                </div>
+                            </div>
+
+                            <div class="slds-grid slds-gutters slds-m-top_xx-small">
+                                <div class="slds-col">
+                                    <lightning-input type="currecy" label="Faturamento Anual do Grupo" placeholder={annualRevenueGrouplabel} disabled ></lightning-input>
+                                </div>                       
+                            </div>
+                        </div>
+                        <template if:true={disableText}>
+                            <button type="button" name="Nutrir Lead" value="Nutrir Lead" class="slds-button slds-button_brand slds-m-top_small" onclick={handleActionDadosEmpresa}>Atualizar</button>
+                        </template>    
+            
+                    </lightning-tab>
+        
+                    <lightning-tab label="Endereços" title="Endereços">
+                        <lightning-card> <br/>
+                            <div style="width: auto;">
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <div style="height: 300px;">
+                                            <lightning-datatable
+                                                key-field="NUMERO"
+                                                data={enderecos}
+                                                columns={columns}
+                                                hide-checkbox-column="true"
+                                                onrowaction={handleRowActionAddress}>
+                                            </lightning-datatable>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning-card>
+                    </lightning-tab>
+                    <lightning-tab label="E-mails">
+                        <lightning-card> <br/>
+                            <div style="width: auto;">
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <div style="height: 300px;">
+                                            <lightning-datatable
+                                                key-field="QUALIFICACAO"
+                                                data={emails}
+                                                hide-checkbox-column="true"
+                                                columns={columnsEmails}
+                                                onrowaction={handleRowActionEmail}>
+                                            </lightning-datatable>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning-card>
+                    </lightning-tab>
+                    <lightning-tab label="Telefones" title="Telefones">
+                        <lightning-card> <br/>
+                            <div style="width: auto;">
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <div style="height: 300px;">
+                                            <lightning-datatable
+                                                key-field="QUALIFICACAO"
+                                                data={telefones}
+                                                hide-checkbox-column="true"
+                                                columns={columnsTelefones}
+                                                onrowaction={handleRowActionPhone}>
+                                            </lightning-datatable>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning-card>
+                    </lightning-tab>
+                </lightning-tabset> 
+            </div>
+        </template>
+
+
+        <template if:true={error}>
+            {error}<br>
+            {stack}
+        </template>
+        
+            <!-- Detail view modal -->
+        <template if:true={bShowModal}>
+            <section role="dialog" tabindex="-1"
+                    aria-labelledby="modal-heading-01"
+                    aria-modal="true"
+                    aria-describedby="modal-content-id-1"
+                    class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <!-- modal header -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small" ></lightning-icon>
+                    </button>                    
+                    <h2 id="modal" class="slds-text-heading_medium slds-hyphenate" if:true={isDadoEmpresa}><strong>Atualizar Dados Empresa</strong></h2>
+                    <h2 id="modal1" class="slds-text-heading_medium slds-hyphenate" if:true={isEndereco}><strong>Atualizar Endereço</strong></h2>
+                    <h2 id="modal2" class="slds-text-heading_medium slds-hyphenate" if:true={isEmail}><strong>Atualizar Email</strong></h2>
+                    <h2 id="modal3" class="slds-text-heading_medium slds-hyphenate" if:true={isPhone}><strong>Atualizar Telefone</strong></h2>
+                </header>
+
+                <!-- modal body -->
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert">
+                    <span class="slds-assistive-text">Alerta!</span>
+                    <span class="slds-icon_container slds-icon-utility-warning slds-m-right_x-small" title="Description of icon when needed">
+                      <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#warning"></use>
+                      </svg>
+                    </span>
+                    <h2>Ao clicar em "Atualizar", os dados abaixo substituirão os dados já existentes no Lead.
+                      <a href="javascript:void(0);"></a>
+                    </h2>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="dadoEmpresa" if:true={isDadosEmpresa}>
+                    <dl class="slds-list_horizontal slds-wrap">
+                        <dt class="slds-item_label slds-truncate" title="Endereço"><strong>Razão Social:</strong></dt>
+                        <dd class="slds-item_detail slds-truncate">{razaoSocial}</dd>
+                        <dt class="slds-item_label slds-truncate" title="CNPJ"><strong>CNPJ:</strong></dt>
+                        <dd class="slds-item_detail slds-truncate">{cnpj}</dd>
+                        <dt class="slds-item_label slds-truncate" title="Faturamento Anual"><strong>Faturamento Anual:</strong></dt>
+                        <dd class="slds-item_detail slds-truncate">{annualRevenuelabel}</dd>
+                    </dl>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="endereco" if:true={isEndereco}>
+                    <dl class="slds-list_horizontal slds-wrap">
+                        <dt class="slds-item_label slds-truncate" title="Endereço"><strong>Endereço:</strong></dt>
+                        <dd class="slds-item_detail slds-truncate">{record.ENDERECO}</dd>
+                        <dt class="slds-item_label slds-truncate" title="Numero"><strong>Número:</strong></dt>
+                        <dd class="slds-item_detail slds-truncate">{record.NUMERO}</dd>
+                        <dt class="slds-item_label slds-truncate" title="Bairro"><strong>Bairro:</strong></dt>
+                        <dd class="slds-item_detail slds-truncate">{record.BAIRRO}</dd>
+                        <dt class="slds-item_label slds-truncate" title="Email"><strong>CEP:</strong></dt>
+                        <dd class="slds-item_detail slds-truncate">{record.CEP}</dd>
+                        <dt class="slds-item_label slds-truncate" title="UF"><strong>UF:</strong></dt>
+                        <dd class="slds-item_detail slds-truncate">{record.UF}</dd>
+                    </dl>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="email" if:true={isEmail}>
+                    <dl class="slds-list_horizontal slds-wrap">
+                        <dt class="slds-item_label slds-truncate" title="Endereço"><strong>E-mail:</strong></dt>
+                        <dd class="slds-item_detail slds-truncate">{record.EMAIL}</dd>
+                    </dl>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="" if:true={isPhone}>
+                    <dl class="slds-list_horizontal slds-wrap">
+                        <dt class="slds-item_label slds-truncate" title="Telefone"><strong>Telefone:</strong></dt>
+                        <dd class="slds-item_detail slds-truncate">({record.DDD}){record.TELEFONE}</dd>
+                        <dt class="slds-item_label slds-truncate" title="Telefone"><strong>Tipo telefone:</strong></dt>
+                        <dd class="slds-item_detail slds-truncate">{record.TIPO_TELEFONE}</dd>
+                    </dl>
+                </div>
+                <!-- modal footer start-->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral slds-m-right_x-small" onclick={closeModal} title="Cancel">Cancelar</button>
+                    <lightning-button variant="brand"
+                                      label="Atualizar"
+                                      title="Atualizar registro "
+                                      onclick={SalvarRegistro}></lightning-button>
+                    <div if:true={loadingSaving}>
+                        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                    </div> 
+                </footer>
+            </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+           
+        </template>
+    
+</template>

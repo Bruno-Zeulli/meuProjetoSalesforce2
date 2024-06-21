@@ -1,0 +1,64 @@
+.slds-popover {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 1%;
+    /* height: 769px; */
+    border-radius: 8px;
+    padding: 25px;
+}
+
+
+.slds-popover__header > h2{
+    height: 40px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 130%;
+    letter-spacing: 0.01em;
+
+    color: #212223
+}
+
+.notification-div {
+    border-bottom: 1px solid rgb(207, 202, 202);
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.slds-popover *:last-child {
+    margin-bottom: 0;
+    border: none;
+}
+
+.slds-button_outline-brand{
+    color: #212223;
+}
+
+.additional-info {
+    color : rgb(167, 160, 160);
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 13px;
+    line-height: 130%;
+}
+
+.subject {
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 15px;
+    line-height: 130%;
+}
+
+.dot-icon {
+    --sds-c-icon-color-foreground-default: rgb(190, 183, 183);
+}
+
+hr{
+    border: none; 
+    border-bottom: 1px solid rgb(17, 17, 17); 
+}

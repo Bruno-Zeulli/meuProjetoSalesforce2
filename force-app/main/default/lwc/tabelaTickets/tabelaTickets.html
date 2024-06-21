@@ -1,0 +1,133 @@
+<template>
+    <lightning-card>
+        <div class="slds-p-horizontal_small slds-scrollable">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Código">
+                                Código
+                            </div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Solicitante">
+                                Solicitante
+                            </div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Motivo">
+                                Motivo
+                            </div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Tipo">
+                                Tipo
+                            </div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Status">
+                                Status
+                            </div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Prioridade">
+                                Prioridade
+                            </div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Data inicial">
+                                Data inicial
+                            </div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Data última alteração">
+                                Data última alteração
+                            </div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Proprietario">
+                                Proprietario
+                            </div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Nota">
+                                Nota
+                            </div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Grupo">
+                                Grupo
+                            </div>
+                        </th>
+                        <!-- <th class="" scope="col">
+                            <div class="slds-truncate" title="Nome Empresa">
+                                Nome Empresa
+                            </div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="CNPJ Empresa">
+                                CNPJ Empresa
+                            </div>
+                        </th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={visibleTickects} for:item='item'>
+                        <tr class="slds-hint-parent" key={item.id}>
+                            <td data-label="Código" style="font-size: 13px;">
+                                <a href="#" name={item.id} onclick={abrirGuia}>{item.caseNumber}</a>
+                            </td>
+                            <td data-label="Solicitante" style="font-size: 13px;">
+                                <a href="#" name={item.contact.id} onclick={abrirGuia}>{item.contact.name}</a>
+                            </td>
+                            <td data-label="Motivo" style="font-size: 13px;">
+                                {item.motivo}
+                            </td>
+                            <td data-label="Tipo" style="font-size: 13px;">
+                                {item.tipo}
+                            </td>
+                            <!-- <td data-label="Assunto" style="font-size: 13px;">
+                                {item.Subject}
+                            </td> -->
+                            <td data-label="Status" style="font-size: 13px;">
+                                {item.statusFormatado}
+                            </td>
+                            <td data-label="Prioridade" style="font-size: 13px;">
+                                {item.prioridadeFormatada}
+                            </td>
+                            <td data-label="Data inicial" style="font-size: 13px;">
+                                <p><lightning-formatted-date-time value={item.dataCriacao} year="2-digit" month="short"
+                                        day="2-digit" hour="2-digit" minute="2-digit"></lightning-formatted-date-time>
+                                </p>
+                                <!--<lightning-formattedDateTime value={item.CreatedDate} ></lightning-formattedDateTime>-->
+                            </td>
+                            <td data-label="Data última alteração" style="font-size: 13px;">
+                                <p><lightning-formatted-date-time value={item.dataModificacao} year="2-digit"
+                                        month="short" day="2-digit" hour="2-digit"
+                                        minute="2-digit"></lightning-formatted-date-time></p>
+                            </td>
+                            <td data-label="Proprietario" style="font-size: 13px;">
+                                {item.owner.name}
+                            </td>
+                            <td>
+                                {item.nota}
+                            </td>
+                            <td data-label="Grupo" style="font-size: 13px;">
+                                {item.recordtype.name}
+                            </td>
+                            <!--<td data-label="Nome Empresa" style="font-size: 13px;" if:true={item.hasCompany}>
+                                {item.company.name}
+                            </td>
+                                <td data-label="CNPJ Empresa" style="font-size: 13px;" if:true={item.hasCompany}>
+                                {item.company.cnpj}
+                            </td>-->
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <div slot="footer" class="slds-var-m-vertical_medium">
+            <c-pagination records={tickets} record-size="25" onupdate={updateTicketsHandler}></c-pagination>
+        </div>
+    </lightning-card>
+</template>

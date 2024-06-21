@@ -1,0 +1,196 @@
+.slds-input{
+  border-radius: var(--slds-c-input-radius-border, 0px) var(--slds-c-input-radius-border, 4px) var(--slds-c-input-radius-border, 4px) var(--slds-c-input-radius-border, 0px);
+}
+
+.buttons-header-table-container{
+  background-color: var(--color-background-customer, #FCFCFC);
+  padding-left: var(--spacing, 24px);
+}
+
+.searh-input{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--spacing, 12px) var(--spacing, 16px);
+  isolation: isolate;
+  background-color: var(--color-background-customer, #FCFCFC);
+  color: var(--color-text-customer,#004E87);
+  height: 48px;
+}
+
+.searh-input::placeholder{
+  color: var(--color-text-customer, #DBDDDF);
+}
+
+.searh-input-container{
+  height: 48px;
+}
+
+.card-clear-filter{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.btn-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 16px;
+}
+
+.display-filter-select{
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+
+  display: flex;
+  align-items: flex-end;
+  text-align: center;
+  letter-spacing: 0.01em;
+
+  color: var(--color-text-customer, #212223);
+
+  padding-right: var(--spacing, 16px);
+}
+
+.buttons-container-id-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-right: var(--spacing, 24px);
+}
+
+.form-select {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  font-family: var(--font-family, 'Inter', sans-serif);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+
+  padding: var(--spacing, 6px),  var(--spacing, 8px);
+  height: 48px;
+
+  border: 1px solid var(--color-border-customer, #C1C3C5);
+  border-radius: 4px 0px 0px 4px ;
+  background-color: var(--color-background-customer, #FCFCFC);
+  color: var(--color-text-customer,#8F4100);
+
+}
+
+.text-filter{
+  padding-left: var(--spacing, 8px);
+  padding-top: var(--spacing, 12px);
+  padding-bottom: var(--spacing, 12px);
+  padding-right: var(--spacing, 8px);
+}
+
+.slds-input {
+  box-shadow: none !important;
+}
+
+.slds-input:hover{
+    border: 1px solid var(--color-border-customer, #BF5600);
+}
+
+.slds-input:focus{
+    border: 2px solid var(--color-border-customer, #BF5600);
+}
+
+.select{
+  box-shadow: none;
+  background-size:4%;
+}
+
+.select:hover{
+    border: 1px solid var(--color-border-customer, #BF5600);
+}
+
+.select:focus{
+    border: 2px solid var(--color-border-customer, #BF5600);
+}
+
+
+option{
+  padding: var(--spacing, 4px),  var(--spacing, 12px);
+  height: 32px;
+  background-color: var(--color-background-customer, #FCFCFC);
+  color: var(--color-text-customer,#004E87);
+}
+
+option:hover{
+  background-color: var(--color-background-customer, #FFE1CA);
+}
+
+select::selection{
+  height: 60px;
+}
+
+.btn-clear{
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+
+  padding: var(--spacing, 6px),  var(--spacing, 8px);
+  height: 48px;
+
+  border: 2px solid var(--color-border-customer ,#BF5600);
+  border-radius: 4px;
+  background-color: var(--color-background-customer, #FBFBFB);
+  color: var(--color-text-customer,#BF5600);
+
+}
+
+.btn-clear:hover{
+  border: 2px solid var(--color-border-customer ,#8F4100);
+  border-radius: 4px;
+  background-color: var(--color-background-customer, #FFF0E4);
+  color: var(--color-text-customer, #8F4100);
+}
+
+.btn-clear:focus{
+  border: 2px solid var(--color-border-customer ,#602B00);
+  border-radius: 4px;
+  background-color: var(--color-background-customer, #FFB578);
+  color: var(--color-text-customer,#602B00)
+}
+
+.btn-clear > div > svg{
+  fill: #BF5600
+}
+
+.btn-clear:focus > div > svg{
+  fill: #602B00
+}
+
+.btn-clear:hover > div > svg{
+  fill: #8F4100
+}
+
+.text-clear-filter{
+  padding-left: var(--spacing, 8px);
+  height: 24px;
+}
+
+.icon-clear-filter{
+  padding: var(--spacing, 4px)  var(--spacing,8px)  var(--spacing, 4px)  var(--spacing, 8px);
+}
